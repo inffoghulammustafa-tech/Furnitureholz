@@ -12,6 +12,7 @@ export interface Product {
   woodType: 'Sheesham' | 'Walnut' | 'Oak';
   materialDetails: string;
   image: string;
+  images?: string[];
   badge?: string;
   description: string;
   dimensions: string;
