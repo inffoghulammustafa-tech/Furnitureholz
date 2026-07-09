@@ -16,17 +16,22 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
   // We define dynamic layout based on variant
   const isFooter = variant === 'footer';
   const isDrawer = variant === 'drawer';
+  const isNavbar = variant === 'navbar';
 
   return (
-    <div className={`flex flex-col items-center justify-center text-center group ${className}`}>
+    <div className={`flex transition-all duration-300 group ${
+      isNavbar 
+        ? 'flex-col items-center justify-center gap-1.5 text-center' 
+        : 'flex-col items-center justify-center text-center'
+    } ${className}`}>
       {/* SVG Icon matching 1 img exactly */}
       <svg
-        width={iconSize}
-        height={iconSize * 0.75}
+        width={isNavbar ? 60 : iconSize}
+        height={isNavbar ? 60 * 0.75 : iconSize * 0.75}
         viewBox="0 0 100 70"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="transition-all duration-300 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]"
+        className="transition-all duration-300 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.6)] shrink-0"
       >
         <defs>
           {/* Stunning yellow-orange gold gradient matching 1 img */}
@@ -175,24 +180,28 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
 
       {/* Brand Text positioned DOWN below the logo */}
       {showText && (
-        <div className={`mt-2 select-none transition-colors duration-300 ${
-          isFooter 
+        <div className={`select-none transition-colors duration-300 ${
+          isNavbar
+            ? 'flex flex-col items-center justify-center'
+            : isFooter 
             ? 'mt-3.5' 
             : isDrawer 
             ? 'mt-3' 
             : 'mt-2'
         }`}>
-          <div className={`font-display font-extrabold tracking-[0.08em] leading-none uppercase text-amber-500 ${
-            isFooter 
+          <div className={`font-display font-extrabold leading-none uppercase text-amber-500 ${
+            isNavbar
+              ? 'text-base tracking-[0.06em]'
+              : isFooter 
               ? 'text-2xl tracking-[0.12em]' 
-              : isDrawer 
-              ? 'text-xl tracking-[0.1em]' 
-              : 'text-[17px] tracking-[0.09em]'
+              : 'text-xl tracking-[0.1em]'
           }`}>
             Furniture
           </div>
-          <div className={`font-sans font-bold tracking-[0.24em] leading-none uppercase text-amber-600 ${
-            isFooter 
+          <div className={`font-sans font-bold leading-none uppercase text-amber-600 ${
+            isNavbar
+              ? 'text-[9px] mt-0.5 tracking-[0.2em]'
+              : isFooter 
               ? 'text-xs mt-1.5' 
               : isDrawer 
               ? 'text-[11px] mt-1.5' 

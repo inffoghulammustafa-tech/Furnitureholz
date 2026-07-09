@@ -46,7 +46,7 @@ const NEW_ARRIVALS = [
     id: 'arr-3',
     name: 'Pigeon Foot Carved Sissoo Wood Console',
     tag: 'Elegant Console',
-    image: 'https://i.pinimg.com/1200x/3d/ee/3a/3dee3a37b91acc6c757dfb70e6e35f4d.jpg',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Console-Shisham-Carved-Wood-600x420.jpg',
     status: 'Available'
   },
   {
@@ -74,7 +74,7 @@ const NEW_ARRIVALS = [
     id: 'arr-7',
     name: 'Sheesham Wood High Back Prince Red Velvet Bedroom Chair',
     tag: 'Prince Luxury',
-    image: 'https://i.pinimg.com/736x/fc/92/b8/fc92b87d8ba2c7aa252d8e162c624e7e.jpg',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Thick-Foam-Sofa-Chairs-600x420.jpg',
     status: 'Available'
   },
   {
@@ -279,8 +279,8 @@ const PRODUCTS_DATABASE: Record<string, ProductDetailData> = {
     style: "Pigeon Foot Baroque",
     size: "1 Piece",
     images: [
-      "https://i.pinimg.com/1200x/3d/ee/3a/3dee3a37b91acc6c757dfb70e6e35f4d.jpg",
-      "https://i.pinimg.com/1200x/3d/ee/3a/3dee3a37b91acc6c757dfb70e6e35f4d.jpg#flipped"
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Console-Shisham-Carved-Wood-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Console-Shisham-Carved-Wood-600x420.jpg#flipped"
     ],
     status: "Available",
     categories: "Console & Mirrors, Lobby Luxury, Solid Wood"
@@ -347,8 +347,8 @@ const PRODUCTS_DATABASE: Record<string, ProductDetailData> = {
     style: "Prince High-Back Royal",
     size: "1 Piece",
     images: [
-      "https://i.pinimg.com/736x/fc/92/b8/fc92b87d8ba2c7aa252d8e162c624e7e.jpg",
-      "https://i.pinimg.com/736x/fc/92/b8/fc92b87d8ba2c7aa252d8e162c624e7e.jpg#flipped"
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Thick-Foam-Sofa-Chairs-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Thick-Foam-Sofa-Chairs-600x420.jpg#flipped"
     ],
     status: "Available",
     categories: "Chair & Tables, Sofa, Chair & Deewan"
@@ -505,6 +505,159 @@ const PRODUCTS_DATABASE: Record<string, ProductDetailData> = {
     ],
     status: "Available",
     categories: "Dressing Tables, Vanity Suite, Bedroom Luxury"
+  },
+  "sea-green-ottoman-puffy": {
+    id: "sea-green-ottoman-puffy",
+    title: "Sea Green Round Cube Ottoman Puffy Set",
+    tmr: "614267",
+    sku: "FH-10117",
+    color: "Sea Green Velvet",
+    material: "Solid Wood Inner Frame",
+    polish: "Velvet Upholstery with Deep Buttoning",
+    style: "Round & Cube Modular Geometric Set",
+    size: "3 Piece Set (2 Cubes + 1 Round Ottoman)",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Round-Cube-Puffy-Set-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Round-Cube-Puffy-Set-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Ottomans, Puffies, Bedroom Luxury"
+  },
+  "circle-platted-deewan": {
+    id: "circle-platted-deewan",
+    title: "Sheesham Wood Circle Platted Self Crafted Deewan",
+    tmr: "614268",
+    sku: "FH-10118",
+    color: "Natural Sheesham Stain",
+    material: "Solid Shisham Wood",
+    polish: "Classic Polish",
+    style: "Chinioti Circle Platted Traditional",
+    size: "1 Deewan Unit",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Circular-Self-Crafted-Deewan-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Circular-Self-Crafted-Deewan-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Sofa, Chair & Deewan, Bedroom Luxury"
+  },
+  "heart-back-shisham-deewan": {
+    id: "heart-back-shisham-deewan",
+    title: "Heart Back Shisham Made 3 Seater Deewan",
+    tmr: "614269",
+    sku: "FH-10119",
+    color: "Caramel Brown",
+    material: "Solid Shisham Wood",
+    polish: "Classic Polish",
+    style: "Heart Back Royal Carved",
+    size: "3 Seater Deewan Unit",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Heart-Back-Shesham-Made-Dewan-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Heart-Back-Shesham-Made-Dewan-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Sofa, Chair & Deewan, Bedroom Luxury"
+  },
+  "acacia-l-shape-sofa": {
+    id: "acacia-l-shape-sofa",
+    title: "Elegant Acacia Made 7 Seater L Shape Corner Leather Sofa",
+    tmr: "614270",
+    sku: "FH-10120",
+    color: "Leather Brown / Chocolate",
+    material: "Seasoned Acacia / Kikar Wood",
+    polish: "Premium Leatherette Upholstery",
+    style: "Modern L-Shape Sectional",
+    size: "7 Seater (L-Shape Sectional)",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/7-Seater-Corner-L-Shape-Sofa-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/7-Seater-Corner-L-Shape-Sofa-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Sofa, Sectionals, Lounge, Bedroom Luxury"
+  },
+  "chesterfield-royal-blue-sofa": {
+    id: "chesterfield-royal-blue-sofa",
+    title: "Chester Field Royal Blue 6 Seater 3 Piece Sofa Set",
+    tmr: "614271",
+    sku: "FH-10121",
+    color: "Royal Blue Velvet",
+    material: "Solid Wood Inner Frame with Sheesham Legs",
+    polish: "Royal Velvet Tufted",
+    style: "Classic Chesterfield Tufted",
+    size: "3 Piece Set (3 + 2 + 1 Seaters)",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Chester-Field-Sofa-Set-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Chester-Field-Sofa-Set-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Sofa Set, Living Room Luxury, Bedroom Luxury"
+  },
+  "gourmet-shisham-sofa": {
+    id: "gourmet-shisham-sofa",
+    title: "Gourmet Shisham Wood 6 Seater High Living Sofa Set",
+    tmr: "614272",
+    sku: "FH-10122",
+    color: "Deep Shisham Polish, Gold Accents",
+    material: "Premium Shisham Wood",
+    polish: "Traditional Walnut Glow, Gold Thread Upholstery",
+    style: "Imperial High-Living Gourmet Sofa",
+    size: "3 Piece Set (3 + 2 + 1 Seaters)",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Gourmet-Sofa-Set-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Gourmet-Sofa-Set-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Sofa Set, Living Room Luxury, Bedroom Luxury"
+  },
+  "golden-deco-sofa-set": {
+    id: "golden-deco-sofa-set",
+    title: "Golden Deco Crown Shisham Wood 7 Seater Sofa Set",
+    tmr: "614273",
+    sku: "FH-10123",
+    color: "Golden Polish with dual-tone upholstery",
+    material: "Solid Shisham Wood Frame",
+    polish: "Premium Gold Deco Polish",
+    style: "Imperial Crown Baroque Carvings",
+    size: "4 Piece Set (3 + 2 + 1 + 1 Seaters)",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Jacquard-Velvet-Upholstery-Sofa-Set-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Jacquard-Velvet-Upholstery-Sofa-Set-600x420.jpg#flipped"
+    ],
+    status: "Sold Out",
+    categories: "Sofa Set, Living Room Luxury, Bedroom Luxury"
+  },
+  "smart-living-sofa-bed": {
+    id: "smart-living-sofa-bed",
+    title: "Smart Living Solid Acacia Wood Sofa Cum Bed",
+    tmr: "614274",
+    sku: "FH-10124",
+    color: "Tan / Mustard Gold",
+    material: "Solid Acacia Wood Structure",
+    polish: "Glossy Hand-applied Wood Lacquer",
+    style: "Smart Folding Sofa Cum Bed",
+    size: "1 Convertible Unit",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Sofa-Cum-Bed-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/Sofa-Cum-Bed-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Sofa Bed, Lounge, Bedroom Luxury"
+  },
+  "smart-living-u-sofa": {
+    id: "smart-living-u-sofa",
+    title: "Smart Living 10 Seater Solid Acacia Wood Jute U Corner Sofa",
+    tmr: "614275",
+    sku: "FH-10125",
+    color: "Beige / Light Tan Jute",
+    material: "Solid Acacia Wood & Jute Fabric",
+    polish: "Exposed Wooden Plinths with Matte Finish",
+    style: "U-Shape Large Lounge Sectional",
+    size: "10 Seater Modular Corner Sofa",
+    images: [
+      "https://furnitureholz.com/wp-content/uploads/2021/04/10-Seat-Corner-Sofa-Set-600x420.jpg",
+      "https://furnitureholz.com/wp-content/uploads/2021/04/10-Seat-Corner-Sofa-Set-600x420.jpg#flipped"
+    ],
+    status: "Available",
+    categories: "Sofa, Sectionals, Lounge, Bedroom Luxury"
   }
 };
 

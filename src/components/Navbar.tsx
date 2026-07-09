@@ -133,7 +133,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
               e.preventDefault();
               handleScrollToTop();
             }}
-            className="flex flex-col items-center justify-center text-center group py-1"
+            className="flex items-center justify-center group py-1"
           >
             <Logo variant="navbar" iconSize={68} showText={true} />
           </a>

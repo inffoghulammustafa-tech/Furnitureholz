@@ -7,7 +7,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Heart, Info, SlidersHorizontal, Eye, ShoppingBag, X, Calendar, Hammer, Scale, Move } from 'lucide-react';
 import { Product, QuoteItem } from '../types';
-import { INITIAL_PRODUCTS, WOOD_PROPERTIES } from '../data';
+import { INITIAL_PRODUCTS, WOOD_PROPERTIES, getProductAttributes } from '../data';
 
 interface CatalogProps {
   selectedCategory: string;
@@ -42,6 +42,15 @@ export default function Catalog({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
 
+  const [selectedColor, setSelectedColor] = useState<string>('All');
+  const [selectedMaterial, setSelectedMaterial] = useState<string>('All');
+  const [selectedPolish, setSelectedPolish] = useState<string>('All');
+  const [selectedStyle, setSelectedStyle] = useState<string>('All');
+  const [selectedPieces, setSelectedPieces] = useState<string>('All');
+
+  const [sortBy, setSortBy] = useState<string>('Sort by popularity');
+  const [isSortOpen, setIsSortOpen] = useState<boolean>(false);
+
   // Toggle favorite helper
   const toggleFavorite = (productId: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -57,7 +66,7 @@ export default function Catalog({
 
   // Filter logic
   const filteredProducts = useMemo(() => {
-    return INITIAL_PRODUCTS.filter(prod => {
+    let result = INITIAL_PRODUCTS.filter(prod => {
       const matchesCategory = selectedCategory === 'all' || prod.category === selectedCategory;
       const matchesWood = selectedWood === 'all' || prod.woodType === selectedWood;
       const matchesPrice = prod.price <= maxPrice;
@@ -66,9 +75,54 @@ export default function Catalog({
         prod.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         prod.woodType.toLowerCase().includes(searchTerm.toLowerCase());
 
-      return matchesCategory && matchesWood && matchesPrice && matchesSearch;
+      if (!(matchesCategory && matchesWood && matchesPrice && matchesSearch)) {
+        return false;
+      }
+
+      // Advanced filters
+      const attrs = getProductAttributes(prod);
+      const matchesColor = selectedColor === 'All' || attrs.color === selectedColor;
+      const matchesMaterial = selectedMaterial === 'All' || attrs.material === selectedMaterial;
+      const matchesPolish = selectedPolish === 'All' || attrs.polish === selectedPolish;
+      const matchesStyle = selectedStyle === 'All' || attrs.style === selectedStyle;
+      const matchesPieces = selectedPieces === 'All' || attrs.pieces === selectedPieces;
+
+      return matchesColor && matchesMaterial && matchesPolish && matchesStyle && matchesPieces;
     });
-  }, [selectedCategory, selectedWood, maxPrice, searchTerm]);
+
+    // Sorting logic
+    if (sortBy === 'Sort by price: low to high') {
+      result = [...result].sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'Sort by price: high to low') {
+      result = [...result].sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'Sort by latest') {
+      result = [...result].sort((a, b) => {
+        const dateA = getProductAttributes(a).date;
+        const dateB = getProductAttributes(b).date;
+        return dateB.localeCompare(dateA);
+      });
+    } else {
+      // Sort by popularity
+      result = [...result].sort((a, b) => {
+        const popA = getProductAttributes(a).popularity;
+        const popB = getProductAttributes(b).popularity;
+        return popB - popA;
+      });
+    }
+
+    return result;
+  }, [
+    selectedCategory,
+    selectedWood,
+    maxPrice,
+    searchTerm,
+    selectedColor,
+    selectedMaterial,
+    selectedPolish,
+    selectedStyle,
+    selectedPieces,
+    sortBy
+  ]);
 
   // Wood info sidebar trigger/toggle inside catalog filters
   const [showWoodInfoTab, setShowWoodInfoTab] = useState<string | null>(null);
@@ -94,86 +148,122 @@ export default function Catalog({
         </div>
 
         {/* Filter Toolbar */}
-        <div className="box-gradient p-6 mb-10 flex flex-col gap-6 rounded-2xl">
-          {/* Category tabs */}
-          <div className="flex flex-wrap items-center gap-2 border-b border-line/50 pb-4">
-            {['all', 'bedroom', 'dining', 'living-room', 'outdoor', 'sets'].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => onSetCategory(cat)}
-                className={`px-4 py-2 text-xs font-sans uppercase tracking-widest border transition-all duration-300 ${
-                  selectedCategory === cat
-                    ? 'bg-oak text-charcoal border-oak font-semibold'
-                    : 'text-ivory-dim border-line hover:text-ivory hover:border-ivory-dim'
-                }`}
-              >
-                {getCategoryLabel(cat)}
-              </button>
-            ))}
-          </div>
-
-          {/* Detailed filters & Search */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
-            {/* Search */}
-            <div className="md:col-span-4 relative">
-              <label className="block text-[10px] uppercase tracking-widest text-sage mb-2 font-mono">
-                Search Timber / Designs
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="e.g. Dining, Walnut, Chinar..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full bg-charcoal/50 border border-line py-2.5 pl-10 pr-4 text-sm text-ivory placeholder-ivory-dim/40 focus:outline-none focus:border-oak transition-colors font-sans"
-                />
-                <Search className="w-4 h-4 text-ivory-dim/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative mb-10 p-[1px] rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500 via-amber-800 to-amber-950/20"
+        >
+          <div className="bg-gradient-to-br from-[#E2B248]/10 via-[#855B0A]/25 to-[#12110c] p-6 rounded-[calc(1rem-1px)] border border-amber-500/10 shadow-xl backdrop-blur-md">
+            {/* Category tabs */}
+            <div className="flex flex-wrap items-center gap-2 border-b border-line/50 pb-4 mb-6">
+              {['all', 'bedroom', 'dining', 'living-room', 'outdoor', 'sets'].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => onSetCategory(cat)}
+                  className={`px-4 py-2 text-xs font-sans uppercase tracking-widest border transition-all duration-300 ${
+                    selectedCategory === cat
+                      ? 'bg-oak text-charcoal border-oak font-semibold'
+                      : 'text-ivory-dim border-line hover:text-ivory hover:border-ivory-dim'
+                  }`}
+                >
+                  {getCategoryLabel(cat)}
+                </button>
+              ))}
             </div>
 
-            {/* Wood selection */}
-            <div className="md:col-span-4">
-              <label className="block text-[10px] uppercase tracking-widest text-sage mb-2 font-mono flex justify-between items-center">
-                <span>Select Wood Species</span>
-                {selectedWood !== 'all' && (
-                  <button
-                    onClick={() => setShowWoodInfoTab(selectedWood)}
-                    className="text-[9px] text-oak hover:underline flex items-center gap-1 font-mono uppercase"
+            {/* Advanced Filters */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6">
+              {[
+                { label: 'Color', value: selectedColor, onChange: setSelectedColor, options: ['All', 'Caramel Brown', 'Careem', 'Chocolate Brown', 'Dark Brown', 'Golden', 'Golden Brown', 'Leather Brown', 'Off White', 'Polish Brown', 'Royal Blue', 'Royal Red', 'Sea Green', 'Silver', 'Silver Brown', 'Skin', 'Skin Brown', 'Walnut Brown', 'Brown'] },
+                { label: 'Material', value: selectedMaterial, onChange: setSelectedMaterial, options: ['All', 'Acacia/ Kikar Wood', 'MDF Malaysia', 'Oak Wood', 'Shisham/ Sissoo Wood', 'Solid Wood', 'Walnut Wood'] },
+                { label: 'Polish', value: selectedPolish, onChange: setSelectedPolish, options: ['All', 'All Over Upholstery', 'Classic Polish', 'Deco', 'Glossy Polish', 'High Gloss', 'Jacquard Upholstery', 'Leather Upholstery', 'Mate Polish', 'N/A', 'Tone Polish', 'Velvet Upholstery'] },
+                { label: 'Style', value: selectedStyle, onChange: setSelectedStyle, options: ['All', 'Carved Back', 'Chinioti', 'Circle', 'Crafted', 'Crown', 'Crown Back', 'Deewan', 'Foam Quilt', 'Gourmet', 'Inlay', 'L Shape', 'Ladder', 'Milia', 'Moora', 'Puffy Settee', 'Round Seat', 'Royal Crown', 'Self Crafted', 'Ship Deck', 'Stick', 'Stick Frame', 'Velvet Upholstery'] },
+                { label: 'Pieces', value: selectedPieces, onChange: setSelectedPieces, options: ['All', '1 Piece', '2 Piece', '3 Piece', '4 Piece', '5 Piece', 'King'] }
+              ].map((filter, index) => (
+                <motion.div 
+                  key={filter.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                >
+                  <label className="block text-[10px] uppercase tracking-widest text-ivory mb-2 font-mono">
+                    {filter.label}
+                  </label>
+                  <select
+                    value={filter.value}
+                    onChange={(e) => filter.onChange(e.target.value)}
+                    className="w-full bg-charcoal border border-oak/30 py-2.5 px-4 text-sm text-ivory focus:outline-none focus:border-oak transition-colors rounded-lg appearance-none cursor-pointer"
                   >
-                    <Info className="w-2.5 h-2.5" /> Wood properties
-                  </button>
-                )}
-              </label>
-              <select
-                value={selectedWood}
-                onChange={(e) => setSelectedWood(e.target.value)}
-                className="w-full bg-charcoal border border-line py-2.5 px-4 text-sm text-ivory focus:outline-none focus:border-oak transition-colors"
-              >
-                <option value="all">All Timber (Sheesham, Walnut, Oak)</option>
-                <option value="Sheesham">Sheesham (Indian Rosewood)</option>
-                <option value="Walnut">Persian Wild Walnut</option>
-                <option value="Oak">European White Oak</option>
-              </select>
-            </div>
+                    {filter.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                  </select>
+                </motion.div>
+              ))}
 
-            {/* Price Slider */}
-            <div className="md:col-span-4">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-[10px] uppercase tracking-widest text-sage font-mono">Max Price Limit</span>
-                <span className="text-xs font-mono text-oak">{formatPrice(maxPrice)}</span>
-              </div>
-              <input
-                type="range"
-                min="60000"
-                max="250000"
-                step="5000"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full accent-oak h-1 bg-line rounded-lg cursor-pointer"
-              />
+              {/* Sort Dropdown */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="relative"
+              >
+                <label className="block text-[10px] uppercase tracking-widest text-ivory mb-2 font-mono">
+                  Sort By
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setIsSortOpen(!isSortOpen)}
+                  className="w-full bg-gray-300 text-charcoal font-bold uppercase tracking-wider text-[11px] py-3 px-3 rounded-lg flex items-center justify-between cursor-pointer border border-transparent transition-colors hover:bg-gray-200"
+                >
+                  <span className="truncate">{sortBy}</span>
+                  <span className="text-[10px] font-semibold flex-shrink-0 ml-1">
+                    {isSortOpen ? '▲' : '▼'}
+                  </span>
+                </button>
+                
+                <AnimatePresence>
+                  {isSortOpen && (
+                    <>
+                      {/* Invisible backdrop to close the dropdown when clicking outside */}
+                      <div 
+                        className="fixed inset-0 z-10" 
+                        onClick={() => setIsSortOpen(false)} 
+                      />
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute right-0 left-0 mt-2 bg-white text-charcoal rounded-lg shadow-2xl border border-gray-200 z-20 py-1 overflow-hidden"
+                      >
+                        {[
+                          'Sort by popularity',
+                          'Sort by latest',
+                          'Sort by price: low to high',
+                          'Sort by price: high to low'
+                        ].map((option) => (
+                          <button
+                            key={option}
+                            type="button"
+                            onClick={() => {
+                              setSortBy(option);
+                              setIsSortOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-2.5 text-xs font-medium font-sans hover:bg-gray-100 transition-colors ${
+                              sortBy === option ? 'bg-gray-100 font-bold text-black' : 'text-gray-700'
+                            }`}
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </motion.div>
+                    </>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Dynamic Wood Properties Overlay Banner */}
         <AnimatePresence>
