@@ -426,6 +426,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     woodType: 'Walnut',
     materialDetails: 'Solid seasoned Persian Walnut wood structure with premium matte polyurethane protection',
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Mate-Polish-Bedroom-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Mate-Polish-Bedroom-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Mate-Polish-Dressing-600x420.jpg'
+    ],
     badge: 'Popular',
     description: 'An exquisite master bedroom suite set handcrafted from select dark Akhroti (Walnut) wood, featuring a gorgeous matte lacquer finish that accentuates natural wood grains. Includes king size bed, dressing table, and bedside cabinets.',
     dimensions: 'Bed: 215cm L x 195cm W x 135cm H / Dresser: 125cm W x 45cm D x 85cm H',
@@ -441,6 +445,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     woodType: 'Walnut',
     materialDetails: 'Solid Walnut heartwood structure with premium smooth satin coat finish',
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Akhroti-Walnut-Bedroom-Furniture-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Akhroti-Walnut-Bedroom-Furniture-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Modern-Bed-Design-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Trapezium-Shape-Furniture-600x420.jpg'
+    ],
     badge: 'Masterpiece',
     description: 'Stunning modern curves with organic geometry. Handcrafted from rich Persian Walnut wood, this premium bed and dressing console features custom trapezium curves and detailed wood carvings.',
     dimensions: 'Bed: 220cm L x 205cm W x 140cm H / Dresser: 135cm L x 45cm D x 190cm H',
@@ -456,6 +465,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     woodType: 'Sheesham',
     materialDetails: 'Premium selected seasoned Sissoo (Sheesham) Wood structure with ultra-clear high-gloss coat',
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Stick-Pattern-Furniture-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Stick-Pattern-Furniture-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Make-Up-Console-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Wooden-Crafted-Furniture-600x420.jpg'
+    ],
     badge: 'Unique Design',
     description: 'A self-crafted design masterpiece showcasing a beautiful vertical stick-pattern ladder headboard. Expertly polished in super high gloss premium luster, accentuating the golden-brown Sheesham grains.',
     dimensions: 'Bed: 212cm L x 195cm W x 130cm H / Dresser: 120cm L x 42cm D x 185cm H',
@@ -524,14 +538,14 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'bedroom-p2-10',
-    name: 'Chinioti Crafted Shisham Wood Deco Moora Chair Set',
+    name: 'Chinioti Crafted Silver Deco Moora Chair Set',
     category: 'bedroom',
     price: 42000,
     woodType: 'Sheesham',
-    materialDetails: 'Solid seasoned Shisham Wood, gold-leaf highlight lacquer coating, velvet cushioning',
+    materialDetails: 'Solid seasoned Shisham Wood, silver-leaf highlight lacquer coating, velvet cushioning',
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Shisham-Wood-Chinioti-Crafted-Moora-Set-600x420.jpg',
     badge: 'Craft Classic',
-    description: 'An elegant pair of traditionally hand-turned Chinioti moora stool chairs with custom floral carving details and a gorgeous gold deco polish highlighting deep Sheesham grains.',
+    description: 'An elegant pair of traditionally hand-turned Chinioti moora stool chairs with custom floral carving details and a gorgeous silver deco polish highlighting deep Sheesham grains.',
     dimensions: 'Stools: 48cm Diameter x 50cm H',
     weight: '14 kg',
     buildTime: '3-4 Weeks',
@@ -548,7 +562,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Hybrid-Wood-Fiber-Lasani-Bedroom-Set-600x420.jpg',
       'https://furnitureholz.com/wp-content/uploads/2021/04/Deco-Railing-Console-Drawer-600x420.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Deco-Furniture-600x420.jpg'
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Versace-Wood-Crafted-Bed-Back-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/2-Mirror-Dressing-Console-1-600x420.jpg'
     ],
     badge: 'Ustad Signature',
     description: 'The masterpiece of true Pakistani craftsmanship. Features high-quality hybrid premium wood combined with high-grade density fiberboard, finished in stunning high-gloss deco white with golden trim. Includes king bed, gorgeous railing console dresser, and wardrobe.',
@@ -586,7 +601,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Oak-Wood-Furniture-Set-600x420.jpg',
       'https://furnitureholz.com/wp-content/uploads/2021/04/4-600x899.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/Oak-Wood-Dressing-600x420.jpg'
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Oak-Wood-Texture-Bed-600x420.jpg'
     ],
     badge: 'Premium Suite',
     description: 'A premium bedroom set constructed from solid European Oak wood, featuring a gorgeous dual-tone contrast between dark and golden stains. Set contains a stunning king size bed, large mirror dresser, and nightstands.',
@@ -605,8 +620,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Classic-Polish-Wooden-Bedroom-Set-600x420.jpg',
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Classic-Polish-Wooden-Bedroom-Set-600x420.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Furniture-600x400.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/Make-Up-Dressing-Console-600x420.jpg'
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Holz-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Furniture-600x400.jpg'
     ],
     badge: 'Classic Vintage',
     description: 'Classic vintage lines blended with rich hand-polish. Made with premium seasoned Sissoo (Sheesham) wood, showcasing high gloss classical walnut and amber tones and detailed handcarvings.',
@@ -797,7 +812,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Velvet-Poshish-Low-Rise-Heaven-High-Bedroom-Bridal-Set-600x420.jpg',
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Velvet-Poshish-Low-Rise-Heaven-High-Bedroom-Bridal-Set-600x420.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/Quilted-Foot-Back-600x420.jpg'
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Quilted-Foot-Back-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Deco-Paint-Furniture-600x420.jpg'
     ],
     badge: 'Heaven Bridal',
     description: 'A majestic low-rise bridal bedroom suite showcasing a massive heaven-high headboard with premium quilted velvet poshish and elegant white-gold deco polishing.',
@@ -816,7 +832,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Mate-Polish-Furniture-600x420.jpg',
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Mate-Polish-Furniture-600x420.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/2-Side-Mirror-Makeup-Dressing-600x420.jpg'
+      'https://furnitureholz.com/wp-content/uploads/2021/04/2-Side-Mirror-Makeup-Dressing-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Side-Tables-600x420.jpg'
     ],
     badge: 'Tapered Walnut',
     description: 'A masterpiece of clean walnut timber featuring a stunning tapered low-bed design, intricate wood-woven net headboard, and a matching dual-mirror makeup dressing console.',
@@ -854,7 +871,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Fuzon-Designer-Furniture-600x420.jpg',
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Fuzon-Designer-Furniture-600x420.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/All-Over-Quilted-Poshish-Furniture-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Velvet-Foam-Quilted-Poshish-Bed-600x420.jpg',
       'https://furnitureholz.com/wp-content/uploads/2021/04/Vintage-Make-Up-Dressing-600x420.jpg'
     ],
     badge: 'Fuzon Luxury',
@@ -874,7 +891,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Circle-Walnut-Wooden-Bridal-Bedroom-Set-600x420.jpg',
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Circle-Walnut-Wooden-Bridal-Bedroom-Set-600x420.jpg',
-      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Bed-Side-Table-600x420.jpg'
+      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Bed-Side-Table-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Double-Mirror-Walnut-Wood-Furniture-600x420.jpg'
     ],
     badge: 'Two Tone Circle',
     description: 'Unique concentric circular wood carving details on the headboard and cabinets. Masterfully crafted using Walnut & Shisham wood to create a high-contrast two-tone luxury suite.',
@@ -894,6 +912,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     images: [
       'https://furnitureholz.com/wp-content/uploads/2021/04/Walnut-Wood-Classic-Bedroom-Set-600x420.jpg',
       'https://furnitureholz.com/wp-content/uploads/2021/04/Round-Shape-Wooden-Dressing-Console-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Wooden-Bed-Designs-600x420.jpg',
       'https://furnitureholz.com/wp-content/uploads/2021/04/Bedside-Table-Designs-600x420.jpg'
     ],
     badge: 'Classic Walnut',
@@ -917,6 +936,186 @@ export const INITIAL_PRODUCTS: Product[] = [
     weight: '145 kg',
     buildTime: '10-12 Weeks',
     joinery: 'Interlocking dual-locked column tenons, heavy steel brackets.'
+  },
+  {
+    id: 'dining-moora-set',
+    name: 'Chinioti Crafted Silver Deco Moora Chair Set',
+    category: 'dining',
+    price: 42000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham Wood, silver-leaf highlight lacquer coating, velvet cushioning',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Shisham-Wood-Chinioti-Crafted-Moora-Set-600x420.jpg',
+    badge: 'Craft Classic',
+    description: 'An elegant pair of traditionally hand-turned Chinioti moora stool chairs with custom floral carving details and a gorgeous silver deco polish highlighting deep Sheesham grains.',
+    dimensions: 'Stools: 48cm Diameter x 50cm H',
+    weight: '14 kg',
+    buildTime: '3-4 Weeks',
+    joinery: 'Traditional joinery with solid round pegging.'
+  },
+  {
+    id: 'dining-high-living-8-chair',
+    name: 'High Living Sissoo Crafted Wood 8 Chair Fancy Dining Table Set',
+    category: 'dining',
+    price: 185000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid Sissoo Wood (Sheesham) with premium glass top, premium fabric cushions',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Sissoo-Wood-Glass-Top-Fancy-Dining-Table-600x420.jpg',
+    badge: 'Luxury Dining',
+    description: 'A masterpiece of royal dining. Features a magnificent solid Sissoo wood frame with detailed Mughal carving, an elegant glass inset top, and eight exquisitely matching high-back chairs upholstered in high-density premium fabric.',
+    dimensions: 'Table: 240cm L x 110cm W x 78cm H / Chairs: 48cm W x 105cm H',
+    weight: '145 kg',
+    buildTime: '6-8 Weeks',
+    joinery: 'Interlocking mortise-and-tenon framing with heavy-duty peg reinforcement.'
+  },
+  {
+    id: 'dining-carving-high-back',
+    name: 'Carving Shisham Wood High Back Bedroom Chair Set',
+    category: 'dining',
+    price: 110000,
+    woodType: 'Sheesham',
+    materialDetails: 'Hand-sculpted solid Shisham wood frame (Includes 2 High Back Chairs + 1 Table)',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/High-Back-Shisham-Wood-Bedroom-Chair-600x420.jpg',
+    badge: 'SOLD OUT',
+    description: 'A beautiful dining/lounge set showcasing exquisite master chip-carving on the crown headrest of two tall elegant high back chairs, paired with a matching round side table.',
+    dimensions: '72cm W x 68cm D x 118cm H (Chairs) / 50cm Diameter x 55cm H (Table)',
+    weight: '48 kg',
+    buildTime: '5-7 Weeks',
+    joinery: 'Reinforced tenon framing with handcrafted round peg locks.'
+  },
+  {
+    id: 'dining-bergere-inlay',
+    name: 'Bergere Sissoo Wood Inlay Work Bedroom Chair Set',
+    category: 'dining',
+    price: 125000,
+    woodType: 'Sheesham',
+    materialDetails: 'A-grade Sissoo Wood (Sheesham) with micro ivory-wood floral inlay (Includes 2 Chairs + 1 Table)',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Bergere-Chair-Set-In-Pakistan-600x420.jpg',
+    badge: 'Inlay Craft',
+    description: 'Styled with French-classical Bergere influence, this dining/bedroom set features detailed brass/ivory-wood linear inlay patterns across the backrests and table-tops. Fitted with luxury brocade upholstery.',
+    dimensions: '68cm W x 64cm D x 95cm H (Chairs) / 48cm Diameter x 52cm H (Table)',
+    weight: '42 kg',
+    buildTime: '6-8 Weeks',
+    joinery: 'Sliding blind dowels, curved leg-to-seat continuous mortise.'
+  },
+  {
+    id: 'dining-prince-red-velvet',
+    name: 'Sheesham Wood High Back Prince Red Velvet Bedroom Chair',
+    category: 'dining',
+    price: 72000,
+    woodType: 'Sheesham',
+    materialDetails: 'Sustainably seasoned solid Sheesham with Royal Crimson Red Velvet upholstery',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Thick-Foam-Sofa-Chairs-600x420.jpg',
+    badge: 'Royal Comfort',
+    description: 'Epitome of royal comfort. A single tall majestic wingback prince chair upholstered in premium crimson-red velvet, framed with beautiful hand-polished seasoned Sheesham wood border accents.',
+    dimensions: '76cm W x 72cm D x 128cm H',
+    weight: '26 kg',
+    buildTime: '4-5 Weeks',
+    joinery: 'Heavy-duty mortise-and-tenon corner joints, wood-on-wood pegged.'
+  },
+  {
+    id: 'dining-black-golden-8-chair',
+    name: 'Black & Golden 8 Chairs Solid Acacia Wood Fancy Dining Table Set',
+    category: 'dining',
+    price: 195000,
+    woodType: 'Oak',
+    materialDetails: 'Solid Acacia Wood with high gloss black finish and premium gold leafing accents',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Acacia-Dining-Room-Furniture-600x420.jpg',
+    badge: 'Special Edition',
+    description: 'A breathtaking luxury dining set that commands presence. Features eight stunning black lacquered chairs decorated with gold leafing details and upholstered in premium high-density cushioning, centered around a premium solid wood table.',
+    dimensions: 'Table: 240cm L x 110cm W x 78cm H / Chairs: 48cm W x 105cm H',
+    weight: '150 kg',
+    buildTime: '7-9 Weeks',
+    joinery: 'Double-pinned mitered framing and heavy underframe bracket supports.'
+  },
+  {
+    id: 'dining-triangular-acacia',
+    name: 'Tri-Angular Solid Acacia Wood Table With 6 Carved Chairs',
+    category: 'dining',
+    price: 165000,
+    woodType: 'Oak',
+    materialDetails: 'Solid seasoned Acacia Wood, hand-sculpted rustic design',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Triangular-6-Chairs-Dining-Table-Set-600x420.jpg',
+    badge: 'SOLD OUT',
+    description: 'A gorgeous tri-angular rustic-style solid Acacia wood dining table with six hand-carved, comfortable high-back matching chairs. Crafted with a premium protective lacquer coat.',
+    dimensions: 'Table: 150cm Diagonal x 76cm H / Chairs: 46cm W x 102cm H',
+    weight: '110 kg',
+    buildTime: '6-8 Weeks',
+    joinery: 'Traditional mortise-and-tenon interlocking frame with premium wood pegging'
+  },
+  {
+    id: 'dining-shisham-inlay-8',
+    name: '8 Chairs Shisham Wood Inlay Top Dining Table Set',
+    category: 'dining',
+    price: 195000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham Wood, linear ivory-wood inlay work',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Sissoo-Wood-Glass-Top-Fancy-Dining-Table-600x420.jpg',
+    badge: 'Inlay Special',
+    description: 'A magnificent, grand 8-chair dining table set crafted from premier aged Shisham wood. The tabletop features exquisite, hand-laid linear inlay work depicting traditional floral motifs.',
+    dimensions: 'Table: 240cm L x 110cm W x 78cm H / Chairs: 48cm W x 105cm H',
+    weight: '145 kg',
+    buildTime: '7-9 Weeks',
+    joinery: 'Interlocking mitered corner framing with heavy underframe bracket supports'
+  },
+  {
+    id: 'dining-ladder-sticks-glass',
+    name: 'Ladder Sticks Acacia Wood Glass Top Dining Table & 6 Chairs Set',
+    category: 'dining',
+    price: 155000,
+    woodType: 'Oak',
+    materialDetails: 'Solid Acacia Wood frame, premium thick glass top',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Acacia-Dining-Room-Furniture-600x420.jpg',
+    badge: 'Best Seller',
+    description: 'Combining mid-century elegance with contemporary design. This set features a high-grade tempered glass top supported by beautiful ladder-stick Acacia wood base framing, paired with six ergonomically curved ladder-back chairs.',
+    dimensions: 'Table: 180cm L x 90cm W x 76cm H / Chairs: 45cm W x 98cm H',
+    weight: '115 kg',
+    buildTime: '5-7 Weeks',
+    joinery: 'Mortise-and-tenon vertical stick joints, pegged horizontal support bars'
+  },
+  {
+    id: 'dining-carved-couch-settee',
+    name: 'Carved Sheeham Wood Bedroom Couch Settee',
+    category: 'dining',
+    price: 88000,
+    woodType: 'Sheesham',
+    materialDetails: 'Premium handcarved solid Sheesham wood framed deewan settee',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Settee-Couch-600x420.jpg',
+    badge: 'Masterpiece',
+    description: 'An exquisite long bed-end settee or luxury deewan couch, handcrafted from solid Sheesham wood. Adorned with beautiful leaf/grape-motif baroque carvings along the entire wooden base with gold-leaf gilding highlights.',
+    dimensions: '155cm L x 55cm W x 52cm H',
+    weight: '30 kg',
+    buildTime: '4-6 Weeks',
+    joinery: 'Traditional joinery with solid round pegging'
+  },
+  {
+    id: 'dining-sea-green-ottoman',
+    name: 'Sea Green Round Cube Ottoman Puffy Set',
+    category: 'dining',
+    price: 45000,
+    woodType: 'Sheesham',
+    materialDetails: 'Premium hand-upholstered velvet with seasoned wood inner frame structures',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Round-Cube-Puffy-Set-600x420.jpg',
+    badge: 'Trending',
+    description: 'This chic, space-saving puffy set combines round and cubic geometric silhouettes. Upholstered in premium sea-green velvet with rich, high-density foam padding, offering exceptional lounging or seating versatility.',
+    dimensions: '45cm Diameter x 45cm H (Round) / 40cm L x 40cm W x 45cm H (Cube)',
+    weight: '14 kg',
+    buildTime: '3-4 Weeks',
+    joinery: 'Internal reinforced solid wood framing with heavy-duty hidden corner braces.'
+  },
+  {
+    id: 'dining-circle-platted-deewan',
+    name: 'Sheeham Wood Circle Platted Self Crafted Deewan',
+    category: 'dining',
+    price: 95000,
+    woodType: 'Sheesham',
+    materialDetails: 'Handcarved A-grade seasoned solid Sheesham with luxury floral cushioning',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Circular-Self-Crafted-Deewan-600x420.jpg',
+    badge: 'Bespoke',
+    description: 'A masterpiece of traditional craftsmanship. Features deep circle-platted wooden patterns meticulously carved by hand. A true signature of classic subcontinental bedroom design.',
+    dimensions: '168cm L x 68cm W x 82cm H',
+    weight: '38 kg',
+    buildTime: '5-7 Weeks',
+    joinery: 'Traditional continuous mortise-and-tenon back and leg integration.'
   }
 ];
 
@@ -1042,7 +1241,7 @@ export function getProductAttributes(product: Product) {
     return {
       ...item,
       popularity: 91 - (num * 0.5), // Popularity range: 90.5 down to 83
-      date: `2026-04-${String(10 + num).padStart(2, '0')}`
+      date: `2026-04-${String(30 - num).padStart(2, '0')}`
     };
   }
   if (product.id.startsWith('bedroom-p3-')) {
@@ -1076,11 +1275,101 @@ export function getProductAttributes(product: Product) {
     return {
       ...item,
       popularity: 81 - (num * 0.5), // Popularity range: 80.5 down to 73
-      date: `2026-03-${String(10 + num).padStart(2, '0')}`
+      date: `2026-03-${String(30 - num).padStart(2, '0')}`
     };
   }
 
   switch (product.id) {
+    case 'dining-moora-set':
+      return {
+        color: 'Silver Deco, Velvet Cushion',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'Silver Leaf Highlight Polish',
+        style: 'Chinioti Crafted',
+        pieces: '2 Piece',
+        popularity: 91,
+        date: '2026-04-20'
+      };
+    case 'dining-high-living-8-chair':
+      return {
+        color: 'Walnut Polish, Cream Cushion',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'Glossy Melamine Polish',
+        style: 'Mughal Craft Dining',
+        pieces: '9 Pieces (8 Chairs + 1 Table)',
+        popularity: 94,
+        date: '2026-04-25'
+      };
+    case 'dining-carving-high-back':
+      return {
+        color: 'Teak Brown, Ivory Cushion',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'Matte Lacquer Polish',
+        style: 'High Back Carved',
+        pieces: '3 Pieces (2 Chairs + 1 Table)',
+        popularity: 92,
+        date: '2026-04-22'
+      };
+    case 'dining-bergere-inlay':
+      return {
+        color: 'Golden Brown',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'Ivory-wood Inlay Work',
+        style: 'French Bergere',
+        pieces: '3 Pieces (2 Chairs + 1 Table)',
+        popularity: 93,
+        date: '2026-04-24'
+      };
+    case 'dining-prince-red-velvet':
+      return {
+        color: 'Teak Polish, Crimson Red Cushion',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'Crimson Red Velvet',
+        style: 'Prince Wingback',
+        pieces: '1 Piece',
+        popularity: 95,
+        date: '2026-04-26'
+      };
+    case 'dining-black-golden-8-chair':
+      return {
+        color: 'Jet Black with Gold Leaf',
+        material: 'Acacia Wood',
+        polish: 'High Gloss Black & Gold',
+        style: 'Victorian Luxury',
+        pieces: '9 Pieces (8 Chairs + 1 Table)',
+        popularity: 96,
+        date: '2026-04-28'
+      };
+    case 'dining-triangular-acacia':
+      return {
+        color: 'Honey Acacia',
+        material: 'Acacia Wood',
+        polish: 'Polyurethane Finish',
+        style: 'Geometric Rustic',
+        pieces: '7 Pieces (6 Chairs + 1 Table)',
+        popularity: 97,
+        date: '2026-04-29'
+      };
+    case 'dining-shisham-inlay-8':
+      return {
+        color: 'Deep Walnut with Brass Inlay',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'High Gloss Lacquer',
+        style: 'Mughal Inlay',
+        pieces: '9 Pieces (8 Chairs + 1 Table)',
+        popularity: 98,
+        date: '2026-04-30'
+      };
+    case 'dining-ladder-sticks-glass':
+      return {
+        color: 'Natural Amber',
+        material: 'Acacia Wood',
+        polish: 'Classic Satin Polish',
+        style: 'Modern Minimal',
+        pieces: '7 Pieces (6 Chairs + 1 Table)',
+        popularity: 95,
+        date: '2026-04-27'
+      };
     case 'kirana-dining':
       return {
         color: 'Caramel Brown',
@@ -1181,6 +1470,7 @@ export function getProductAttributes(product: Product) {
         popularity: 95,
         date: '2026-04-18'
       };
+    case 'dining-carved-couch-settee':
     case 'carved-couch-settee':
       return {
         color: 'Golden',
@@ -1251,6 +1541,7 @@ export function getProductAttributes(product: Product) {
         popularity: 87,
         date: '2026-01-20'
       };
+    case 'dining-sea-green-ottoman':
     case 'sea-green-ottoman-puffy':
       return {
         color: 'Sea Green',
@@ -1261,6 +1552,7 @@ export function getProductAttributes(product: Product) {
         popularity: 91,
         date: '2026-04-22'
       };
+    case 'dining-circle-platted-deewan':
     case 'circle-platted-deewan':
       return {
         color: 'Brown',

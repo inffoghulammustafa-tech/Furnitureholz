@@ -223,7 +223,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
   const activeCategory = categoriesData[activeCategoryKey] || categoriesData.bedroom;
 
   return (
-    <section id="virtual-showroom" className="py-24 bg-[#110f0c] border-t border-b border-stone-800 scroll-mt-20">
+    <section id="virtual-showroom" className="py-24 bg-[#060B18] border-t border-b border-stone-800 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
 
         {/* ================= PAGE 1: SHOWCASE OVERVIEW ================= */}
@@ -272,7 +272,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                 <img 
                   src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800" 
                   alt="Royal Bed Setup" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent"></div>
@@ -298,7 +298,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                       <img 
                         src={cat.image} 
                         alt={cat.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                        className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                         referrerPolicy="no-referrer"
                       />
                       <span className="absolute top-4 left-4 bg-amber-800 text-stone-100 text-[10px] px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">
@@ -648,7 +648,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
               initial={{ opacity: 0, scale: 0.95, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 30 }}
-              className="relative w-full max-w-lg bg-[#181613] rounded-3xl border border-stone-800 p-8 text-left shadow-2xl z-10"
+              className="relative w-full max-w-lg bg-[#0e1626] rounded-3xl border border-stone-800 p-8 text-left shadow-2xl z-10"
             >
               <div className="space-y-2 mb-6">
                 <span className="text-[10px] font-bold tracking-widest text-amber-500 uppercase block">
@@ -749,7 +749,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
             initial={{ opacity: 0, y: 50, x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: 20, x: '-50%' }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#1e1c18] border border-amber-600 p-4 shadow-2xl text-xs z-[200] flex items-center gap-3 font-sans rounded-md min-w-[280px]"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#0e1626] border border-amber-600 p-4 shadow-2xl text-xs z-[200] flex items-center gap-3 font-sans rounded-md min-w-[280px]"
           >
             <div className="w-5 h-5 rounded-full bg-amber-600/20 text-amber-500 flex items-center justify-center border border-amber-600/50">
               <Check className="w-3 h-3" />

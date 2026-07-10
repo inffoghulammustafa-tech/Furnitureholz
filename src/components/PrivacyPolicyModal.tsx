@@ -28,7 +28,7 @@ export default function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyMod
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="relative w-full max-w-4xl rounded-2xl bg-[#14120E] text-ivory shadow-2xl border border-oak/30 p-6 md:p-10 z-10 max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-4xl rounded-2xl bg-[#060B18] text-ivory shadow-2xl border border-oak/30 p-6 md:p-10 z-10 max-h-[90vh] flex flex-col"
         id="privacy-modal-card"
       >
         {/* Close Button */}

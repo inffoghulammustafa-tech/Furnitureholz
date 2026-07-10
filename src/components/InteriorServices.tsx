@@ -92,7 +92,7 @@ export default function InteriorServices() {
 
           {/* Right: Consultation Form Box */}
           <div className="lg:col-span-5">
-            <div className="bg-[#181613] border border-line p-8 md:p-10 relative">
+            <div className="bg-[#0e1626] border border-line p-8 md:p-10 relative">
               <div className="absolute top-0 right-10 -translate-y-1/2 bg-oak text-charcoal px-3 py-1 font-mono text-[9px] uppercase tracking-widest font-bold">
                 Direct Consultation
               </div>

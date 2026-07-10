@@ -12,7 +12,7 @@ interface NavbarProps {
   cart: QuoteItem[];
   onOpenCart: () => void;
   onOpenAdvisor: () => void;
-  onOpenCategory: (cat: string) => void;
+  onOpenCategory: (cat: string, subCat?: string | null) => void;
   onGoHome: () => void;
 }
 
@@ -69,11 +69,13 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
 
   const handleCategoryNav = (cat: string) => {
     setMobileMenuOpen(false);
-    onOpenCategory(cat);
+    onOpenCategory(cat, null);
   };
 
   const handleChildNav = (categoryKey: string, childName: string) => {
     setMobileMenuOpen(false);
+    const normalizedCat = categoryKey === 'lounge' ? 'living-room' : categoryKey;
+    onOpenCategory(normalizedCat, childName);
     window.dispatchEvent(new CustomEvent('selectShowroomCategory', {
       detail: { category: categoryKey, item: childName }
     }));
@@ -139,8 +141,8 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:block">
-            <ul className="flex items-center gap-5 2xl:gap-7">
+          <nav className="hidden lg:block">
+            <ul className="flex items-center gap-3.5 xl:gap-5 2xl:gap-7">
               <li>
                 <a
                   href="#home"
@@ -148,7 +150,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
                     e.preventDefault();
                     handleScrollToTop();
                   }}
-                  className="font-sans text-[13px] 2xl:text-[14px] font-bold uppercase tracking-wider text-ivory-dim hover:text-oak transition-colors duration-200"
+                  className="font-sans text-[11px] xl:text-[13px] 2xl:text-[14px] font-bold uppercase tracking-wider text-ivory-dim hover:text-oak transition-colors duration-200"
                 >
                   Home
                 </a>
@@ -164,10 +166,10 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
                         handleCategoryNav(cat.key === 'lounge' ? 'living-room' : cat.key);
                       }
                     }}
-                    className="font-sans text-[13px] 2xl:text-[14px] font-bold uppercase tracking-wider text-ivory-dim group-hover:text-oak hover:text-oak transition-colors duration-200 cursor-pointer flex items-center gap-1"
+                    className="font-sans text-[11px] xl:text-[13px] 2xl:text-[14px] font-bold uppercase tracking-wider text-ivory-dim group-hover:text-oak hover:text-oak transition-colors duration-200 cursor-pointer flex items-center gap-1"
                   >
                     {cat.label}
-                    <ChevronDown className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-all group-hover:rotate-180 duration-300" />
+                    <ChevronDown className="w-3 h-3 xl:w-3.5 xl:h-3.5 opacity-60 group-hover:opacity-100 transition-all group-hover:rotate-180 duration-300" />
                   </button>
 
                   {/* High Fidelity Dropdown Overlay */}
@@ -197,7 +199,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
                     e.preventDefault();
                     scrollToSection('virtual-showroom');
                   }}
-                  className="font-sans text-[13px] 2xl:text-[14px] font-bold uppercase tracking-wider text-ivory-dim hover:text-oak transition-colors duration-200"
+                  className="font-sans text-[11px] xl:text-[13px] 2xl:text-[14px] font-bold uppercase tracking-wider text-ivory-dim hover:text-oak transition-colors duration-200"
                 >
                   Showrooms
                 </a>
@@ -236,7 +238,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 text-ivory hover:text-oak transition-colors duration-200"
+              className="lg:hidden p-2 text-ivory hover:text-oak transition-colors duration-200"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

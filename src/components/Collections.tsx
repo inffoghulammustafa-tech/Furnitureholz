@@ -802,7 +802,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                       <img 
                         src={item.image} 
                         alt={item.name} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100 cursor-pointer"
+                        className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-500 opacity-80 group-hover:opacity-100 cursor-pointer"
                         referrerPolicy="no-referrer"
                       />
                       {item.status === 'Sold Out' ? (
@@ -810,7 +810,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                           Sold Out
                         </span>
                       ) : (
-                        <span className="absolute top-3 right-3 bg-[#151309]/80 backdrop-blur-md text-[9px] text-oak px-2.5 py-1 rounded-md font-bold uppercase tracking-wider border border-line">
+                        <span className="absolute top-3 right-3 bg-[#060B18]/80 backdrop-blur-md text-[9px] text-oak px-2.5 py-1 rounded-md font-bold uppercase tracking-wider border border-line">
                           {item.tag}
                         </span>
                       )}
@@ -873,7 +873,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                   <img 
                     src={cat.image} 
                     alt={cat.title} 
-                    className="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-transform duration-500"
+                    className="w-full h-full object-cover opacity-70 group-hover:scale-120 group-hover:opacity-90 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />
                   <span className="absolute top-4 left-4 bg-walnut text-ivory text-[10px] px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider border border-oak/30">
@@ -1012,7 +1012,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                           <img 
                             src="https://furnitureholz.com/wp-content/uploads/2024/07/furniture-holz.jpeg"
                             alt="Furniture Holz Main Branch"
-                            className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                            className="w-full h-full object-cover hover:scale-120 transition-all duration-500"
                             referrerPolicy="no-referrer"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
@@ -1054,7 +1054,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                           <img 
                             src="https://furnitureholz.com/wp-content/uploads/2024/07/furniture-holz-d-2.jpg"
                             alt="Furniture Holz Executive Branch"
-                            className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                            className="w-full h-full object-cover hover:scale-120 transition-all duration-500"
                             referrerPolicy="no-referrer"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
@@ -1502,7 +1502,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-5xl rounded-3xl bg-[#151309] text-ivory shadow-2xl border border-oak/35 p-6 md:p-10 z-10 font-sans max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-oak/20"
+                className="relative w-full max-w-5xl rounded-3xl bg-[#060B18] text-ivory shadow-2xl border border-oak/35 p-6 md:p-10 z-10 font-sans max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-oak/20"
               >
                 {/* Close Button */}
                 <button 
@@ -1538,7 +1538,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                       })()}
                       
                       {/* View Indicator Badge on Main Image */}
-                      <div className="absolute bottom-3 left-3 bg-[#151309]/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[9px] font-mono border border-line tracking-wider text-sage uppercase">
+                      <div className="absolute bottom-3 left-3 bg-[#060B18]/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[9px] font-mono border border-line tracking-wider text-sage uppercase">
                         🔍 Hover to Zoom
                       </div>
 
@@ -1547,7 +1547,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                           Sold Out
                         </span>
                       ) : (
-                        <span className="absolute top-3 right-3 bg-[#151309]/80 backdrop-blur-md text-[9px] text-oak px-2.5 py-1 rounded-md font-bold uppercase tracking-wider border border-line">
+                        <span className="absolute top-3 right-3 bg-[#060B18]/80 backdrop-blur-md text-[9px] text-oak px-2.5 py-1 rounded-md font-bold uppercase tracking-wider border border-line">
                           {product.status}
                         </span>
                       )}
@@ -1601,7 +1601,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
                             setSelectedProduct(null);
                             handleOpenInquiry(`${product.title} (Backorder Request)`);
                           }}
-                          className="px-6 py-3 bg-[#1e1c18] hover:bg-stone-900 border border-line text-white font-bold uppercase tracking-wider text-xs rounded-xl transition-all shadow-md cursor-pointer mb-6"
+                          className="px-6 py-3 bg-[#0e1626] hover:bg-stone-900 border border-line text-white font-bold uppercase tracking-wider text-xs rounded-xl transition-all shadow-md cursor-pointer mb-6"
                         >
                           Backorder Query
                         </button>
@@ -1695,7 +1695,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl rounded-3xl bg-[#151309] text-ivory shadow-2xl border border-oak/35 p-6 md:p-10 z-10 max-h-[85vh] flex flex-col"
+              className="relative w-full max-w-4xl rounded-3xl bg-[#060B18] text-ivory shadow-2xl border border-oak/35 p-6 md:p-10 z-10 max-h-[85vh] flex flex-col"
             >
               {/* Close Button */}
               <button 
@@ -1844,7 +1844,7 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
             initial={{ opacity: 0, y: 50, x: 20 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, y: 20, x: 20 }}
-            className="fixed bottom-5 right-5 bg-[#151309] text-ivory px-5 py-4 rounded-xl shadow-2xl text-xs font-semibold flex items-center space-x-3 z-50 border border-oak/30"
+            className="fixed bottom-5 right-5 bg-[#060B18] text-ivory px-5 py-4 rounded-xl shadow-2xl text-xs font-semibold flex items-center space-x-3 z-50 border border-oak/30"
           >
             <div className="w-5 h-5 rounded-full bg-oak/20 text-oak flex items-center justify-center border border-oak/40 font-bold">✓</div>
             <span className="font-sans">{toastMessage}</span>

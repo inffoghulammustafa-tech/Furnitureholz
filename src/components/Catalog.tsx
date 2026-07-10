@@ -9,6 +9,32 @@ import { Search, Heart, Info, SlidersHorizontal, Eye, ShoppingBag, X, Calendar, 
 import { Product, QuoteItem } from '../types';
 import { INITIAL_PRODUCTS, WOOD_PROPERTIES, getProductAttributes } from '../data';
 
+const getOptionHoverClass = (opt: string) => {
+  const norm = opt.trim().toLowerCase();
+  if (norm === 'all') return 'hover:bg-orange-600 hover:text-white';
+  if (norm === 'caramel brown') return 'hover:bg-blue-600 hover:text-white';
+  const colors = [
+    'hover:bg-emerald-600 hover:text-white',
+    'hover:bg-purple-600 hover:text-white',
+    'hover:bg-rose-600 hover:text-white',
+    'hover:bg-indigo-600 hover:text-white',
+    'hover:bg-teal-600 hover:text-white',
+    'hover:bg-amber-500 hover:text-black',
+    'hover:bg-pink-600 hover:text-white',
+    'hover:bg-violet-600 hover:text-white',
+    'hover:bg-sky-600 hover:text-white',
+    'hover:bg-red-600 hover:text-white',
+    'hover:bg-cyan-600 hover:text-white',
+    'hover:bg-lime-600 hover:text-white',
+    'hover:bg-fuchsia-600 hover:text-white',
+  ];
+  let hash = 0;
+  for (let i = 0; i < norm.length; i++) {
+    hash = norm.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
+};
+
 interface CatalogProps {
   selectedCategory: string;
   onSetCategory: (cat: string) => void;
@@ -50,6 +76,7 @@ export default function Catalog({
 
   const [sortBy, setSortBy] = useState<string>('Sort by popularity');
   const [isSortOpen, setIsSortOpen] = useState<boolean>(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   // Toggle favorite helper
   const toggleFavorite = (productId: string, e: React.MouseEvent) => {
@@ -152,9 +179,9 @@ export default function Catalog({
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative mb-10 p-[1px] rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500 via-amber-800 to-amber-950/20"
+          className="relative z-40 mb-10 p-[1px] rounded-2xl overflow-visible bg-gradient-to-br from-blue-500 via-blue-800 to-[#060B18]/20"
         >
-          <div className="bg-gradient-to-br from-[#E2B248]/10 via-[#855B0A]/25 to-[#12110c] p-6 rounded-[calc(1rem-1px)] border border-amber-500/10 shadow-xl backdrop-blur-md">
+          <div className="bg-gradient-to-br from-blue-500/15 via-[#2563EB]/15 to-[#060B18] p-6 rounded-[calc(1rem-1px)] border border-blue-500/10 shadow-xl backdrop-blur-md">
             {/* Category tabs */}
             <div className="flex flex-wrap items-center gap-2 border-b border-line/50 pb-4 mb-6">
               {['all', 'bedroom', 'dining', 'living-room', 'outdoor', 'sets'].map((cat) => (
@@ -180,43 +207,90 @@ export default function Catalog({
                 { label: 'Polish', value: selectedPolish, onChange: setSelectedPolish, options: ['All', 'All Over Upholstery', 'Classic Polish', 'Deco', 'Glossy Polish', 'High Gloss', 'Jacquard Upholstery', 'Leather Upholstery', 'Mate Polish', 'N/A', 'Tone Polish', 'Velvet Upholstery'] },
                 { label: 'Style', value: selectedStyle, onChange: setSelectedStyle, options: ['All', 'Carved Back', 'Chinioti', 'Circle', 'Crafted', 'Crown', 'Crown Back', 'Deewan', 'Foam Quilt', 'Gourmet', 'Inlay', 'L Shape', 'Ladder', 'Milia', 'Moora', 'Puffy Settee', 'Round Seat', 'Royal Crown', 'Self Crafted', 'Ship Deck', 'Stick', 'Stick Frame', 'Velvet Upholstery'] },
                 { label: 'Pieces', value: selectedPieces, onChange: setSelectedPieces, options: ['All', '1 Piece', '2 Piece', '3 Piece', '4 Piece', '5 Piece', 'King'] }
-              ].map((filter, index) => (
-                <motion.div 
-                  key={filter.label}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                >
-                  <label className="block text-[10px] uppercase tracking-widest text-ivory mb-2 font-mono">
-                    {filter.label}
-                  </label>
-                  <select
-                    value={filter.value}
-                    onChange={(e) => filter.onChange(e.target.value)}
-                    className="w-full bg-charcoal border border-oak/30 py-2.5 px-4 text-sm text-ivory focus:outline-none focus:border-oak transition-colors rounded-lg appearance-none cursor-pointer"
+              ].map((filter, index) => {
+                const isOpen = openDropdown === filter.label;
+                return (
+                  <motion.div 
+                    key={filter.label}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    className="relative"
                   >
-                    {filter.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                  </select>
-                </motion.div>
-              ))}
+                    <label className="block text-[10px] uppercase tracking-widest text-ivory mb-2 font-mono">
+                      {filter.label}
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpenDropdown(isOpen ? null : filter.label);
+                        setIsSortOpen(false);
+                      }}
+                      className="w-full bg-[#060B18] text-ivory font-semibold text-[13px] py-3 px-3.5 rounded-lg flex items-center justify-between cursor-pointer border border-oak/30 transition-all hover:border-oak/80 hover:bg-[#0e1626] active:scale-95 shadow-md text-left"
+                    >
+                      <span className="truncate">{filter.value}</span>
+                      <span className="text-[10px] font-semibold text-oak flex-shrink-0 ml-1.5">
+                        {isOpen ? '▲' : '▼'}
+                      </span>
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <>
+                          <div 
+                            className="fixed inset-0 z-10" 
+                            onClick={() => setOpenDropdown(null)} 
+                          />
+                          <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.15 }}
+                            className="absolute left-0 mt-2 bg-[#0e1626] text-ivory rounded-lg shadow-2xl border border-oak/40 z-50 py-1 max-h-60 overflow-y-auto custom-scrollbar w-max min-w-full"
+                          >
+                            {filter.options.map((opt) => (
+                              <button
+                                key={opt}
+                                type="button"
+                                onClick={() => {
+                                  filter.onChange(opt);
+                                  setOpenDropdown(null);
+                                }}
+                                className={`w-full text-left px-4 py-2.5 text-[13px] font-medium font-sans transition-colors duration-150 whitespace-nowrap ${getOptionHoverClass(opt)} ${
+                                  filter.value === opt ? 'bg-oak/20 text-oak font-bold' : 'text-ivory-dim'
+                                }`}
+                              >
+                                {opt}
+                              </button>
+                            ))}
+                          </motion.div>
+                        </>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
 
               {/* Sort Dropdown */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="relative"
+                className="relative z-30"
               >
                 <label className="block text-[10px] uppercase tracking-widest text-ivory mb-2 font-mono">
                   Sort By
                 </label>
                 <button
                   type="button"
-                  onClick={() => setIsSortOpen(!isSortOpen)}
-                  className="w-full bg-gray-300 text-charcoal font-bold uppercase tracking-wider text-[11px] py-3 px-3 rounded-lg flex items-center justify-between cursor-pointer border border-transparent transition-colors hover:bg-gray-200"
+                  onClick={() => {
+                    setIsSortOpen(!isSortOpen);
+                    setOpenDropdown(null);
+                  }}
+                  className="w-full bg-[#060B18] text-ivory font-semibold text-[13px] py-3 px-3.5 rounded-lg flex items-center justify-between cursor-pointer border border-oak/30 transition-all hover:border-oak/80 hover:bg-[#0e1626] active:scale-95 shadow-md"
                 >
                   <span className="truncate">{sortBy}</span>
-                  <span className="text-[10px] font-semibold flex-shrink-0 ml-1">
+                  <span className="text-[10px] font-semibold text-oak flex-shrink-0 ml-1.5">
                     {isSortOpen ? '▲' : '▼'}
                   </span>
                 </button>
@@ -234,7 +308,7 @@ export default function Catalog({
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute right-0 left-0 mt-2 bg-white text-charcoal rounded-lg shadow-2xl border border-gray-200 z-20 py-1 overflow-hidden"
+                        className="absolute right-0 w-max min-w-full md:left-0 md:right-auto mt-2 bg-[#0e1626] text-ivory rounded-lg shadow-2xl border border-oak/40 z-50 py-1 overflow-hidden"
                       >
                         {[
                           'Sort by popularity',
@@ -249,8 +323,8 @@ export default function Catalog({
                               setSortBy(option);
                               setIsSortOpen(false);
                             }}
-                            className={`w-full text-left px-4 py-2.5 text-xs font-medium font-sans hover:bg-gray-100 transition-colors ${
-                              sortBy === option ? 'bg-gray-100 font-bold text-black' : 'text-gray-700'
+                            className={`w-full text-left px-4 py-3 text-[13px] font-medium font-sans hover:bg-oak hover:text-charcoal transition-colors duration-150 whitespace-nowrap ${
+                              sortBy === option ? 'bg-oak/20 text-oak font-bold' : 'text-ivory-dim'
                             }`}
                           >
                             {option}
@@ -347,7 +421,7 @@ export default function Catalog({
                   <img
                     src={prod.image}
                     alt={prod.name}
-                    className="w-full h-full object-cover saturate-90 group-hover:scale-105 group-hover:saturate-100 transition-all duration-700 ease-out"
+                    className="w-full h-full object-cover saturate-90 group-hover:scale-120 group-hover:saturate-100 transition-all duration-700 ease-out"
                   />
 
                   {/* Badges */}

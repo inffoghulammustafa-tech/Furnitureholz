@@ -68,7 +68,7 @@ export default function Craftsmanship() {
   const activeStage = stages.find((s) => s.id === activeStageId)!;
 
   return (
-    <section id="craftsmanship" className="py-24 border-b border-line bg-[#1C1A17]">
+    <section id="craftsmanship" className="py-24 border-b border-line bg-[#060B18]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Section Header */}

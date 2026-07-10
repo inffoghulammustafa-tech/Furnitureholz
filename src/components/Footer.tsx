@@ -46,7 +46,7 @@ export default function Footer({ onSetCategory, onOpenPrivacy }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#14120E] border-t border-line pt-20 pb-8 text-xs font-sans text-ivory-dim">
+    <footer className="bg-[#040710] border-t border-line pt-20 pb-8 text-xs font-sans text-ivory-dim">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">

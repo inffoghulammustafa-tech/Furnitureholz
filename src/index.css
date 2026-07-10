@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-charcoal: #151309;
-  --color-walnut: #855B0A;
+  --color-charcoal: #060B18;
+  --color-walnut: #2563EB;
   --color-oak: #E2B248;
-  --color-sage: #6B7654;
+  --color-sage: #38BDF8;
   --color-ivory: #FAF6EB;
   --color-ivory-dim: #EFE4CD;
-  --color-line: rgba(240, 235, 225, 0.14);
+  --color-line: rgba(59, 130, 246, 0.15);
 
   --font-display: "Fraunces", serif;
   --font-sans: "Work Sans", sans-serif;
@@ -20,7 +20,7 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: #151309;
+    background-color: #060B18;
     color: #FAF6EB;
     font-family: "Work Sans", sans-serif;
     line-height: 1.6;
@@ -37,16 +37,16 @@
 
 .grain-line {
   fill: none;
-  stroke: #E2B248;
+  stroke: #3B82F6;
   stroke-width: 1;
   opacity: 0.4;
 }
 
 /* Custom wood-grain visual pattern using SVG */
 .bg-grain {
-  background-color: #151309;
-  background-image: radial-gradient(ellipse at 75% 30%, rgba(226, 178, 72, 0.12), transparent 60%),
-                    linear-gradient(180deg, #151309 0%, #0C0A04 100%);
+  background-color: #060B18;
+  background-image: radial-gradient(ellipse at 75% 30%, rgba(59, 130, 246, 0.18) 0%, rgba(226, 178, 72, 0.08) 50%, transparent 80%),
+                    linear-gradient(180deg, #060B18 0%, #03050C 100%);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -55,16 +55,16 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(28, 26, 23, 0.5);
+  background: rgba(10, 15, 30, 0.5);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #E2B248;
+  background: #2563EB;
   border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #EFE4CD;
+  background: #E2B248;
 }
 
 /* Hide scrollbar utility */
@@ -84,7 +84,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(226, 178, 72, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.15);
   pointer-events: none;
   transition: border-color 0.3s ease;
 }
@@ -92,18 +92,18 @@
   border-color: rgba(226, 178, 72, 0.4);
 }
 
-/* Custom 3-color gradient of Yellow, Light Brown, and White for container boxes */
+/* Custom gradient of Blue and Yellow/Gold for container boxes */
 .box-gradient {
-  background: linear-gradient(135deg, rgba(234, 179, 8, 0.08) 0%, rgba(226, 178, 72, 0.14) 50%, rgba(255, 255, 255, 0.06) 100%);
-  border: 1px solid rgba(226, 178, 72, 0.3);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(226, 178, 72, 0.12) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .box-gradient:hover {
-  background: linear-gradient(135deg, rgba(234, 179, 8, 0.16) 0%, rgba(226, 178, 72, 0.24) 50%, rgba(255, 255, 255, 0.1) 100%);
-  border-color: rgba(234, 179, 8, 0.55);
-  box-shadow: 0 15px 35px rgba(234, 179, 8, 0.12);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.22) 0%, rgba(226, 178, 72, 0.22) 100%);
+  border-color: rgba(226, 178, 72, 0.6);
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.15);
 }
 
 @keyframes fadeIn {

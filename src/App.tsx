@@ -29,6 +29,7 @@ export default function App() {
   const [cart, setCart] = useState<QuoteItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeSubCategory, setActiveSubCategory] = useState<string | null>(null);
   const [selectedConfigProduct, setSelectedConfigProduct] = useState<Product | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
@@ -155,6 +156,7 @@ export default function App() {
 
   const handleGoHome = () => {
     setActiveCategory(null);
+    setActiveSubCategory(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -166,7 +168,10 @@ export default function App() {
         cart={cart}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenAdvisor={() => setIsAdvisorOpen(true)}
-        onOpenCategory={setActiveCategory}
+        onOpenCategory={(cat, subCat) => {
+          setActiveCategory(cat);
+          setActiveSubCategory(subCat || null);
+        }}
         onGoHome={handleGoHome}
       />
 
@@ -175,6 +180,7 @@ export default function App() {
         {activeCategory ? (
           <CategoryPage
             category={activeCategory}
+            initialSubCategory={activeSubCategory}
             onAddProductToQuote={handleAddProductToQuote}
             onConfigureProduct={handleConfigureProductFromCatalog}
           />
@@ -262,7 +268,7 @@ export default function App() {
             initial={{ opacity: 0, y: 50, x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: 20, x: '-50%' }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#1e1c18] border border-oak p-4 shadow-xl text-xs z-50 flex items-center gap-3 font-sans rounded-sm min-w-[280px]"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#0e1626] border border-oak p-4 shadow-xl text-xs z-50 flex items-center gap-3 font-sans rounded-sm min-w-[280px]"
           >
             <div className="w-5 h-5 rounded-full bg-sage/20 text-sage flex items-center justify-center border border-sage/50">
               <Check className="w-3 h-3" />

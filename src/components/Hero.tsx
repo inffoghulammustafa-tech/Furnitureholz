@@ -215,7 +215,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
               initial={{ opacity: 0, scale: 0.95, y: 24 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 24 }}
-              className="relative w-full max-w-lg bg-[#181613] rounded-3xl border border-stone-800 p-8 text-left shadow-2xl z-10 text-ivory font-sans"
+              className="relative w-full max-w-lg bg-[#0e1626] rounded-3xl border border-stone-800 p-8 text-left shadow-2xl z-10 text-ivory font-sans"
             >
               {/* Close Button */}
               <button
@@ -324,7 +324,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
             initial={{ opacity: 0, y: 50, x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: 20, x: '-50%' }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#1e1c18] border border-amber-600 p-4 shadow-2xl text-xs z-50 flex items-center gap-3 font-sans rounded-md min-w-[280px]"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#0e1626] border border-blue-600 p-4 shadow-2xl text-xs z-50 flex items-center gap-3 font-sans rounded-md min-w-[280px]"
           >
             <div className="w-5 h-5 rounded-full bg-amber-600/20 text-amber-500 flex items-center justify-center border border-amber-600/50">
               <Check className="w-3 h-3" />

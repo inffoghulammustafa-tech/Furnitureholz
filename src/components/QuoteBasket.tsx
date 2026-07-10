@@ -151,7 +151,7 @@ export default function QuoteBasket({
                   </div>
 
                   {/* Letterhead Invoice Card */}
-                  <div className="bg-[#1e1c18] border border-oak/30 p-8 shadow-xl relative overflow-hidden text-xs">
+                  <div className="bg-[#0e1626] border border-oak/30 p-8 shadow-xl relative overflow-hidden text-xs">
                     {/* Background accent */}
                     <div className="absolute top-0 left-0 w-full h-1 bg-oak" />
                     

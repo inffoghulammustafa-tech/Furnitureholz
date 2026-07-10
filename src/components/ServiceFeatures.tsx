@@ -8,7 +8,7 @@ import { motion } from 'motion/react';
 
 export default function ServiceFeatures() {
   return (
-    <section id="service-features" className="py-16 border-b border-line bg-[#161411]">
+    <section id="service-features" className="py-16 border-b border-line bg-[#060B18]">
       {/* Styles for vector icon micro-interactions */}
       <style dangerouslySetInnerHTML={{ __html: `
         .feature-card:hover .truck-icon {

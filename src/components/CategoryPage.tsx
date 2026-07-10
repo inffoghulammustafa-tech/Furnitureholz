@@ -190,16 +190,135 @@ const getBedroomDetail = (product: Product): BedroomProductDetail => {
   };
 };
 
+const getOptionHoverClass = (opt: string) => {
+  const norm = opt.trim().toLowerCase();
+  if (norm === 'all') return 'hover:bg-orange-600 hover:text-white';
+  if (norm === 'caramel brown') return 'hover:bg-blue-600 hover:text-white';
+  const colors = [
+    'hover:bg-emerald-600 hover:text-white',
+    'hover:bg-purple-600 hover:text-white',
+    'hover:bg-rose-600 hover:text-white',
+    'hover:bg-indigo-600 hover:text-white',
+    'hover:bg-teal-600 hover:text-white',
+    'hover:bg-amber-500 hover:text-black',
+    'hover:bg-pink-600 hover:text-white',
+    'hover:bg-violet-600 hover:text-white',
+    'hover:bg-sky-600 hover:text-white',
+    'hover:bg-red-600 hover:text-white',
+    'hover:bg-cyan-600 hover:text-white',
+    'hover:bg-lime-600 hover:text-white',
+    'hover:bg-fuchsia-600 hover:text-white',
+  ];
+  let hash = 0;
+  for (let i = 0; i < norm.length; i++) {
+    hash = norm.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
+};
+
+const SUBCATEGORIES_MAP: Record<string, string[]> = {
+  bedroom: ['All', 'Bed', 'Bedroom Chairs', 'Dressing', 'Almirah', 'Sofa & Deewan'],
+  dining: ['All', 'Dining Table Set', 'Sofa & Chairs', 'Almirah', 'Trolley'],
+  'living-room': ['All', 'Console, Tables & Chester', 'Sofa, Chair & Deewan', 'Swing & Wooden Jhula'],
+  outdoor: ['All', 'Chair & Tables', 'Picnic Set', 'Ring Swing & Wooden Jhula']
+};
+
+export function getProductSubcategory(product: { name: string; description: string; category: string }): string {
+  const name = product.name.toLowerCase();
+  const desc = product.description.toLowerCase();
+  
+  if (product.category === 'bedroom') {
+    // Explicit override for the 6 Sofa & Deewan products
+    if (
+      name.includes('moora chair') || 
+      name.includes('chase ship') || 
+      name.includes('couch settee') || 
+      name.includes('circle platted') || 
+      name.includes('3 seater deewan') || 
+      name.includes('l shape corner leather sofa') ||
+      name.includes('acacia made 7 seater')
+    ) {
+      return 'Sofa & Deewan';
+    }
+
+    if (name.includes('chair') || name.includes('puffy') || name.includes('stool') || desc.includes('chair')) {
+      return 'Bedroom Chairs';
+    }
+    if (name.includes('almirah') || name.includes('wardrobe') || name.includes('cupboard')) {
+      return 'Almirah';
+    }
+    if (name.includes('settee') || name.includes('deewan') || name.includes('sofa') || name.includes('setty') || name.includes('couch')) {
+      return 'Sofa & Deewan';
+    }
+    if (name.includes('dressing') || name.includes('dresser') || name.includes('console') || name.includes('vanity') || name.includes('makeup') || name.includes('mirror')) {
+      if (name.includes('bed') || name.includes('bedroom') || name.includes('bridal') || name.includes('suite')) {
+        return 'Bed';
+      }
+      return 'Dressing';
+    }
+    return 'Bed';
+  }
+
+  if (product.category === 'dining') {
+    if (name.includes('table')) {
+      return 'Dining Table Set';
+    }
+    if (name.includes('chair') || name.includes('sofa') || name.includes('moora') || name.includes('couch') || name.includes('ottoman') || name.includes('puffy') || name.includes('deewan')) {
+      return 'Sofa & Chairs';
+    }
+    if (name.includes('set')) {
+      return 'Dining Table Set';
+    }
+    if (name.includes('almirah') || name.includes('cabinet') || name.includes('console')) {
+      return 'Almirah';
+    }
+    if (name.includes('trolley') || name.includes('cart')) {
+      return 'Trolley';
+    }
+    return 'Dining Table Set';
+  }
+
+  if (product.category === 'living-room') {
+    if (name.includes('swing') || name.includes('jhula')) {
+      return 'Swing & Wooden Jhula';
+    }
+    if (name.includes('sofa') || name.includes('chair') || name.includes('deewan') || name.includes('couch') || name.includes('settee')) {
+      return 'Sofa, Chair & Deewan';
+    }
+    if (name.includes('console') || name.includes('table') || name.includes('chester') || name.includes('stool') || name.includes('desk')) {
+      return 'Console, Tables & Chester';
+    }
+    return 'Sofa, Chair & Deewan';
+  }
+
+  if (product.category === 'outdoor') {
+    if (name.includes('picnic')) {
+      return 'Picnic Set';
+    }
+    if (name.includes('swing') || name.includes('jhula') || name.includes('ring')) {
+      return 'Ring Swing & Wooden Jhula';
+    }
+    if (name.includes('chair') || name.includes('table')) {
+      return 'Chair & Tables';
+    }
+    return 'Chair & Tables';
+  }
+
+  return 'General';
+}
+
 interface CategoryPageProps {
   category: string;
+  initialSubCategory?: string | null;
   onAddProductToQuote: (product: Product) => void;
   onConfigureProduct: (product: Product) => void;
 }
 
-export default function CategoryPage({ category, onAddProductToQuote, onConfigureProduct }: CategoryPageProps) {
+export default function CategoryPage({ category, initialSubCategory, onAddProductToQuote, onConfigureProduct }: CategoryPageProps) {
   const [selectedDetailProduct, setSelectedDetailProduct] = useState<Product | null>(null);
   const [activeImage, setActiveImage] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(initialSubCategory || null);
 
   useEffect(() => {
     if (selectedDetailProduct) {
@@ -219,15 +338,35 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
 
   const [sortBy, setSortBy] = useState<string>('Sort by popularity');
   const [isSortOpen, setIsSortOpen] = useState<boolean>(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  // Reset parameters, apply initial subcategory, and scroll to top when category changes
+  useEffect(() => {
+    setSelectedSubCategory(initialSubCategory || null);
+    setCurrentPage(1);
+    setSearchParams({
+      color: 'All',
+      material: 'All',
+      polish: 'All',
+      style: 'All',
+      pieces: 'All',
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' as any });
+  }, [category, initialSubCategory]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [category, searchParams, sortBy]);
+  }, [searchParams, sortBy, selectedSubCategory]);
 
   const filteredProducts = useMemo(() => {
     let result = INITIAL_PRODUCTS.filter(p => {
       const matchesCategory = p.category === category;
       if (!matchesCategory) return false;
+
+      if (selectedSubCategory) {
+        const subCat = getProductSubcategory(p);
+        if (subCat !== selectedSubCategory) return false;
+      }
 
       const attrs = getProductAttributes(p);
       const matchesColor = searchParams.color === 'All' || attrs.color === searchParams.color;
@@ -262,20 +401,20 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
     return result;
   }, [category, searchParams, sortBy]);
 
-  const PRODUCTS_PER_PAGE = 15;
+  const PRODUCTS_PER_PAGE = category === 'dining' ? 8 : 15;
 
   const paginatedProducts = useMemo(() => {
-    if (category !== 'bedroom') {
+    if (category !== 'bedroom' && category !== 'dining') {
       return filteredProducts;
     }
     const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
     return filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
-  }, [filteredProducts, currentPage, category]);
+  }, [filteredProducts, currentPage, category, PRODUCTS_PER_PAGE]);
 
   const totalPages = useMemo(() => {
-    if (category !== 'bedroom') return 1;
+    if (category !== 'bedroom' && category !== 'dining') return 1;
     return Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
-  }, [filteredProducts, category]);
+  }, [filteredProducts, category, PRODUCTS_PER_PAGE]);
 
   const filterOptions = {
     color: [
@@ -370,36 +509,109 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
           {getCategoryLabel(category)} Luxury Collection
         </h1>
 
+        {/* Dynamic & Beautiful Sub-Category Tabs */}
+        {SUBCATEGORIES_MAP[category] && (
+          <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3.5 mb-10 pb-6 border-b border-stone-800/60">
+            {SUBCATEGORIES_MAP[category].map((subCat) => {
+              const isActive = (subCat === 'All' && !selectedSubCategory) || (selectedSubCategory === subCat);
+              return (
+                <button
+                  key={subCat}
+                  type="button"
+                  onClick={() => {
+                    setSelectedSubCategory(subCat === 'All' ? null : subCat);
+                  }}
+                  className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 border cursor-pointer ${
+                    isActive
+                      ? 'bg-gradient-to-r from-amber-600 to-amber-700 border-amber-500 text-white shadow-lg shadow-amber-900/30'
+                      : 'bg-stone-900/40 hover:bg-stone-800 border-stone-800 text-stone-400 hover:text-white hover:border-amber-700/40'
+                  }`}
+                >
+                  {subCat}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         {/* Filter Toolbar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12 bg-gradient-to-br from-amber-500/10 via-[#855B0A]/20 to-charcoal border border-amber-500/35 p-6 rounded-2xl shadow-xl backdrop-blur-md"
+          className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12 bg-gradient-to-br from-blue-500/10 via-[#2563EB]/20 to-charcoal border border-blue-500/35 p-6 rounded-2xl shadow-xl backdrop-blur-md relative z-40"
         >
-          {Object.entries(filterOptions).map(([key, options]) => (
-            <div key={key}>
-              <label className="block text-[10px] uppercase tracking-widest text-ivory/80 mb-2 font-bold">{key}</label>
-              <select
-                value={searchParams[key as keyof typeof searchParams]}
-                onChange={(e) => setSearchParams(prev => ({ ...prev, [key]: e.target.value }))}
-                className="w-full bg-charcoal/90 border border-oak/30 py-2.5 px-2 text-xs rounded-lg text-ivory focus:outline-none focus:border-oak cursor-pointer"
-              >
-                {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-              </select>
-            </div>
-          ))}
+          {Object.entries(filterOptions).map(([key, options]) => {
+            const currentValue = searchParams[key as keyof typeof searchParams];
+            const isOpen = openDropdown === key;
+            return (
+              <div key={key} className="relative">
+                <label className="block text-[10px] uppercase tracking-widest text-ivory/80 mb-2 font-bold">{key}</label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenDropdown(isOpen ? null : key);
+                    setIsSortOpen(false);
+                  }}
+                  className="w-full bg-[#060B18] text-ivory font-semibold text-[13px] py-2.5 px-3 rounded-lg flex items-center justify-between cursor-pointer border border-oak/30 transition-all hover:border-oak/80 hover:bg-[#0e1626] active:scale-95 shadow-md"
+                >
+                  <span className="truncate">{currentValue}</span>
+                  <span className="text-[10px] font-semibold text-oak flex-shrink-0 ml-1.5">
+                    {isOpen ? '▲' : '▼'}
+                  </span>
+                </button>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <>
+                      {/* Invisible backdrop to close the dropdown when clicking outside */}
+                      <div 
+                        className="fixed inset-0 z-10" 
+                        onClick={() => setOpenDropdown(null)} 
+                      />
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute left-0 mt-2 bg-[#0e1626] text-ivory rounded-lg shadow-2xl border border-oak/40 z-50 py-1 max-h-60 overflow-y-auto custom-scrollbar w-max min-w-full"
+                      >
+                        {options.map((opt) => (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => {
+                              setSearchParams(prev => ({ ...prev, [key]: opt }));
+                              setOpenDropdown(null);
+                            }}
+                            className={`w-full text-left px-4 py-2.5 text-[13px] font-medium font-sans transition-colors duration-150 whitespace-nowrap ${getOptionHoverClass(opt)} ${
+                              currentValue === opt ? 'bg-oak/20 text-oak font-bold' : 'text-ivory-dim'
+                            }`}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </motion.div>
+                    </>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
 
           {/* Sort Dropdown */}
-          <div className="relative">
+          <div className="relative z-30">
             <label className="block text-[10px] uppercase tracking-widest text-ivory/80 mb-2 font-bold">Sort By</label>
             <button
               type="button"
-              onClick={() => setIsSortOpen(!isSortOpen)}
-              className="w-full bg-gray-300 text-charcoal font-bold uppercase tracking-wider text-[10px] py-2.5 px-3 rounded-lg flex items-center justify-between cursor-pointer border border-transparent transition-colors hover:bg-gray-200"
+              onClick={() => {
+                setIsSortOpen(!isSortOpen);
+                setOpenDropdown(null);
+              }}
+              className="w-full bg-[#060B18] text-ivory font-semibold text-[13px] py-2.5 px-3.5 rounded-lg flex items-center justify-between cursor-pointer border border-oak/30 transition-all hover:border-oak/80 hover:bg-[#0e1626] active:scale-95 shadow-md"
             >
               <span className="truncate">{sortBy}</span>
-              <span className="text-[9px] font-semibold flex-shrink-0 ml-1">
+              <span className="text-[10px] font-semibold text-oak flex-shrink-0 ml-1.5">
                 {isSortOpen ? '▲' : '▼'}
               </span>
             </button>
@@ -417,7 +629,7 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 left-0 mt-2 bg-white text-charcoal rounded-lg shadow-2xl border border-gray-200 z-20 py-1 overflow-hidden"
+                    className="absolute right-0 w-max min-w-full md:left-0 md:right-auto mt-2 bg-[#0e1626] text-ivory rounded-lg shadow-2xl border border-oak/40 z-50 py-1 overflow-hidden"
                   >
                     {[
                       'Sort by popularity',
@@ -432,8 +644,8 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                           setSortBy(option);
                           setIsSortOpen(false);
                         }}
-                        className={`w-full text-left px-3 py-2 text-[10px] font-medium font-sans hover:bg-gray-100 transition-colors ${
-                          sortBy === option ? 'bg-gray-100 font-bold text-black' : 'text-gray-700'
+                        className={`w-full text-left px-4 py-3 text-[13px] font-medium font-sans hover:bg-oak hover:text-charcoal transition-colors duration-150 whitespace-nowrap ${
+                          sortBy === option ? 'bg-oak/20 text-oak font-bold' : 'text-ivory-dim'
                         }`}
                       >
                         {option}
@@ -448,7 +660,7 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {paginatedProducts.map((product) => (
-            <div key={product.id} className="bg-[#2a2a2a] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-transform hover:-translate-y-1">
+            <div key={product.id} className="bg-[#0e1626] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-transform hover:-translate-y-1">
               {/* Clickable Image Wrapper with View Details Overlay */}
               <div 
                 onClick={() => setSelectedDetailProduct(product)}
@@ -457,10 +669,10 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                 <img 
                   src={product.image} 
                   alt={product.name} 
-                  className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" 
+                  className="w-full h-full object-cover group-hover/img:scale-120 transition-transform duration-500" 
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="bg-[#11100c]/95 text-amber-500 border border-amber-500/30 px-4 py-2 rounded text-xs font-mono tracking-widest uppercase shadow-lg">
+                  <span className="bg-[#060B18]/95 text-amber-500 border border-amber-500/30 px-4 py-2 rounded text-xs font-mono tracking-widest uppercase shadow-lg">
                     View Details
                   </span>
                 </div>
@@ -493,7 +705,7 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
         </div>
 
         {/* Pagination Controls */}
-        {category === 'bedroom' && totalPages > 1 && (
+        {(category === 'bedroom' || category === 'dining') && totalPages > 1 && (
           <div className="flex justify-center items-center gap-6 mt-16 font-sans">
             <button
               onClick={() => {
@@ -575,12 +787,12 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-4xl bg-[#11100c] text-[#f4efe6] rounded-2xl border border-amber-500/35 overflow-hidden shadow-2xl p-6 md:p-10 z-10 max-h-[90vh] overflow-y-auto custom-scrollbar"
+                className="relative w-full max-w-4xl bg-[#060B18] text-[#f4efe6] rounded-2xl border border-amber-500/35 overflow-hidden shadow-2xl p-6 md:p-10 z-10 max-h-[90vh] overflow-y-auto custom-scrollbar"
               >
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedDetailProduct(null)}
-                  className="absolute top-6 right-6 p-1.5 rounded-full border border-amber-500/10 text-ivory-dim/60 hover:text-amber-500 hover:border-amber-500/30 transition-all duration-200 z-20 bg-[#161510]"
+                  className="absolute top-6 right-6 p-1.5 rounded-full border border-amber-500/10 text-ivory-dim/60 hover:text-amber-500 hover:border-amber-500/30 transition-all duration-200 z-20 bg-[#0e1626]"
                   aria-label="Close product details"
                 >
                   <X className="w-4 h-4" />
@@ -589,7 +801,7 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                   {/* Left Column: Image Area & Multi-angle views */}
                   <div className="space-y-4">
-                    <div className="relative aspect-square md:aspect-[4/3] rounded-xl overflow-hidden border border-[#2a2720] bg-[#1a1813] group">
+                    <div className="relative aspect-square md:aspect-[4/3] rounded-xl overflow-hidden border border-[#1e293b] bg-[#0b1120] group">
                       <img
                         src={activeImage || product.image}
                         alt={product.name}
@@ -601,7 +813,7 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                       />
 
                       {/* Hover status/hint badge */}
-                      <div className="absolute bottom-3 left-3 bg-[#11100c]/85 backdrop-blur-md px-2.5 py-1 rounded-md text-[9px] font-mono border border-amber-500/20 tracking-wider text-sage uppercase">
+                      <div className="absolute bottom-3 left-3 bg-[#060B18]/85 backdrop-blur-md px-2.5 py-1 rounded-md text-[9px] font-mono border border-amber-500/20 tracking-wider text-sage uppercase">
                         🔍 Hover to Zoom
                       </div>
 
@@ -695,7 +907,7 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                           href={whatsappUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-block px-6 py-2.5 bg-[#161510] hover:bg-[#25231a] border border-amber-500/40 text-[#f4efe6] text-xs font-bold uppercase tracking-wider rounded-lg transition-all"
+                          className="inline-block px-6 py-2.5 bg-[#0e1626] hover:bg-[#1a2436] border border-amber-500/40 text-[#f4efe6] text-xs font-bold uppercase tracking-wider rounded-lg transition-all"
                         >
                           {detail.status === 'Sold Out' ? 'BACKORDER QUERY' : 'CALL FOR PRICE'}
                         </a>
@@ -723,7 +935,7 @@ export default function CategoryPage({ category, onAddProductToQuote, onConfigur
                     Additional Information
                   </div>
 
-                  <div className="overflow-hidden rounded-xl border border-amber-500/20 bg-[#161510]">
+                  <div className="overflow-hidden rounded-xl border border-amber-500/20 bg-[#0e1626]">
                     <table className="w-full text-left border-collapse font-sans text-xs md:text-sm">
                       <tbody>
                         <tr className="border-b border-amber-500/10 hover:bg-white/2">
