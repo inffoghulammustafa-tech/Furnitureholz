@@ -60,8 +60,10 @@ export default function QuoteBasket({
       let itemWeeks = 4;
       if (item.product) {
         // extract numerical week from string (e.g. "6-8 Weeks" -> 8)
-        const match = item.product.buildTime.match(/\d+/g);
-        if (match) itemWeeks = Math.max(...match.map(Number));
+        if (item.product.buildTime) {
+          const match = item.product.buildTime.match(/\d+/g);
+          if (match) itemWeeks = Math.max(...match.map(Number));
+        }
       } else if (item.customConfig) {
         itemWeeks = item.customConfig.estimatedWeeks;
       }

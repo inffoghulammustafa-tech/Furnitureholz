@@ -659,6 +659,81 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {category === 'dining' && (
+            <div className="max-w-7xl mx-auto px-4 py-8 bg-gray-50 col-span-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
+                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
+                    <img src="path-to-your-image1.jpg" alt="Gourmet Shisham Wood 6 Seater High Living Sofa Set" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
+                    Gourmet Shisham Wood 6 Seater High Living Sofa Set
+                  </h3>
+                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                    Call For Price
+                  </button>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
+                  <span className="absolute top-6 right-6 bg-gray-700 text-white text-xs font-bold px-3 py-1 uppercase tracking-wide rounded-sm z-10">
+                    Sold Out
+                  </span>
+                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4 opacity-90">
+                    <img src="path-to-your-image2.jpg" alt="Golden Deco Crown Shisham Wood 7 Seater Sofa Set" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
+                    Golden Deco Crown Shisham Wood 7 Seater Sofa Set
+                  </h3>
+                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                    Call For Price
+                  </button>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
+                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
+                    <img src="path-to-your-image3.jpg" alt="Smart Living Solid Acacia Wood Sofa Cum Bed" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
+                    Smart Living Solid Acacia Wood Sofa Cum Bed
+                  </h3>
+                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                    Call For Price
+                  </button>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
+                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
+                    <img src="path-to-your-image4.jpg" alt="Smart Living 10 Seater Solid Acacia Wood Jute U Corner Sofa" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
+                    Smart Living 10 Seater Solid Acacia Wood Jute U Corner Sofa
+                  </h3>
+                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                    Call For Price
+                  </button>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
+                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
+                    <img src="path-to-your-image5.jpg" alt="Full Velvet Upholstery Wingback Sissoo Wood Bedroom Chairs Set" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
+                    Full Velvet Upholstery Wingback Sissoo Wood Bedroom Chairs Set
+                  </h3>
+                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                    Call For Price
+                  </button>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
+                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
+                    <img src="path-to-your-image6.jpg" alt="Low Rise Round Pizza Solid Shisham Wood Dining Table Set" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
+                    Low Rise Round Pizza Solid Shisham Wood Dining Table Set
+                  </h3>
+                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
+                    Call For Price
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           {paginatedProducts.map((product) => (
             <div key={product.id} className="bg-[#0e1626] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-transform hover:-translate-y-1">
               {/* Clickable Image Wrapper with View Details Overlay */}

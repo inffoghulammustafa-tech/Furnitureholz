@@ -845,6 +845,183 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
           </div>
         </div>
 
+        {/* ================= ABOUT SECTION ================= */}
+        <section className="w-full bg-gray-50 flex items-center py-16 px-4 md:px-8 lg:px-16 overflow-hidden select-none rounded-2xl">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            <div className="lg:col-span-5 flex flex-col justify-center relative min-h-[450px] md:min-h-[500px]">
+              <div className="absolute -left-10 top-10 w-40 h-40 bg-sky-200/40 rounded-full blur-3xl -z-10 animate-pulse"></div>
+              
+              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 leading-[1.15] tracking-tight mb-8 max-w-md">
+                Innovatively Smart, <br />
+                <span className="text-sky-600 relative inline-block">
+                  Modern Furniture
+                  <span className="absolute bottom-1 left-0 w-full h-[6px] bg-sky-200 -z-10 rounded"></span>
+                </span> <br />
+                & Interior Solutions
+              </h1>
+              
+              <div className="relative w-full max-w-sm mx-auto lg:mx-0 group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-sky-400 to-indigo-100 rounded-3xl transform rotate-3 scale-102 group-hover:rotate-1 transition-transform duration-500 shadow-xl opacity-20"></div>
+                
+                <div className="relative bg-white p-3 rounded-3xl shadow-xl border border-slate-100/80 overflow-hidden transform transition-all duration-500 group-hover:-translate-y-2">
+                  <div className="aspect-[4/3] w-full bg-slate-100 rounded-2xl overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=2000" alt="Modern Chair and Cabinet" className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-10 pl-0 lg:pl-8">
+              
+              <div className="relative group">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 font-bold transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white">01</div>
+                  <div className="space-y-2">
+                    <h2 className="text-xl font-bold text-slate-800 tracking-wide uppercase border-b-2 border-sky-500/10 inline-block pb-1">
+                      Who We Are?
+                    </h2>
+                    <p className="text-slate-600 text-base leading-relaxed font-light">
+                      We are the first in Faisalabad and one of the biggest furniture & curtains showroom with largest display showroom, state of the art workshop and production setups. We provide all kinds of furnishing, customized curtains and home interior solutions with extensive focus on customer care and after sale support.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative group">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 font-bold transition-colors duration-300 group-hover:bg-indigo-600 group-hover:text-white">02</div>
+                  <div className="space-y-2">
+                    <h2 className="text-xl font-bold text-slate-800 tracking-wide uppercase border-b-2 border-indigo-500/10 inline-block pb-1">
+                      Our Vision & Mission Statement
+                    </h2>
+                    <p className="text-slate-600 text-base leading-relaxed font-light">
+                      We aim to be the best international standard and quality furniture provider in Pakistan, which make every home better place to live.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative group">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 font-bold transition-colors duration-300 group-hover:bg-emerald-600 group-hover:text-white">03</div>
+                  <div className="space-y-2">
+                    <h2 className="text-xl font-bold text-slate-800 tracking-wide uppercase border-b-2 border-emerald-500/10 inline-block pb-1">
+                      Our Commitment Towards Customers
+                    </h2>
+                    <p className="text-slate-600 text-base leading-relaxed font-light">
+                      We are committed to the ultimate satisfaction of our customers by providing brilliant client service, innovative designs & sustainable quality products.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* ================= PROMO CATEGORIES SECTION ================= */}
+        <section className="w-full py-16 overflow-hidden">
+          <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 mb-2 md:mb-4">
+            
+            {/* Left Block */}
+            <div 
+              className="md:col-span-8 bg-[#f5f5f5] rounded-xl overflow-hidden flex flex-col items-center pt-10 relative group cursor-pointer transition-shadow hover:shadow-xl h-[450px]"
+              onClick={() => onSelectCollection('bedroom')}
+            >
+              <div className="text-center z-10 mb-8 px-6">
+                <p className="text-slate-500 text-sm md:text-base mb-2 font-medium">Shop our aesthetic range of bedroom interior.</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Bedroom Sets</h2>
+              </div>
+              <div className="w-full mt-auto relative transform transition-transform duration-500 group-hover:scale-105 flex justify-center h-[350px]">
+                <img 
+                  src="https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Bedroom Sets" 
+                  className="w-full h-full object-cover object-bottom"
+                />
+              </div>
+            </div>
+
+            {/* Right Block */}
+            <div 
+              className="md:col-span-4 bg-[#f5f5f5] rounded-xl overflow-hidden flex flex-col items-center pt-10 relative group cursor-pointer transition-shadow hover:shadow-xl h-[450px]"
+              onClick={() => onSelectCollection('living-room')}
+            >
+              <div className="text-center z-10 mb-8 px-6">
+                <p className="text-slate-500 text-sm md:text-base mb-2 font-medium">Unique & bold interior concepts</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Fancy Chairs</h2>
+              </div>
+              <div className="w-full mt-auto relative transform transition-transform duration-500 group-hover:scale-105 flex justify-center h-[350px]">
+                <img 
+                  src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&q=80&w=800" 
+                  alt="Fancy Chairs" 
+                  className="w-full h-full object-cover object-bottom"
+                />
+              </div>
+            </div>
+
+          </div>
+
+          <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+            
+            {/* Dining Sets */}
+            <div 
+              className="bg-[#fcf8f6] rounded-xl overflow-hidden flex flex-col items-start pt-10 relative group cursor-pointer transition-shadow hover:shadow-xl h-[500px]"
+              onClick={() => onSelectCollection('dining')}
+            >
+              <div className="text-left w-full z-10 mb-8 px-8">
+                <p className="text-slate-500 text-sm md:text-base mb-2 font-medium">Capacity & performance furnitures</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Dining Sets</h2>
+              </div>
+              <div className="w-full mt-auto relative transform transition-transform duration-500 group-hover:scale-105 flex justify-center h-[350px]">
+                <img 
+                  src="https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=800" 
+                  alt="Dining Sets" 
+                  className="w-full h-full object-cover object-bottom"
+                />
+              </div>
+            </div>
+
+            {/* Lounge Furniture */}
+            <div 
+              className="bg-[#f5f5f5] rounded-xl overflow-hidden flex flex-col items-start pt-10 relative group cursor-pointer transition-shadow hover:shadow-xl h-[500px]"
+              onClick={() => onSelectCollection('living-room')}
+            >
+              <div className="text-left w-full z-10 mb-8 px-8">
+                <p className="text-slate-500 text-sm md:text-base mb-2 font-medium">Universal interior solutions</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Lounge Furniture</h2>
+              </div>
+              <div className="w-full mt-auto relative transform transition-transform duration-500 group-hover:scale-105 flex justify-center h-[350px]">
+                <img 
+                  src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&q=80&w=800" 
+                  alt="Lounge Furniture" 
+                  className="w-full h-full object-cover object-bottom"
+                />
+              </div>
+            </div>
+
+            {/* Sofa Sets */}
+            <div 
+              className="bg-[#fbdcd0] rounded-xl overflow-hidden flex flex-col items-center pt-10 relative group cursor-pointer transition-shadow hover:shadow-xl h-[500px]"
+              onClick={() => onSelectCollection('living-room')}
+            >
+              <div className="text-center w-full z-10 mb-8 px-8">
+                <p className="text-slate-500 text-sm mb-2 font-medium">Classic eastern & western</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">Sofa Sets</h2>
+              </div>
+              <div className="w-full mt-auto relative transform transition-transform duration-500 group-hover:scale-105 flex justify-center h-[350px]">
+                <img 
+                  src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=800" 
+                  alt="Sofa Sets" 
+                  className="w-full h-full object-cover object-bottom"
+                />
+              </div>
+            </div>
+
+          </div>
+        </section>
+
         {/* ================= SHOWROOM SEGMENTS SECTION ================= */}
         <div id="catalog-grid" className="space-y-8 scroll-mt-24 pt-6">
           <div className="text-center max-w-3xl mx-auto space-y-3">
