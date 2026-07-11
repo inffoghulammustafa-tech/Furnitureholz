@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Logo from './Logo';
 import { 
@@ -678,6 +678,54 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
   const [activeDetailImage, setActiveDetailImage] = useState<string>('');
   const [showPrivacy, setShowPrivacy] = useState(false);
 
+  const counterRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const counterElement = counterRef.current;
+    if (!counterElement) return;
+
+    const targetValue = 500;
+    const duration = 2000;
+    const frameRate = 1000 / 60;
+    const totalFrames = Math.round(duration / frameRate);
+    let currentFrame = 0;
+
+    const easeOutQuad = (t: number) => t * (2 - t);
+
+    const animateCounter = () => {
+      currentFrame++;
+      const progress = easeOutQuad(currentFrame / totalFrames);
+      const currentValue = Math.round(progress * targetValue);
+
+      if (counterElement) {
+        counterElement.innerText = currentValue.toString();
+      }
+
+      if (currentFrame < totalFrames) {
+        requestAnimationFrame(animateCounter);
+      } else if (counterElement) {
+        counterElement.innerText = targetValue.toString();
+      }
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          requestAnimationFrame(animateCounter);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(counterElement);
+
+    return () => {
+      if (counterElement) {
+        observer.unobserve(counterElement);
+      }
+    };
+  }, []);
+
   // Form state
   const [clientName, setClientName] = useState('');
   const [clientPhone, setClientPhone] = useState('');
@@ -1019,6 +1067,53 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
               </div>
             </div>
 
+          </div>
+        </section>
+
+        {/* ================= PROMO BANNER SECTION ================= */}
+        <section className="w-full max-w-[1400px] mx-auto min-h-[500px] bg-gradient-to-r from-[#fff3eb] to-[#fcead8] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-12 relative overflow-hidden select-none font-sans my-8 rounded-xl">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            
+            <div className="lg:col-span-6 space-y-6 text-left transform transition-all duration-700 translate-y-0 opacity-100">
+              <div className="space-y-1">
+                <h3 className="text-3xl sm:text-4xl font-light text-slate-700 tracking-wide">
+                  Up To <span className="font-bold text-slate-800">50% Off</span>
+                </h3>
+                
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 tracking-tight flex items-center gap-2 sm:gap-3 whitespace-nowrap">
+                  OVER 
+                  <span ref={counterRef} className="text-blue-600 min-w-[70px] sm:min-w-[100px] lg:min-w-[120px] transition-all duration-100 ease-out text-right">0</span>
+                  <span className="text-blue-600 -ml-2">+</span>
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-700 self-end mb-1 sm:mb-2 uppercase tracking-wider">Designs</span>
+                </h1>
+              </div>
+
+              <div className="pt-2">
+                <a href="#shop" className="inline-block bg-blue-600 text-white group-hover:text-slate-900 font-semibold text-sm uppercase tracking-widest px-8 py-4 shadow-lg hover:shadow-yellow-400/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 rounded-sm group relative overflow-hidden">
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-slate-900">Shop Now</span>
+                  <div className="absolute inset-0 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left -z-0"></div>
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 flex justify-end items-center relative group mt-8 lg:mt-0">
+              
+              <div className="absolute -top-6 right-2 md:right-8 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-blue-600 rounded-full flex flex-col items-center justify-center text-white font-black text-center shadow-xl shadow-blue-600/30 z-20 transform hover:scale-110 transition-transform duration-300 animate-bounce [animation-duration:3s]">
+                <span className="text-[10px] sm:text-xs uppercase tracking-widest opacity-90 font-bold">Big</span>
+                <span className="text-lg sm:text-xl md:text-2xl tracking-tight leading-none">SALE</span>
+              </div>
+
+              <div className="absolute inset-0 bg-white/40 rounded-3xl blur-2xl transform scale-90 -z-10 transition-transform duration-700 group-hover:scale-95"></div>
+
+              <div className="w-full max-w-lg lg:ml-auto transform transition-transform duration-700 ease-out group-hover:scale-[1.02]">
+                <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=2000" alt="Premium Modern Sofa" className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)] rounded-2xl" />
+              </div>
+            </div>
+
+          </div>
+
+          <div className="absolute bottom-[-20px] left-8 text-[12rem] sm:text-[16rem] lg:text-[20rem] font-black text-slate-900/[0.03] leading-none select-none tracking-tighter pointer-events-none z-0">
+            SALE
           </div>
         </section>
 
