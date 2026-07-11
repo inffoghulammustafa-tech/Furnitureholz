@@ -5,6 +5,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Product } from '../types';
+import { INITIAL_PRODUCTS, getProductAttributes } from '../data';
 import Logo from './Logo';
 import { 
   Sofa, 
@@ -23,7 +25,8 @@ import {
   Mail,
   ArrowLeft,
   ChevronUp,
-  Home
+  Home,
+  Search
 } from 'lucide-react';
 
 const NEW_ARRIVALS = [
@@ -664,11 +667,75 @@ const PRODUCTS_DATABASE: Record<string, ProductDetailData> = {
 interface CollectionsProps {
   onSelectCollection: (category: string) => void;
   onOpenPrivacy?: () => void;
+  onAddProductToQuote?: (product: Product) => void;
+  onConfigureProduct?: (product: Product) => void;
 }
 
-export default function Collections({ onSelectCollection, onOpenPrivacy }: CollectionsProps) {
+export default function Collections({ 
+  onSelectCollection, 
+  onOpenPrivacy,
+  onAddProductToQuote,
+  onConfigureProduct
+}: CollectionsProps) {
   const [currentPage, setCurrentPage] = useState(0); // 0 or 1
   const [slideDirection, setSlideDirection] = useState(1); // 1 or -1
+
+  const [selectedShowcaseProduct, setSelectedShowcaseProduct] = useState<Product | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [selectedShowcaseProduct]);
+
+  const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleItems, setVisibleItems] = useState(3);
+
+  const [isBadgeHovered, setIsBadgeHovered] = useState(false);
+
+  useEffect(() => {
+    const updateVisible = () => {
+      if (window.innerWidth < 640) {
+        setVisibleItems(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleItems(2);
+      } else {
+        setVisibleItems(3);
+      }
+    };
+    updateVisible();
+    window.addEventListener('resize', updateVisible);
+    return () => window.removeEventListener('resize', updateVisible);
+  }, []);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => {
+      const maxIndex = 12 - visibleItems;
+      if (prev >= maxIndex) {
+        return 0; // wrap around
+      }
+      return prev + 1;
+    });
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => {
+      const maxIndex = 12 - visibleItems;
+      if (prev <= 0) {
+        return maxIndex; // wrap around
+      }
+      return prev - 1;
+    });
+  };
+
+  // Auto-slide effect that pauses when hover is detected
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      handleNext();
+    }, 1800); // cycle quickly every 1.8 seconds
+    return () => clearInterval(interval);
+  }, [isHovered, visibleItems]);
 
   const [activeInquiryItem, setActiveInquiryItem] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
@@ -1071,138 +1138,268 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
         </section>
 
         {/* ================= PROMO BANNER SECTION ================= */}
-        <section className="w-full max-w-[1400px] mx-auto min-h-[500px] bg-gradient-to-r from-[#fff3eb] to-[#fcead8] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-12 relative overflow-hidden select-none font-sans my-8 rounded-xl">
+        <section className="w-full max-w-[1500px] mx-auto min-h-[600px] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-12 relative overflow-hidden select-none font-sans my-8 rounded-xl bg-slate-100 shadow-sm">
+          {/* Real Sofa Image as Background */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=2000" 
+              alt="Premium Modern Sofa Background" 
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+
           <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             
-            <div className="lg:col-span-6 space-y-6 text-left transform transition-all duration-700 translate-y-0 opacity-100">
-              <div className="space-y-1">
-                <h3 className="text-3xl sm:text-4xl font-light text-slate-700 tracking-wide">
-                  Up To <span className="font-bold text-slate-800">50% Off</span>
+            <div className="lg:col-span-7 space-y-6 text-left transform transition-all duration-700 translate-y-0 opacity-100 pl-4 lg:pl-12">
+              <div className="space-y-2">
+                <h3 className="text-3xl sm:text-4xl font-light text-slate-800 tracking-wide">
+                  Up To <span className="font-bold text-slate-900">50% Off</span>
                 </h3>
                 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 tracking-tight flex items-center gap-2 sm:gap-3 whitespace-nowrap">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-slate-900 tracking-tight flex flex-wrap items-end gap-2 sm:gap-4">
                   OVER 
-                  <span ref={counterRef} className="text-blue-600 min-w-[70px] sm:min-w-[100px] lg:min-w-[120px] transition-all duration-100 ease-out text-right">0</span>
-                  <span className="text-blue-600 -ml-2">+</span>
-                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-700 self-end mb-1 sm:mb-2 uppercase tracking-wider">Designs</span>
+                  <span className="flex items-baseline text-blue-600">
+                    <span ref={counterRef} className="min-w-[70px] sm:min-w-[100px] lg:min-w-[150px] transition-all duration-100 ease-out text-right">0</span>
+                    <span className="-ml-1 sm:-ml-2">+</span>
+                  </span>
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 self-end mb-1 sm:mb-2 lg:mb-3 uppercase tracking-wider">Designs</span>
                 </h1>
               </div>
 
-              <div className="pt-2">
-                <a href="#shop" className="inline-block bg-blue-600 text-white group-hover:text-slate-900 font-semibold text-sm uppercase tracking-widest px-8 py-4 shadow-lg hover:shadow-yellow-400/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 rounded-sm group relative overflow-hidden">
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-slate-900">Shop Now</span>
+              <div className="pt-6">
+                <button 
+                  onClick={() => {
+                    onSelectCollection('living-room');
+                    triggerNotification("Opening Lounge Collection");
+                  }}
+                  className="inline-block bg-blue-600 text-white font-semibold text-sm uppercase tracking-widest px-8 py-4 shadow-lg hover:shadow-blue-600/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 rounded-sm group relative overflow-hidden cursor-pointer"
+                >
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-blue-900">Shop Now</span>
                   <div className="absolute inset-0 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left -z-0"></div>
-                </a>
+                </button>
               </div>
             </div>
 
-            <div className="lg:col-span-6 flex justify-end items-center relative group mt-8 lg:mt-0">
-              
-              <div className="absolute -top-6 right-2 md:right-8 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-blue-600 rounded-full flex flex-col items-center justify-center text-white font-black text-center shadow-xl shadow-blue-600/30 z-20 transform hover:scale-110 transition-transform duration-300 animate-bounce [animation-duration:3s]">
-                <span className="text-[10px] sm:text-xs uppercase tracking-widest opacity-90 font-bold">Big</span>
-                <span className="text-lg sm:text-xl md:text-2xl tracking-tight leading-none">SALE</span>
-              </div>
-
-              <div className="absolute inset-0 bg-white/40 rounded-3xl blur-2xl transform scale-90 -z-10 transition-transform duration-700 group-hover:scale-95"></div>
-
-              <div className="w-full max-w-lg lg:ml-auto transform transition-transform duration-700 ease-out group-hover:scale-[1.02]">
-                <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=2000" alt="Premium Modern Sofa" className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)] rounded-2xl" />
+            <div className="lg:col-span-5 flex justify-end items-center relative group mt-16 lg:mt-0 pr-4 lg:pr-8">
+              {/* Floating Big SALE badge floating elegantly in space, letting the sofa background show through clearly */}
+              <div className="relative z-10 mr-4 lg:mr-12">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-blue-600 rounded-full flex flex-col items-center justify-center text-white font-black text-center shadow-2xl shadow-blue-600/40 transform hover:scale-110 transition-transform duration-300 animate-bounce [animation-duration:3s]">
+                  <span className="text-[10px] sm:text-xs uppercase tracking-widest opacity-90 font-bold">Big</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl tracking-tight leading-none">SALE</span>
+                </div>
               </div>
             </div>
 
           </div>
 
-          <div className="absolute bottom-[-20px] left-8 text-[12rem] sm:text-[16rem] lg:text-[20rem] font-black text-slate-900/[0.03] leading-none select-none tracking-tighter pointer-events-none z-0">
+          <div className="absolute bottom-[-40px] left-8 text-[14rem] sm:text-[20rem] lg:text-[24rem] font-black text-slate-900/[0.03] leading-none select-none tracking-tighter pointer-events-none z-0">
             SALE
           </div>
         </section>
 
         {/* ================= SHOWROOM SEGMENTS SECTION ================= */}
-        <div id="catalog-grid" className="space-y-8 scroll-mt-24 pt-6">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block">Shop by Room</span>
-            <h3 className="text-3xl md:text-5xl font-display font-semibold text-ivory">
-              Explore Showroom Segments
-            </h3>
-            <p className="text-ivory-dim/70 text-xs md:text-sm font-sans max-w-2xl mx-auto leading-relaxed">
-              Aap k luxury visual reference k mutabiq har category ko real-world catalogs, item structures aur custom option grids k sath configure kia gya hai.
-            </p>
-          </div>
+        <div id="catalog-grid" className="scroll-mt-24 pt-6 space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left Side: Title, Subtitle, Description and Slider Arrows */}
+            <div className="lg:col-span-4 space-y-6">
+              <div className="space-y-3">
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block">Shop by Room</span>
+                <h3 className="text-3xl md:text-5xl font-display font-semibold text-ivory tracking-wide leading-tight">
+                  Explore Showroom Segments
+                </h3>
+                <p className="text-ivory-dim/70 text-xs md:text-sm font-sans leading-relaxed">
+                  Aap k luxury visual reference k mutabiq har category ko real-world catalogs, item structures aur custom option grids k sath configure kia gya hai. Hamari high-end premium products ab mazeed behtareen items k sath available hain.
+                </p>
+              </div>
 
-          {/* Custom Elegant Categories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SHOWROOM_CATEGORIES.map((cat, idx) => (
-              <motion.div
-                key={cat.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: idx * 0.05 }}
-                onClick={() => handleCategoryAction(cat)}
-                className="group cursor-pointer box-gradient rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col justify-between border border-line"
-              >
-                <div className="relative h-64 overflow-hidden bg-stone-950">
-                  <img 
-                    src={cat.image} 
-                    alt={cat.title} 
-                    className="w-full h-full object-cover opacity-70 group-hover:scale-120 group-hover:opacity-90 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <span className="absolute top-4 left-4 bg-walnut text-ivory text-[10px] px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider border border-oak/30">
-                    {cat.subtitle}
+              {/* Elegant Slider Navigation Controls */}
+              <div className="flex items-center gap-3 pt-4">
+                <button
+                  onClick={handlePrev}
+                  className="w-12 h-12 rounded-full border border-line/80 text-ivory hover:text-oak hover:border-oak flex items-center justify-center transition-all duration-300 bg-charcoal/35 cursor-pointer shadow-lg active:scale-95"
+                  title="Scroll Right"
+                  aria-label="Scroll Right"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="w-12 h-12 rounded-full border border-line/80 text-ivory hover:text-oak hover:border-oak flex items-center justify-center transition-all duration-300 bg-charcoal/35 cursor-pointer shadow-lg active:scale-95"
+                  title="Scroll Left"
+                  aria-label="Scroll Left"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+                
+                {/* Continuous Scroll Indicator Badge */}
+                <div className="flex items-center gap-2 ml-3 bg-charcoal/30 border border-line/40 px-3 py-1.5 rounded-full">
+                  <span className={`w-2 h-2 rounded-full bg-sage ${isHovered ? 'opacity-40' : 'animate-pulse'}`} />
+                  <span className="text-[10px] font-mono text-stone-400 uppercase tracking-widest font-semibold">
+                    {isHovered ? 'Paused' : 'Live Loop'}
                   </span>
                 </div>
-                <div className="p-6 flex-grow flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <h4 className="text-lg md:text-xl font-display font-semibold text-ivory tracking-wide group-hover:text-oak transition-colors">
-                      {cat.title}
-                    </h4>
-                    <p className="text-ivory-dim/70 text-xs leading-relaxed font-sans min-h-[48px]">
-                      {cat.desc}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {cat.tags.map((tag, tIdx) => (
-                        <span 
-                          key={tIdx} 
-                          className="px-2.5 py-0.5 bg-charcoal/85 border border-line text-ivory-dim/65 rounded text-[9px] font-medium font-sans group-hover:border-oak/30 transition-colors"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+              </div>
+            </div>
+
+            {/* Right Side: Horizontal Smooth Slider */}
+            <div 
+              className="lg:col-span-8 overflow-hidden relative px-1 py-4"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {/* Left and Right Side Gradients for an immersive fade-out gallery look */}
+              <div className="absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#090D1A] to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#090D1A] to-transparent pointer-events-none z-10" />
+
+              <div 
+                className="flex transition-transform duration-500 ease-out gap-6"
+                style={{ transform: `translateX(calc(-${currentIndex} * (100% + 24px) / ${visibleItems}))` }}
+              >
+                {(() => {
+                  const showcaseIds = [
+                    'heart-back-shisham-deewan',
+                    'bergere-inlay-set',
+                    'circle-platted-deewan',
+                    'carving-high-back-set',
+                    'chase-ship-chair',
+                    'sea-green-ottoman-puffy',
+                    'bedroom-p3-1',
+                    'bedroom-p3-2',
+                    'bedroom-p3-3',
+                    'bedroom-p3-4',
+                    'bedroom-p3-5',
+                    'bedroom-p3-6'
+                  ];
+                  const showcaseProducts = showcaseIds
+                    .map(id => INITIAL_PRODUCTS.find(p => p.id === id))
+                    .filter(Boolean) as Product[];
+
+                  return showcaseProducts.map((prod) => (
+                    <div
+                      key={prod.id}
+                      className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 box-gradient rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col justify-between border border-line bg-charcoal/40 group relative"
+                    >
+                      {/* Image Frame - Click opens the detailed specifications modal */}
+                      <div 
+                        onClick={() => setSelectedShowcaseProduct(prod)}
+                        className="relative aspect-[16/11] overflow-hidden bg-stone-950 cursor-pointer"
+                        title="Click to view full product information"
+                      >
+                        <img 
+                          src={prod.image} 
+                          alt={prod.name} 
+                          className="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-transform duration-500"
+                          referrerPolicy="no-referrer"
+                        />
+                        {/* View Details Hover Overlay */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <span className="px-4 py-2 bg-charcoal/90 border border-oak text-oak font-mono text-[10px] tracking-widest uppercase rounded-sm shadow-md">
+                            View Details
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Info & Action Panel */}
+                      <div className="p-6 flex-grow flex flex-col justify-between space-y-6">
+                        <div className="text-center">
+                          <h4 
+                            onClick={() => setSelectedShowcaseProduct(prod)}
+                            className="text-sm md:text-base font-sans font-bold text-ivory hover:text-oak cursor-pointer tracking-wide leading-snug min-h-[44px] flex items-center justify-center transition-colors"
+                          >
+                            {prod.name}
+                          </h4>
+                          <span className="text-[11px] font-mono text-sage block mt-1">
+                            {`Rs. ${prod.price.toLocaleString()}`}
+                          </span>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <button 
+                            onClick={() => {
+                              if (onAddProductToQuote) {
+                                onAddProductToQuote(prod);
+                              } else {
+                                triggerNotification(`Added ${prod.name} to Quote`);
+                              }
+                            }}
+                            className="w-full py-3 border border-ivory text-ivory hover:bg-ivory hover:text-charcoal text-[11px] font-bold uppercase tracking-widest transition-all duration-300 rounded-sm cursor-pointer"
+                          >
+                            Add to Quote
+                          </button>
+                          <div className="text-center">
+                            <button 
+                              onClick={() => {
+                                if (onConfigureProduct) {
+                                  onConfigureProduct(prod);
+                                } else {
+                                  triggerNotification(`Opening Configurator for ${prod.name}`);
+                                }
+                              }}
+                              className="text-[10px] text-stone-400 hover:text-oak uppercase tracking-widest transition-all duration-200 font-bold cursor-pointer"
+                            >
+                              Configure
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="p-6 pt-0">
-                  <button className="w-full py-3 bg-charcoal hover:bg-oak hover:text-charcoal border border-line text-ivory-dim group-hover:border-oak rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-300">
-                    {cat.categoryKey === 'interior-services' ? 'View Services' : 'View Full Collection'} &rarr;
-                  </button>
-                </div>
-              </motion.div>
-            ))}
+                  ));
+                })()}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* ================= TRUST BADGES SEGMENT ================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 py-8 border-t border-b border-line/40">
-          <div className="text-center p-4 space-y-2">
-            <div className="text-oak font-display text-3xl font-semibold">100%</div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Premium Hardwood</h5>
-            <p className="text-ivory-dim/60 text-[11px] font-sans">Strictly use seasoned Sheesham & Golden Teak.</p>
-          </div>
-          <div className="text-center p-4 space-y-2">
-            <div className="text-oak font-display text-3xl font-semibold">15 Year</div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Termite Warranty</h5>
-            <p className="text-ivory-dim/60 text-[11px] font-sans">Advanced pressure chemical kiln treatment.</p>
-          </div>
-          <div className="text-center p-4 space-y-2">
-            <div className="text-oak font-display text-3xl font-semibold">Custom</div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Made To Order</h5>
-            <p className="text-ivory-dim/60 text-[11px] font-sans">Sizing & fabrics adjusted perfectly to your layout.</p>
-          </div>
-          <div className="text-center p-4 space-y-2">
-            <div className="text-oak font-display text-3xl font-semibold">Safe</div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Transit Padding</h5>
-            <p className="text-ivory-dim/60 text-[11px] font-sans">Free delivery with absolute doorstep fitting.</p>
+        <div 
+          className="relative py-8 border-t border-b border-line/40 overflow-hidden select-none"
+          onMouseEnter={() => setIsBadgeHovered(true)}
+          onMouseLeave={() => setIsBadgeHovered(false)}
+        >
+          {/* Left and Right Side Gradients for an immersive fade-out look */}
+          <div className="absolute inset-y-0 left-0 w-8 sm:w-20 bg-gradient-to-r from-[#090D1A] to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-y-0 right-0 w-8 sm:w-20 bg-gradient-to-l from-[#090D1A] to-transparent pointer-events-none z-10" />
+
+          {/* Dynamic CSS injecting high-performance keyframe animations for the badges */}
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes marqueeBadges {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee-badges-loop {
+              animation: marqueeBadges 24s linear infinite;
+            }
+          `}} />
+
+          <div 
+            className="flex flex-nowrap gap-12 w-max animate-marquee-badges-loop"
+            style={{ animationPlayState: isBadgeHovered ? 'paused' : 'running' }}
+          >
+            {/* Standard set of badges duplicated for seamless endless looping */}
+            {Array.from({ length: 3 }).map((_, loopIdx) => (
+              <span key={loopIdx} className="flex flex-nowrap gap-12">
+                <div className="text-center p-4 space-y-1.5 shrink-0 w-[240px] sm:w-[280px]">
+                  <div className="text-oak font-display text-2xl sm:text-3xl font-semibold">100%</div>
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Premium Hardwood</h5>
+                  <p className="text-ivory-dim/60 text-[11px] font-sans">Strictly use seasoned Sheesham & Golden Teak.</p>
+                </div>
+                <div className="text-center p-4 space-y-1.5 shrink-0 w-[240px] sm:w-[280px]">
+                  <div className="text-oak font-display text-2xl sm:text-3xl font-semibold">15 Year</div>
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Termite Warranty</h5>
+                  <p className="text-ivory-dim/60 text-[11px] font-sans">Advanced pressure chemical kiln treatment.</p>
+                </div>
+                <div className="text-center p-4 space-y-1.5 shrink-0 w-[240px] sm:w-[280px]">
+                  <div className="text-oak font-display text-2xl sm:text-3xl font-semibold">Custom</div>
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Made To Order</h5>
+                  <p className="text-ivory-dim/60 text-[11px] font-sans">Sizing & fabrics adjusted perfectly to your layout.</p>
+                </div>
+                <div className="text-center p-4 space-y-1.5 shrink-0 w-[240px] sm:w-[280px]">
+                  <div className="text-oak font-display text-2xl sm:text-3xl font-semibold">Safe</div>
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-ivory">Transit Padding</h5>
+                  <p className="text-ivory-dim/60 text-[11px] font-sans">Free delivery with absolute doorstep fitting.</p>
+                </div>
+              </span>
+            ))}
           </div>
         </div>
 
@@ -2107,6 +2304,293 @@ export default function Collections({ onSelectCollection, onOpenPrivacy }: Colle
             </motion.div>
           </div>
         )}
+      </AnimatePresence>
+
+      {/* Showcase Product Information Modal */}
+      <AnimatePresence>
+        {selectedShowcaseProduct && (() => {
+          const productImages = selectedShowcaseProduct.images && selectedShowcaseProduct.images.length > 0 
+            ? selectedShowcaseProduct.images 
+            : [selectedShowcaseProduct.image];
+          const activeImageUrl = productImages[activeImageIndex] || selectedShowcaseProduct.image;
+          const attrs = getProductAttributes(selectedShowcaseProduct) || {
+            color: 'Polish Brown',
+            material: 'Shisham/ Sissoo Wood',
+            polish: 'Glossy Polish',
+            style: 'Smart Living',
+            pieces: '1 Piece'
+          };
+          const generatedSku = `FH-10${selectedShowcaseProduct.id.charCodeAt(selectedShowcaseProduct.id.length - 1) || '18'}`;
+          const generatedTmr = `TMR #614${Math.floor(selectedShowcaseProduct.price / 100)}`;
+
+          return (
+            <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+              {/* Scrim */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/90 backdrop-blur-md"
+                onClick={() => setSelectedShowcaseProduct(null)}
+              />
+
+              {/* Modal Box */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="box-gradient w-full max-w-5xl max-h-[90vh] overflow-y-auto relative shadow-2xl custom-scrollbar z-10 rounded-2xl bg-[#090D1A] border border-line"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedShowcaseProduct(null)}
+                  className="absolute top-6 right-6 p-2 rounded-full border border-line text-ivory-dim hover:text-oak hover:border-oak transition-all duration-200 z-20 bg-charcoal/90 cursor-pointer shadow-lg"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                {/* Split Main Section */}
+                <div className="p-6 sm:p-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    {/* Left Column: Image, Badges, Hover Zoom & Thumbnail Grid */}
+                    <div className="lg:col-span-5 flex flex-col space-y-4">
+                      <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden bg-walnut/15 border border-line/50 shadow-md group">
+                        
+                        {/* Best Seller / High-End Badge */}
+                        <div className="absolute top-4 right-4 z-10">
+                          <span className="bg-oak text-charcoal text-[9px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded shadow-md">
+                            {selectedShowcaseProduct.badge || "BEST SELLER"}
+                          </span>
+                        </div>
+
+                        {/* Main Product Image */}
+                        <img
+                          src={activeImageUrl}
+                          alt={selectedShowcaseProduct.name}
+                          className="w-full h-full object-cover saturate-100 transition-transform duration-500 group-hover:scale-105"
+                          referrerPolicy="no-referrer"
+                        />
+
+                        {/* Hover Zoom overlay indicator */}
+                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-xs text-white text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded border border-white/10 flex items-center gap-1">
+                          <Search className="w-3 h-3 text-oak" />
+                          Hover to zoom
+                        </div>
+
+                        {/* Overlay subtle frame */}
+                        <div className="absolute inset-4 border border-oak/10 pointer-events-none rounded-xl" />
+                      </div>
+
+                      {/* Thumbnails Row if multi-image exists */}
+                      {productImages.length > 1 && (
+                        <div className="flex flex-wrap gap-4 items-center justify-start pt-2">
+                          {productImages.map((imgUrl, idx) => (
+                            <div key={idx} className="flex flex-col items-center">
+                              <button
+                                onClick={() => setActiveImageIndex(idx)}
+                                className={`w-20 h-14 rounded-lg overflow-hidden border-2 cursor-pointer transition-all duration-200 bg-stone-950 ${
+                                  activeImageIndex === idx 
+                                    ? 'border-oak scale-105 shadow-md shadow-oak/20' 
+                                    : 'border-line/60 hover:border-ivory/60'
+                                }`}
+                              >
+                                <img 
+                                  src={imgUrl} 
+                                  alt={`${selectedShowcaseProduct.name} Angle ${idx + 1}`} 
+                                  className="w-full h-full object-cover opacity-90 hover:opacity-100" 
+                                  referrerPolicy="no-referrer"
+                                />
+                              </button>
+                              <span className={`text-[9px] font-mono mt-1 ${activeImageIndex === idx ? 'text-oak font-semibold' : 'text-stone-400'}`}>
+                                {idx === 0 ? 'Front View' : idx === 1 ? 'Left Angle' : `View ${idx + 1}`}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Right Column: Spec Sheet & Custom Highlights */}
+                    <div className="lg:col-span-7 space-y-6">
+                      <div>
+                        {/* Category Label */}
+                        <span className="font-mono text-[9px] uppercase text-sage tracking-[0.2em] block mb-1">
+                          Showcase Reference Collection
+                        </span>
+
+                        {/* Name */}
+                        <h3 className="font-display text-2xl sm:text-3xl font-semibold text-ivory tracking-wide leading-tight mb-2">
+                          {selectedShowcaseProduct.name}
+                        </h3>
+
+                        {/* SKU & TMR code tags - from image 2 */}
+                        <div className="font-mono text-[10px] text-oak uppercase tracking-widest space-x-2 block mb-3">
+                          <span>{generatedTmr}</span>
+                          <span className="text-stone-500">|</span>
+                          <span>SKU: {generatedSku}</span>
+                        </div>
+
+                        {/* Pricing and Finish Badges */}
+                        <div className="flex items-center gap-4 mb-4 border-b border-line pb-4 flex-wrap">
+                          <span className="font-mono text-2xl font-bold text-oak">
+                            {`Rs. ${selectedShowcaseProduct.price.toLocaleString()}`}
+                          </span>
+                          <span className="text-[10px] text-teal-400 font-mono uppercase tracking-wider px-2.5 py-1 bg-teal-500/10 border border-teal-500/30 rounded">
+                            {selectedShowcaseProduct.badge || "HIGH GLOSS"}
+                          </span>
+                          
+                          {/* Call for Price styling button from image 2 */}
+                          <button 
+                            onClick={() => {
+                              setSelectedShowcaseProduct(null);
+                              handleOpenInquiry(selectedShowcaseProduct.name);
+                            }}
+                            className="py-1.5 px-3 border border-oak/40 hover:border-oak text-oak hover:bg-oak/5 font-mono text-[9px] tracking-widest uppercase rounded-sm transition-all duration-200 cursor-pointer shadow-xs"
+                          >
+                            CALL FOR PRICE
+                          </button>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-ivory-dim/90 text-xs sm:text-sm font-sans leading-relaxed mb-5">
+                          {selectedShowcaseProduct.description}
+                        </p>
+
+                        {/* Premium Bullet Highlights - from image 2 */}
+                        <div className="space-y-2 mb-6 border-t border-line/40 pt-4">
+                          <span className="font-mono text-[10px] uppercase text-sage tracking-widest block mb-1">Key Highlights</span>
+                          <ul className="text-xs text-ivory-dim/85 space-y-1.5 list-disc pl-4 font-sans">
+                            <li>{`Made of premium seasoned ${selectedShowcaseProduct.woodType} Wood`}</li>
+                            <li>Premium Cushioning & Handcrafted Soft-Touch Stuffing</li>
+                            <li>Excellent Hand-Polished Lustrous Coating & Craftsmanship</li>
+                            <li>Perfectly designed for Bedrooms, Lounges, and Fine Sitting Rooms</li>
+                            <li>Fully customizable dimensions, fabric options, and polish hues</li>
+                            <li>Authentic traditional detailing curated by seasoned artisans</li>
+                            <li>Prices are Negotiable with Best Workshop Lifetime Guarantee</li>
+                          </ul>
+                        </div>
+
+                        {/* Technical Specs Checklist - from image 1 */}
+                        <div className="space-y-3 pt-4 border-t border-line/40">
+                          <h4 className="font-mono text-[10px] uppercase text-sage tracking-widest">
+                            Workshop Specifications
+                          </h4>
+                          
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-xs bg-charcoal/20 p-4 rounded-xl border border-line/30">
+                            <div>
+                              <span className="text-stone-400 block text-[9px] uppercase font-mono tracking-wider">Dimensions</span>
+                              <span className="text-ivory font-medium">{selectedShowcaseProduct.dimensions || '155cm L x 52cm W x 70cm H'}</span>
+                            </div>
+                            
+                            <div>
+                              <span className="text-stone-400 block text-[9px] uppercase font-mono tracking-wider">Average Weight</span>
+                              <span className="text-ivory font-medium">{selectedShowcaseProduct.weight || '28 kg'}</span>
+                            </div>
+
+                            <div>
+                              <span className="text-stone-400 block text-[9px] uppercase font-mono tracking-wider">Est. Build Lead-Time</span>
+                              <span className="text-ivory font-medium">{selectedShowcaseProduct.buildTime || '4-5 Weeks'}</span>
+                            </div>
+
+                            <div>
+                              <span className="text-stone-400 block text-[9px] uppercase font-mono tracking-wider">Timber Type</span>
+                              <span className="text-ivory font-medium">{selectedShowcaseProduct.materialDetails || 'Pure seasoned solid Shisham Wood frame'}</span>
+                            </div>
+                          </div>
+
+                          {/* Joinery Spotlight - from image 1 */}
+                          {selectedShowcaseProduct.joinery && (
+                            <div className="box-gradient p-4 text-xs font-sans rounded-xl border border-line/40 bg-[#141C33]/40">
+                              <span className="font-mono text-[9px] uppercase tracking-wider text-oak block mb-1">
+                                Ustad's Joinery Signature
+                              </span>
+                              <p className="text-ivory-dim/95 leading-relaxed italic">
+                                "{selectedShowcaseProduct.joinery}"
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ================= ADDITIONAL INFORMATION SECTION - from image 2 ================= */}
+                  <div className="mt-10 pt-8 border-t border-line/50 space-y-4">
+                    <h4 className="font-mono text-xs uppercase text-oak tracking-[0.2em] font-semibold text-center sm:text-left">
+                      ADDITIONAL INFORMATION
+                    </h4>
+
+                    <div className="border border-line/60 rounded-xl overflow-hidden font-sans text-xs bg-[#0F1529]/35">
+                      <div className="grid grid-cols-1 md:grid-cols-2">
+                        <div className="border-b border-line/50 md:border-b-0 md:border-r border-line/50">
+                          <div className="flex justify-between items-center px-6 py-3.5 border-b border-line/40">
+                            <span className="text-stone-400 font-mono text-[10px] uppercase tracking-wider">Color</span>
+                            <span className="text-ivory font-semibold text-right">{attrs.color || 'Polish Brown'}</span>
+                          </div>
+                          <div className="flex justify-between items-center px-6 py-3.5 border-b border-line/40">
+                            <span className="text-stone-400 font-mono text-[10px] uppercase tracking-wider">Material</span>
+                            <span className="text-ivory font-semibold text-right">{attrs.material || 'Acacia/ Kikar Wood'}</span>
+                          </div>
+                          <div className="flex justify-between items-center px-6 py-3.5">
+                            <span className="text-stone-400 font-mono text-[10px] uppercase tracking-wider">Polish/ Upholstery</span>
+                            <span className="text-ivory font-semibold text-right">{attrs.polish || 'Glossy Polish'}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <div className="flex justify-between items-center px-6 py-3.5 border-b border-line/40">
+                            <span className="text-stone-400 font-mono text-[10px] uppercase tracking-wider">Style</span>
+                            <span className="text-ivory font-semibold text-right">{attrs.style || 'Smart Living'}</span>
+                          </div>
+                          <div className="flex justify-between items-center px-6 py-3.5 border-b border-line/40">
+                            <span className="text-stone-400 font-mono text-[10px] uppercase tracking-wider">Size/ Pieces</span>
+                            <span className="text-ivory font-semibold text-right">{attrs.pieces || '1 Piece'}</span>
+                          </div>
+                          <div className="flex justify-between items-center px-6 py-3.5">
+                            <span className="text-stone-400 font-mono text-[10px] uppercase tracking-wider">Categories</span>
+                            <span className="text-stone-400 font-semibold text-right max-w-[200px] truncate" title={`${selectedShowcaseProduct.category.toUpperCase()}, Sofa, Chair & Deewan`}>
+                              {selectedShowcaseProduct.category === 'bedroom' ? 'Bedroom Luxury, Suite, Deewan' : 'Dining Room, Suite, Luxury Chairs'}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Action CTAs */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-8 mt-6 border-t border-line/40">
+                    <button
+                      onClick={() => {
+                        if (onAddProductToQuote) {
+                          onAddProductToQuote(selectedShowcaseProduct);
+                        } else {
+                          triggerNotification(`Added ${selectedShowcaseProduct.name} to Quote`);
+                        }
+                        setSelectedShowcaseProduct(null);
+                      }}
+                      className="flex-1 py-4 bg-oak hover:bg-ivory text-charcoal text-xs uppercase tracking-widest font-bold transition-all duration-300 text-center flex items-center justify-center gap-2 cursor-pointer rounded-sm shadow-md active:scale-95"
+                    >
+                      Add to Quote
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (onConfigureProduct) {
+                          onConfigureProduct(selectedShowcaseProduct);
+                        } else {
+                          triggerNotification(`Opening Configurator for ${selectedShowcaseProduct.name}`);
+                        }
+                        setSelectedShowcaseProduct(null);
+                      }}
+                      className="flex-1 py-4 border border-line hover:border-oak text-ivory hover:text-oak text-xs uppercase tracking-widest font-bold transition-all duration-300 text-center flex items-center justify-center gap-2 cursor-pointer rounded-sm active:scale-95"
+                    >
+                      Configure Sizing
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          );
+        })()}
       </AnimatePresence>
 
       {/* ================= TOAST STATUS BANNER ================= */}

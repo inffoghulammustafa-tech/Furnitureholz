@@ -201,6 +201,8 @@ export default function App() {
                 setActiveCategory(cat);
               }}
               onOpenPrivacy={() => setIsPrivacyOpen(true)}
+              onAddProductToQuote={handleAddProductToQuote}
+              onConfigureProduct={handleConfigureProductFromCatalog}
             />
 
             {/* Product Catalog Display and inspection detail modals */}

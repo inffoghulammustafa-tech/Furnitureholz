@@ -3,11 +3,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Heart, Info, SlidersHorizontal, Eye, ShoppingBag, X, Calendar, Hammer, Scale, Move } from 'lucide-react';
+import { Search, Heart, Info, SlidersHorizontal, Eye, ShoppingBag, X, Calendar, Hammer, Scale, Move, Play, ChevronLeft, ChevronRight, Newspaper } from 'lucide-react';
 import { Product, QuoteItem } from '../types';
 import { INITIAL_PRODUCTS, WOOD_PROPERTIES, getProductAttributes } from '../data';
+
+// @ts-ignore
+import expoHafizabadImg from '../assets/images/expo_hafizabad_1783760838438.jpg';
+// @ts-ignore
+import expoShahkotImg from '../assets/images/expo_shahkot_1783760858574.jpg';
+// @ts-ignore
+import expoFaisalabadImg from '../assets/images/expo_faisalabad_1783760875222.jpg';
+// @ts-ignore
+import bbqMangoPartyImg from '../assets/images/bbq_mango_party_1783761272877.jpg';
+
+
 
 const getOptionHoverClass = (opt: string) => {
   const norm = opt.trim().toLowerCase();
@@ -34,6 +45,65 @@ const getOptionHoverClass = (opt: string) => {
   }
   return colors[Math.abs(hash) % colors.length];
 };
+
+export const LATEST_NEWS_ITEMS = [
+  {
+    id: 'bbq-mango-party-2026',
+    title: 'Annual BBQ+Pool+Mango Party – A Night of Fun, Music, and Social Responsibility at ZBT Farmhouse',
+    date: 'June 2026',
+    image: bbqMangoPartyImg,
+    youtubeQuery: 'Annual+BBQ+Pool+Mango+Party+at+ZBT+Farmhouse+Furniture+Holz',
+    details: 'The Furniture Holz family gathered at the beautiful ZBT Farmhouse for our spectacular Annual BBQ, Pool, and Mango Party. It was a wonderful night of joy, delicious local mangoes, sizzling live BBQ, vibrant music, and a strong reflection on our company social responsibility goals. Events like these strengthen our team bonding and commitment to crafting masterpieces with love.',
+    highlights: [
+      'Delectable mango feast featuring premium Chausa and Anwar Ratol varieties',
+      'Live poolside BBQ station with traditional spices and ambient music',
+      'Team building games and recreational poolside relaxation',
+      'Special session discussing our ongoing social responsibility initiatives'
+    ]
+  },
+  {
+    id: 'hafizabad-2025',
+    title: '3rd Furniture Expo in Hafizabad by Furniture Holz – May 2025',
+    date: 'May 2025',
+    image: expoHafizabadImg,
+    youtubeQuery: '3rd+Furniture+Expo+in+Hafizabad+by+Furniture+Holz',
+    details: 'Furniture Holz brought its legendary craftsmanship to the heart of Hafizabad. The 3rd Annual Furniture Expo was a monumental success, showcasing our signature solid-timber bedroom sets, hand-carved dining tables, and bespoke bridal furniture. Hundreds of families visited to experience the premium wood quality and after-sale support that defines our brand.',
+    highlights: [
+      'Showcased solid Shisham and Oak wood collections',
+      'Exclusive on-spot bridal package bookings',
+      'Visited by prominent local personalities and interior experts',
+      'Over 15 years of solid woodwork heritage on display'
+    ]
+  },
+  {
+    id: 'shahkot-2025',
+    title: 'First Ever Furniture Expo in Shahkot- Nankana – April 2025',
+    date: 'April 2025',
+    image: expoShahkotImg,
+    youtubeQuery: 'First+Ever+Furniture+Expo+in+Shahkot-Nankana+Furniture+Holz',
+    details: 'We made history by hosting the first-ever high-end furniture expo in Shahkot, Nankana Sahib region. The event marked a new chapter for timber artistry in the area, providing locals direct access to premium, factory-priced furniture without having to travel to major hubs. The overwhelming support from the community has inspired us to make this an annual tradition.',
+    highlights: [
+      'Inaugural grand ribbon-cutting ceremony',
+      'Direct factory rates offered to the Nankana Sahib community',
+      'Featured highly customized space-saving luxury furniture',
+      'Highly praised for seamless delivery and assembly services'
+    ]
+  },
+  {
+    id: 'faisalabad-2025',
+    title: 'Highlights of First Ever Expo at Narwala Road Faisalabad – February 2025',
+    date: 'February 2025',
+    image: expoFaisalabadImg,
+    youtubeQuery: 'Highlights+of+First+Ever+Expo+at+Narwala+Road+Faisalabad+Furniture+Holz',
+    details: 'Our Narwala Road showroom hosted its highly anticipated First Ever Furniture Expo in Faisalabad. This mega-event showcased spectacular luxury furniture designs, from royal-carved Chinioti heritage classics to sleek, contemporary minimalist designs. Faisalabad’s design-savvy crowd turned out in massive numbers, confirming Furniture Holz as the top destination for premium home decor.',
+    highlights: [
+      'Launch of our 2025 Imperial Carved Bedding collection',
+      'Live wood carving demonstrations by master artisans',
+      'Special discounts for local Faisalabad residents',
+      'Stunning interactive showroom displays'
+    ]
+  }
+];
 
 interface CatalogProps {
   selectedCategory: string;
@@ -62,6 +132,7 @@ export default function Catalog({
   onConfigureProduct,
   cart
 }: CatalogProps) {
+  const newsScrollRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedWood, setSelectedWood] = useState<string>('all');
   const [maxPrice, setMaxPrice] = useState<number>(250000);
@@ -77,6 +148,59 @@ export default function Catalog({
   const [sortBy, setSortBy] = useState<string>('Sort by popularity');
   const [isSortOpen, setIsSortOpen] = useState<boolean>(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const [selectedTeamMember, setSelectedTeamMember] = useState<{
+    name: string;
+    role: string;
+    image: string;
+    bio: string;
+  } | null>(null);
+
+  const [selectedNewsCard, setSelectedNewsCard] = useState<{
+    id: string;
+    title: string;
+    date: string;
+    image: string;
+    youtubeQuery: string;
+    details: string;
+    highlights: string[];
+  } | null>(null);
+
+  const [newsSlideIndex, setNewsSlideIndex] = useState<number>(0);
+
+  // Customer Reviews Video states & config
+  const [activeVideo, setActiveVideo] = useState<{ id: string; start: number } | null>(null);
+
+  const customerVideos = useMemo(() => [
+    {
+      id: 'j_wZZluG-Qw',
+      start: 0,
+      title: 'Complete Home Furniture Setup',
+      sub: 'Furniture Holz',
+      thumbnail: 'https://img.youtube.com/vi/j_wZZluG-Qw/hqdefault.jpg'
+    },
+    {
+      id: 'C3uqpZfY5kU',
+      start: 0,
+      title: 'LIVE TOUR: FULL HOUSE',
+      sub: 'Furniture Holz',
+      thumbnail: 'https://img.youtube.com/vi/C3uqpZfY5kU/hqdefault.jpg'
+    },
+    {
+      id: 'ryVB8IzX1YU',
+      start: 0,
+      title: 'Modern Office Interior',
+      sub: 'Furniture Holz',
+      thumbnail: 'https://img.youtube.com/vi/ryVB8IzX1YU/hqdefault.jpg'
+    },
+    {
+      id: '9axJSfxzxPY',
+      start: 0,
+      title: 'Satisfied Customer Feedback',
+      sub: 'Furniture Holz · Gojra Expo · Jan 2025',
+      thumbnail: 'https://img.youtube.com/vi/9axJSfxzxPY/hqdefault.jpg'
+    }
+  ], []);
 
   // Toggle favorite helper
   const toggleFavorite = (productId: string, e: React.MouseEvent) => {
@@ -161,6 +285,582 @@ export default function Catalog({
   return (
     <section id="catalog" className="py-24 border-b border-line relative bg-grain">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
+        {/* ================= CUSTOMER VIDEO REVIEWS ================= */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block mb-2">Real Client Walkthroughs</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-ivory">
+              Customer Reviews
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {customerVideos.map((video, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.6 }}
+                onClick={() => setActiveVideo({ id: video.id, start: video.start })}
+                className="group relative aspect-[9/16] bg-[#0c1424] rounded-2xl overflow-hidden border border-line/50 hover:border-oak/60 transition-all duration-300 shadow-xl cursor-pointer select-none"
+              >
+                {/* Cover Image */}
+                <div className="absolute inset-0 z-0">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/70 z-10" />
+                </div>
+
+                {/* Top Overlay: Channel Header info */}
+                <div className="absolute top-4 left-4 right-4 z-20 flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-display font-bold shadow-md border border-white/10 shrink-0">
+                    <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                  </div>
+                  <div className="overflow-hidden">
+                    <h4 className="text-xs font-bold text-white tracking-wide truncate group-hover:text-oak transition-colors drop-shadow-sm">
+                      {video.title}
+                    </h4>
+                    <span className="text-[10px] text-ivory-dim/75 block truncate drop-shadow-sm">
+                      {video.sub}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Center Overlay: Play Button */}
+                <div className="absolute inset-0 z-20 flex items-center justify-center">
+                  <div className="w-14 h-14 bg-red-600 group-hover:bg-red-500 rounded-full flex items-center justify-center text-white shadow-xl transition-all duration-300 group-hover:scale-110">
+                    <svg className="w-6 h-6 fill-current text-white translate-x-[2px]" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Bottom Overlay: Shorts bar indicator */}
+                <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between">
+                  <span className="text-[10px] text-white/50 font-mono tracking-wider">
+                    {idx === 3 ? 'Hajra Palace' : 'Furniture Holz'}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                    <span className="text-[9px] uppercase tracking-wider text-red-500 font-bold font-mono">Shorts</span>
+                  </div>
+                </div>
+
+                {/* Red bottom timeline effect */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* ================= OUR GREAT TEAM ================= */}
+        <div className="mb-24 border-t border-line/30 pt-24 text-center">
+          <div className="mb-16">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block mb-2">The Minds Behind Holzcraft</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-ivory">
+              Our Great Team
+            </h2>
+            <p className="text-ivory-dim/60 text-xs sm:text-sm mt-3 font-mono tracking-wider">
+              Click on any member to view their executive profile & biography
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-12 max-w-5xl mx-auto justify-center">
+            {/* Muhammad Shahid */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="group flex flex-col items-center cursor-pointer"
+              onClick={() => setSelectedTeamMember({
+                name: "Muhammad Shahid",
+                role: "CEO Lahore",
+                image: "https://furnitureholz.com/wp-content/uploads/2020/01/Muhammad-Shahid.jpg",
+                bio: "The Chief Executive Officer of Lahore Showroom with extensive experience of more than fifteen year in home interiors and furnishings. He value his offerings with core believe on after sale support led quality."
+              })}
+            >
+              <div className="relative aspect-square w-full max-w-[280px] md:max-w-full bg-[#161a23] rounded-3xl overflow-hidden border border-line/50 hover:border-oak/60 transition-all duration-500 shadow-xl">
+                <img
+                  src="https://furnitureholz.com/wp-content/uploads/2020/01/Muhammad-Shahid.jpg"
+                  alt="Muhammad Shahid"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+              <h3 className="font-display text-xl font-medium text-ivory mt-6 group-hover:text-oak transition-colors duration-300">
+                Muhammad Shahid
+              </h3>
+              <span className="text-xs text-sage font-mono tracking-widest mt-1.5 uppercase">
+                CEO Lahore
+              </span>
+              
+              {/* Social Icons matching first image */}
+              <div className="flex items-center gap-5 mt-4 text-ivory-dim/60">
+                <a
+                  href="https://facebook.com/furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="Facebook"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://tiktok.com/@furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="TikTok"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31 0 2.583.397 3.655 1.13-.564.602-1.024 1.336-1.373 2.141-.75-.688-1.428-1.365-2.282-1.552-.459-.42-.713-.984-.713-1.603 0-.038.006-.076.013-.116zM18.68 5.88c-1.29.02-2.52-.45-3.48-1.31.07.7.07 1.41-.01 2.11.7.59 1.58.94 2.5.96V5.88zm-7.18 8.12V0H8.24c0 .85-.35 1.66-.96 2.27-.61.61-1.42.98-2.27 1.01v3.26c1.24-.03 2.4-.62 3.24-1.61v9.07c0 1.52-1.23 2.75-2.75 2.75S3 15.52 3 14s1.23-2.75 2.75-2.75c.32 0 .63.06.92.17V8.12A7.52 7.52 0 0 0 5.75 8C2.57 8 .1 10.47.1 13.65s2.47 5.65 5.65 5.65 5.65-2.47 5.65-5.65c0-.02 0-.04-.01-.06z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://pinterest.com/furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="Pinterest"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.715-.359-1.777c0-1.663.967-2.905 2.167-2.905 1.024 0 1.517.769 1.517 1.689 0 1.029-.654 2.57-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.76-2.245 3.76-5.487 0-2.869-2.062-4.878-5.008-4.878-3.411 0-5.413 2.561-5.413 5.2 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.62 0 11.983-5.367 11.983-11.987C24 5.367 18.637 0 12.017 0z" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Tanveer Ahmad */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="group flex flex-col items-center cursor-pointer"
+              onClick={() => setSelectedTeamMember({
+                name: "Tanveer Ahmad",
+                role: "CEO Faisalabad",
+                image: "https://furnitureholz.com/wp-content/uploads/2020/01/Rana-Tanveer-Ahmad-Afaq.jpg",
+                bio: "Chief Executive Officer of Faisalabad Showroom with extensive experience in traditional wooden crafting and seasoned timber curation. He oversees core furniture manufacturing standards and premium quality control."
+              })}
+            >
+              <div className="relative aspect-square w-full max-w-[280px] md:max-w-full bg-[#161a23] rounded-3xl overflow-hidden border border-line/50 hover:border-oak/60 transition-all duration-500 shadow-xl">
+                <img
+                  src="https://furnitureholz.com/wp-content/uploads/2020/01/Rana-Tanveer-Ahmad-Afaq.jpg"
+                  alt="Tanveer Ahmad"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+              <h3 className="font-display text-xl font-medium text-ivory mt-6 group-hover:text-oak transition-colors duration-300">
+                Tanveer Ahmad
+              </h3>
+              <span className="text-xs text-sage font-mono tracking-widest mt-1.5 uppercase">
+                CEO Faisalabad
+              </span>
+              
+              {/* Social Icons matching first image */}
+              <div className="flex items-center gap-5 mt-4 text-ivory-dim/60">
+                <a
+                  href="https://facebook.com/furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="Facebook"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://tiktok.com/@furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="TikTok"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31 0 2.583.397 3.655 1.13-.564.602-1.024 1.336-1.373 2.141-.75-.688-1.428-1.365-2.282-1.552-.459-.42-.713-.984-.713-1.603 0-.038.006-.076.013-.116zM18.68 5.88c-1.29.02-2.52-.45-3.48-1.31.07.7.07 1.41-.01 2.11.7.59 1.58.94 2.5.96V5.88zm-7.18 8.12V0H8.24c0 .85-.35 1.66-.96 2.27-.61.61-1.42.98-2.27 1.01v3.26c1.24-.03 2.4-.62 3.24-1.61v9.07c0 1.52-1.23 2.75-2.75 2.75S3 15.52 3 14s1.23-2.75 2.75-2.75c.32 0 .63.06.92.17V8.12A7.52 7.52 0 0 0 5.75 8C2.57 8 .1 10.47.1 13.65s2.47 5.65 5.65 5.65 5.65-2.47 5.65-5.65c0-.02 0-.04-.01-.06z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://pinterest.com/furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="Pinterest"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.715-.359-1.777c0-1.663.967-2.905 2.167-2.905 1.024 0 1.517.769 1.517 1.689 0 1.029-.654 2.57-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.76-2.245 3.76-5.487 0-2.869-2.062-4.878-5.008-4.878-3.411 0-5.413 2.561-5.413 5.2 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.62 0 11.983-5.367 11.983-11.987C24 5.367 18.637 0 12.017 0z" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Nadeem Ahmad */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="group flex flex-col items-center cursor-pointer"
+              onClick={() => setSelectedTeamMember({
+                name: "Nadeem Ahmad",
+                role: "Managing Director",
+                image: "https://furnitureholz.com/wp-content/uploads/2020/01/Nadeem-Ahmad-Afaq.jpg",
+                bio: "Managing Director driving the strategic expansion, custom production logistics, and modern interior integration services at Furniture Holz. Committed to delivering hand-carved heritage designs to modern spaces."
+              })}
+            >
+              <div className="relative aspect-square w-full max-w-[280px] md:max-w-full bg-[#161a23] rounded-3xl overflow-hidden border border-line/50 hover:border-oak/60 transition-all duration-500 shadow-xl">
+                <img
+                  src="https://furnitureholz.com/wp-content/uploads/2020/01/Nadeem-Ahmad-Afaq.jpg"
+                  alt="Nadeem Ahmad"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+              <h3 className="font-display text-xl font-medium text-ivory mt-6 group-hover:text-oak transition-colors duration-300">
+                Nadeem Ahmad
+              </h3>
+              <span className="text-xs text-sage font-mono tracking-widest mt-1.5 uppercase">
+                Managing Director
+              </span>
+              
+              {/* Social Icons matching first image */}
+              <div className="flex items-center gap-5 mt-4 text-ivory-dim/60">
+                <a
+                  href="https://facebook.com/furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="Facebook"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://tiktok.com/@furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="TikTok"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31 0 2.583.397 3.655 1.13-.564.602-1.024 1.336-1.373 2.141-.75-.688-1.428-1.365-2.282-1.552-.459-.42-.713-.984-.713-1.603 0-.038.006-.076.013-.116zM18.68 5.88c-1.29.02-2.52-.45-3.48-1.31.07.7.07 1.41-.01 2.11.7.59 1.58.94 2.5.96V5.88zm-7.18 8.12V0H8.24c0 .85-.35 1.66-.96 2.27-.61.61-1.42.98-2.27 1.01v3.26c1.24-.03 2.4-.62 3.24-1.61v9.07c0 1.52-1.23 2.75-2.75 2.75S3 15.52 3 14s1.23-2.75 2.75-2.75c.32 0 .63.06.92.17V8.12A7.52 7.52 0 0 0 5.75 8C2.57 8 .1 10.47.1 13.65s2.47 5.65 5.65 5.65 5.65-2.47 5.65-5.65c0-.02 0-.04-.01-.06z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://pinterest.com/furnitureholz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-oak hover:scale-120 transition-all duration-300"
+                  onClick={(e) => e.stopPropagation()}
+                  title="Pinterest"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.715-.359-1.777c0-1.663.967-2.905 2.167-2.905 1.024 0 1.517.769 1.517 1.689 0 1.029-.654 2.57-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.76-2.245 3.76-5.487 0-2.869-2.062-4.878-5.008-4.878-3.411 0-5.413 2.561-5.413 5.2 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.62 0 11.983-5.367 11.983-11.987C24 5.367 18.637 0 12.017 0z" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Executive Team Details Modal */}
+        <AnimatePresence>
+          {selectedTeamMember && (
+            <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[150] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="relative w-full max-w-4xl bg-[#11141c] border border-line/40 rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl p-6 sm:p-8 md:p-12 text-left"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedTeamMember(null)}
+                  className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-ivory/80 hover:text-white transition-all z-10"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+                  {/* Left Column: Text & Info */}
+                  <div className="md:col-span-7 flex flex-col justify-center">
+                    <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-ivory tracking-tight leading-tight mb-2">
+                      {selectedTeamMember.name}
+                    </h2>
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block mb-6 sm:mb-8">
+                      {selectedTeamMember.role}
+                    </span>
+                    
+                    <p className="text-ivory-dim/80 text-sm sm:text-base leading-relaxed mb-8 max-w-lg font-sans">
+                      {selectedTeamMember.bio}
+                    </p>
+
+                    <div className="border-t border-line/30 pt-6 mb-4" />
+
+                    {/* Social links row from screenshot */}
+                    <div className="flex items-center gap-6 text-ivory-dim/60">
+                      <a
+                        href="https://facebook.com/furnitureholz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-oak hover:scale-110 transition-all duration-300"
+                        title="Facebook"
+                      >
+                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
+                        </svg>
+                      </a>
+                      <a
+                        href="https://tiktok.com/@furnitureholz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-oak hover:scale-110 transition-all duration-300"
+                        title="TikTok"
+                      >
+                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                          <path d="M12.525.02c1.31 0 2.583.397 3.655 1.13-.564.602-1.024 1.336-1.373 2.141-.75-.688-1.428-1.365-2.282-1.552-.459-.42-.713-.984-.713-1.603 0-.038.006-.076.013-.116zM18.68 5.88c-1.29.02-2.52-.45-3.48-1.31.07.7.07 1.41-.01 2.11.7.59 1.58.94 2.5.96V5.88zm-7.18 8.12V0H8.24c0 .85-.35 1.66-.96 2.27-.61.61-1.42.98-2.27 1.01v3.26c1.24-.03 2.4-.62 3.24-1.61v9.07c0 1.52-1.23 2.75-2.75 2.75S3 15.52 3 14s1.23-2.75 2.75-2.75c.32 0 .63.06.92.17V8.12A7.52 7.52 0 0 0 5.75 8C2.57 8 .1 10.47.1 13.65s2.47 5.65 5.65 5.65 5.65-2.47 5.65-5.65c0-.02 0-.04-.01-.06z" />
+                        </svg>
+                      </a>
+                      <a
+                        href="https://pinterest.com/furnitureholz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-oak hover:scale-110 transition-all duration-300"
+                        title="Pinterest"
+                      >
+                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                          <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.715-.359-1.777c0-1.663.967-2.905 2.167-2.905 1.024 0 1.517.769 1.517 1.689 0 1.029-.654 2.57-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.76-2.245 3.76-5.487 0-2.869-2.062-4.878-5.008-4.878-3.411 0-5.413 2.561-5.413 5.2 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.62 0 11.983-5.367 11.983-11.987C24 5.367 18.637 0 12.017 0z" />
+                        </svg>
+                      </a>
+                      <a
+                        href="https://linkedin.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-mono text-sm font-semibold hover:text-oak hover:scale-110 transition-all duration-300"
+                        title="LinkedIn"
+                      >
+                        in
+                      </a>
+                      <a
+                        href="https://reddit.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-oak hover:scale-110 transition-all duration-300"
+                        title="Reddit"
+                      >
+                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                          <path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.85-1.64-6.23-1.72l1.36-4.32 4.41.93c.04.88.76 1.58 1.65 1.58 1.1 0 2-1.1 2-2s-.9-2-2-2c-.88 0-1.61.58-1.84 1.39l-4.81-1.01c-.19-.04-.38.07-.44.26l-1.57 4.97c-2.47.05-4.75.7-6.42 1.72-.56-.76-1.46-1.24-2.42-1.24-1.65 0-3 1.35-3 3 0 1.22.73 2.27 1.78 2.72-.05.26-.08.52-.08.78 0 3.86 4.49 7 10 7s10-3.14 10-7c0-.26-.03-.52-.08-.78 1.05-.45 1.78-1.5 1.78-2.72zm-17 1c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zm11.5 4.5c-1.75 1.75-5.12 1.75-6.88 0-.15-.15-.15-.39 0-.54.15-.15.39-.15.54 0 1.45 1.45 4.35 1.45 5.8 0 .15-.15.39-.15.54 0 .15.15.39 0 .54zm-.5-3c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Image */}
+                  <div className="md:col-span-5">
+                    <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden border border-line/30 shadow-2xl bg-line/10">
+                      <img
+                        src={selectedTeamMember.image}
+                        alt={selectedTeamMember.name}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+
+        {/* ================= LATEST NEWS ================= */}
+        <div className="mb-24 border-t border-line/30 pt-24 relative">
+          <div className="mb-16 text-center">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block mb-3">Stay Updated</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-ivory">
+              Latest News
+            </h2>
+            <div className="w-16 h-[1px] bg-oak mx-auto mt-4" />
+          </div>
+
+          <div className="relative group max-w-5xl mx-auto px-1">
+            {/* Scroll Container */}
+            <div 
+              ref={newsScrollRef}
+              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {LATEST_NEWS_ITEMS.map((news) => (
+                <div
+                  key={news.id}
+                  className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] bg-[#11141c] border border-line/30 rounded-3xl overflow-hidden shadow-xl hover:border-oak/50 hover:shadow-2xl hover:shadow-oak/5 transition-all duration-300 flex flex-col group snap-start cursor-pointer"
+                  onClick={() => setSelectedNewsCard(news)}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-line/10">
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    />
+                    <div className="absolute top-4 left-4 bg-charcoal/80 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-line/30">
+                      <span className="font-mono text-[10px] text-sage tracking-wider font-medium">{news.date}</span>
+                    </div>
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-grow justify-between">
+                    <h3 className="font-display text-base sm:text-lg font-medium text-ivory leading-snug line-clamp-3 group-hover:text-oak transition-colors duration-300 mb-6">
+                      {news.title}
+                    </h3>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedNewsCard(news);
+                      }}
+                      className="w-full max-w-[150px] py-2.5 px-4 text-[11px] font-mono uppercase tracking-widest text-center border border-line/60 text-ivory-dim/80 hover:border-oak hover:text-oak hover:bg-oak/5 transition-all duration-300 cursor-pointer rounded-lg bg-transparent"
+                    >
+                      READ MORE
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => {
+                newsScrollRef.current?.scrollBy({ left: -400, behavior: 'smooth' });
+              }}
+              className="absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-charcoal/90 hover:bg-[#161a23] text-ivory border border-line/50 hover:border-oak flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100 group-hover:translate-x-1"
+              aria-label="Previous News"
+            >
+              <ChevronLeft className="w-5 h-5 text-ivory" />
+            </button>
+            <button
+              onClick={() => {
+                newsScrollRef.current?.scrollBy({ left: 400, behavior: 'smooth' });
+              }}
+              className="absolute -right-4 sm:-right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-charcoal/90 hover:bg-[#161a23] text-ivory border border-line/50 hover:border-oak flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100 group-hover:-translate-x-1"
+              aria-label="Next News"
+            >
+              <ChevronRight className="w-5 h-5 text-ivory" />
+            </button>
+          </div>
+        </div>
+
+        {/* ================= LATEST NEWS DETAIL MODAL ================= */}
+        <AnimatePresence>
+          {selectedNewsCard && (
+            <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[150] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="relative w-full max-w-4xl bg-[#11141c] border border-line/40 rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl p-6 sm:p-8 md:p-12 text-left"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedNewsCard(null)}
+                  className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-ivory/80 hover:text-white transition-all z-10 cursor-pointer"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+                  {/* Left Column: Text & Highlights */}
+                  <div className="md:col-span-7 flex flex-col justify-center">
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block mb-3">
+                      Exhibition Highlights ({selectedNewsCard.date})
+                    </span>
+                    <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-ivory tracking-tight leading-tight mb-4">
+                      {selectedNewsCard.title}
+                    </h2>
+                    
+                    <p className="text-ivory-dim/80 text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                      {selectedNewsCard.details}
+                    </p>
+
+                    <div className="border-t border-line/30 pt-6 mb-6">
+                      <h4 className="font-display text-sm font-semibold text-oak uppercase tracking-wider mb-3">Key Event Features:</h4>
+                      <ul className="space-y-2">
+                        {selectedNewsCard.highlights.map((highlight, index) => (
+                          <li key={index} className="flex items-start gap-3 text-xs sm:text-sm text-ivory-dim/75 font-sans">
+                            <span className="text-oak mt-1 flex-shrink-0">•</span>
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* CTA link matching the user's request with link */}
+                    <div className="flex flex-wrap items-center gap-4 mt-2">
+                      <a
+                        href={`https://www.youtube.com/results?search_query=${selectedNewsCard.youtubeQuery}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF0000] hover:bg-[#CC0000] text-white text-xs uppercase tracking-widest font-mono rounded-xl transition-all font-semibold shadow-lg active:scale-95 cursor-pointer"
+                      >
+                        <Play className="w-4 h-4 fill-current text-white" />
+                        Watch Highlights on YouTube
+                      </a>
+                      <a
+                        href="https://facebook.com/furnitureholz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-ivory border border-line text-xs uppercase tracking-widest font-mono rounded-xl transition-all font-semibold active:scale-95 cursor-pointer"
+                      >
+                        Follow Facebook Page
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Image */}
+                  <div className="md:col-span-5">
+                    <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-line/30 shadow-2xl bg-line/10">
+                      <img
+                        src={selectedNewsCard.image}
+                        alt={selectedNewsCard.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div>
@@ -636,6 +1336,45 @@ export default function Catalog({
                 </div>
               </motion.div>
             </div>
+          )}
+        </AnimatePresence>
+
+        {/* Customer Reviews Video Player Modal */}
+        <AnimatePresence>
+          {activeVideo && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-md"
+              onClick={() => setActiveVideo(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                className="relative max-w-sm w-full aspect-[9/16] h-[85vh] max-h-[800px] bg-black rounded-3xl overflow-hidden border border-oak/30 shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setActiveVideo(null)}
+                  className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-black/60 text-white hover:text-oak hover:bg-black/80 transition-all cursor-pointer border border-white/10"
+                  aria-label="Close Video"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <iframe
+                  src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=1&mute=0&rel=0&modestbranding=1&start=${activeVideo.start}`}
+                  title="Customer Review Video Walkthrough"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </motion.div>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
