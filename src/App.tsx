@@ -12,11 +12,6 @@ import Collections from './components/Collections';
 import Catalog from './components/Catalog';
 import Configurator from './components/Configurator';
 import CategoryPage from './components/CategoryPage';
-import Craftsmanship from './components/Craftsmanship';
-import Showrooms from './components/Showrooms';
-import VirtualShowroom from './components/VirtualShowroom';
-import InteriorServices from './components/InteriorServices';
-import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import AiAdvisor from './components/AiAdvisor';
 import QuoteBasket from './components/QuoteBasket';
@@ -219,18 +214,6 @@ export default function App() {
               initialSelectedProduct={selectedConfigProduct}
               onAddCustomConfigToQuote={handleAddCustomConfigToQuote}
             />
-
-            {/* Process and Handcrafted Philosophy Section */}
-            <Craftsmanship />
-
-            {/* Showrooms Section */}
-            <VirtualShowroom onAddMessageToast={triggerToast} />
-
-            {/* Interior Services Section */}
-            <InteriorServices />
-
-            {/* Client audits reviews list and rating feedback */}
-            <Reviews />
           </>
         )}
       </main>

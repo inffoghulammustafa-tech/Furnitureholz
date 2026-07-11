@@ -184,7 +184,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
           isNavbar
             ? 'flex flex-col items-center justify-center'
             : isFooter 
-            ? 'mt-3.5' 
+            ? 'mt-1' 
             : isDrawer 
             ? 'mt-3' 
             : 'mt-2'
@@ -193,7 +193,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
             isNavbar
               ? 'text-base tracking-[0.06em]'
               : isFooter 
-              ? 'text-2xl tracking-[0.12em]' 
+              ? 'text-lg tracking-[0.1em]' 
               : 'text-xl tracking-[0.1em]'
           }`}>
             Furniture
@@ -202,7 +202,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
             isNavbar
               ? 'text-[9px] mt-0.5 tracking-[0.2em]'
               : isFooter 
-              ? 'text-xs mt-1.5' 
+              ? 'text-[9px] mt-0.5' 
               : isDrawer 
               ? 'text-[11px] mt-1.5' 
               : 'text-[10px] mt-1'
