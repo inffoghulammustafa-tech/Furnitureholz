@@ -5,18 +5,9 @@
 
 import React, { useState, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Heart, Info, SlidersHorizontal, Eye, ShoppingBag, X, Calendar, Hammer, Scale, Move, Play, ChevronLeft, ChevronRight, Newspaper } from 'lucide-react';
+import { Search, Heart, Info, SlidersHorizontal, Eye, ShoppingBag, X, Calendar, Hammer, Scale, Move, Play, Newspaper, MessageSquare, Clock, ArrowLeft } from 'lucide-react';
 import { Product, QuoteItem } from '../types';
 import { INITIAL_PRODUCTS, WOOD_PROPERTIES, getProductAttributes } from '../data';
-
-// @ts-ignore
-import expoHafizabadImg from '../assets/images/expo_hafizabad_1783760838438.jpg';
-// @ts-ignore
-import expoShahkotImg from '../assets/images/expo_shahkot_1783760858574.jpg';
-// @ts-ignore
-import expoFaisalabadImg from '../assets/images/expo_faisalabad_1783760875222.jpg';
-// @ts-ignore
-import bbqMangoPartyImg from '../assets/images/bbq_mango_party_1783761272877.jpg';
 
 
 
@@ -48,59 +39,200 @@ const getOptionHoverClass = (opt: string) => {
 
 export const LATEST_NEWS_ITEMS = [
   {
+    id: 'ceo-message-ramadan-2021',
+    title: 'CEO Furniture Holz Rana Tanvir’s Message on Ramadan – Daily Report Newspaper',
+    date: 'April 22, 2021',
+    category: 'NEWS',
+    commentsCount: 0,
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-18.jpeg',
+    youtubeQuery: 'CEO+Furniture+Holz+Rana+Tanvir+Message+on+Ramadan',
+    details: 'Furniture Holz CEO Rana Tanvir shared his message regarding the holy month of Ramadan in the Daily Report Newspaper, emphasizing service to humanity and community support.',
+    highlights: [
+        'Ramadan message from CEO Rana Tanvir',
+        'Emphasis on community service',
+        'Featured in Daily Report Newspaper'
+    ],
+    gallery: [
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-18.jpeg'
+    ]
+  },
+  {
+    id: 'faisalabad-chamber-visit-2021',
+    title: 'Persident Chamber Of Commerce Faisalabad Paid Visit to Furniture Holz Faisalabad Showroom',
+    date: 'April 22, 2021',
+    category: 'NEWS',
+    commentsCount: 0,
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-16.jpeg',
+    youtubeQuery: 'President+Chamber+Of+Commerce+Faisalabad+Visit+Furniture+Holz',
+    details: 'The President of the Chamber of Commerce Faisalabad visited the Furniture Holz showroom in Faisalabad, appreciating the premium craftsmanship and quality of our products.',
+    highlights: [
+        'Visit from the Chamber of Commerce President',
+        'Appreciation for local craftsmanship',
+        'Showcasing premium furniture quality'
+    ],
+    gallery: [
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-15.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-14.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-13.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-8-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-7-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-9-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-11-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-10-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-4-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-6-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-3-1024x684.jpeg',
+        'https://furnitureholz.com/wp-content/uploads/2021/04/Furniture-Holz-Faisalabad-News-2-1024x684.jpeg'
+    ]
+  },
+  {
     id: 'bbq-mango-party-2026',
     title: 'Annual BBQ+Pool+Mango Party – A Night of Fun, Music, and Social Responsibility at ZBT Farmhouse',
-    date: 'June 2026',
-    image: bbqMangoPartyImg,
+    date: 'July 1, 2025',
+    category: 'NEWS',
+    commentsCount: 0,
+    image: 'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-10-708x940.jpg',
     youtubeQuery: 'Annual+BBQ+Pool+Mango+Party+at+ZBT+Farmhouse+Furniture+Holz',
-    details: 'The Furniture Holz family gathered at the beautiful ZBT Farmhouse for our spectacular Annual BBQ, Pool, and Mango Party. It was a wonderful night of joy, delicious local mangoes, sizzling live BBQ, vibrant music, and a strong reflection on our company social responsibility goals. Events like these strengthen our team bonding and commitment to crafting masterpieces with love.',
+    details: 'Furniture Holz once again demonstrated its commitment to employee well-being and social responsibility by hosting its much-anticipated annual **BBQ+Pool+Mango Party** at the scenic **ZBT Farmhouse, Jhumra, Canal Road Faisalabad**. The event brought together staff, their families, and friends for an unforgettable evening filled with delicious food, refreshing pool dips, and juicy mangoes—a true celebration of teamwork and gratitude. Beyond the fun, the gathering highlighted Holz’s dedication to fostering a positive work culture and giving back to its community. The night came alive with **live music**, as employees danced their hearts out, strengthening bonds and creating cherished memories. By blending corporate responsibility with joyful engagement, Holz Furniture proves that a happy team is the foundation of success! 🎉🔥 #HolzCares #TeamSpirit #CorporateResponsibility',
     highlights: [
       'Delectable mango feast featuring premium Chausa and Anwar Ratol varieties',
       'Live poolside BBQ station with traditional spices and ambient music',
       'Team building games and recreational poolside relaxation',
       'Special session discussing our ongoing social responsibility initiatives'
+    ],
+    gallery: [
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-1.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-2.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-3.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-4.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-5.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-7.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-8.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-9.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-11.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-12.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-13.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-14.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-15.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-16.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-17.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-18.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-5.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-7.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-8.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-9.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-11.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-12.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-13.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-14.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/07/2025-BBQ-Party-Pool-Party-Staff-Fun-Activity-Furniture-Holz-CSR-15.jpg'
     ]
   },
   {
     id: 'hafizabad-2025',
     title: '3rd Furniture Expo in Hafizabad by Furniture Holz – May 2025',
-    date: 'May 2025',
-    image: expoHafizabadImg,
+    date: 'May 15, 2025',
+    category: 'EXPOS & EVENTS',
+    commentsCount: 0,
+    image: 'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-2-768x960.jpg',
     youtubeQuery: '3rd+Furniture+Expo+in+Hafizabad+by+Furniture+Holz',
-    details: 'Furniture Holz brought its legendary craftsmanship to the heart of Hafizabad. The 3rd Annual Furniture Expo was a monumental success, showcasing our signature solid-timber bedroom sets, hand-carved dining tables, and bespoke bridal furniture. Hundreds of families visited to experience the premium wood quality and after-sale support that defines our brand.',
+    details: 'Furniture Holz brought its legendary craftsmanship to the heart of **Hafizabad**. The **3rd Annual Furniture Expo** was a monumental success, showcasing our signature solid-timber bedroom sets, hand-carved dining tables, and bespoke bridal furniture. Hundreds of families visited to experience the premium wood quality and after-sale support that defines our brand. Our skilled craftsmen were present to guide customers about wood seasoning and structure. We are deeply grateful to the citizens of Hafizabad for their incredible trust and patronage! 🪵✨ #HafizabadExpo #FurnitureHolz #SolidTimber #LuxuryLiving',
     highlights: [
       'Showcased solid Shisham and Oak wood collections',
       'Exclusive on-spot bridal package bookings',
       'Visited by prominent local personalities and interior experts',
       'Over 15 years of solid woodwork heritage on display'
+    ],
+    gallery: [
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-2-768x960.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-1.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-3.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-4.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-10.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-19.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-14.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-15.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-16.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-17.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-5.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-3.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-18.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-6.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-8.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-9.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-Bella-Decors.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-4.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Hafizabad-Expo-May-2025-by-Furniture-Holz-1.jpg'
     ]
   },
   {
     id: 'shahkot-2025',
     title: 'First Ever Furniture Expo in Shahkot- Nankana – April 2025',
-    date: 'April 2025',
-    image: expoShahkotImg,
+    date: 'April 10, 2025',
+    category: 'EXPOS & EVENTS',
+    commentsCount: 0,
+    image: 'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-15.jpg',
     youtubeQuery: 'First+Ever+Furniture+Expo+in+Shahkot-Nankana+Furniture+Holz',
-    details: 'We made history by hosting the first-ever high-end furniture expo in Shahkot, Nankana Sahib region. The event marked a new chapter for timber artistry in the area, providing locals direct access to premium, factory-priced furniture without having to travel to major hubs. The overwhelming support from the community has inspired us to make this an annual tradition.',
+    details: 'We made history by hosting the **first-ever high-end furniture expo** in the **Shahkot, Nankana Sahib** region. The event marked a new chapter for timber artistry in the area, providing locals direct access to premium, factory-priced furniture without having to travel to major hubs. The overwhelming support from the community has inspired us to make this an annual tradition. Every piece sold carries our lifetime termite-free warranty, handcrafted with premium seasoned Shisham and Oak wood. Thank you Shahkot! 🛏️👑 #ShahkotExpo #NankanaSahib #PremiumFurniture #HeritageCraft',
     highlights: [
       'Inaugural grand ribbon-cutting ceremony',
       'Direct factory rates offered to the Nankana Sahib community',
       'Featured highly customized space-saving luxury furniture',
       'Highly praised for seamless delivery and assembly services'
+    ],
+    gallery: [
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-15.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-14.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-12.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-10.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-10.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-6.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-7.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-14.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-13.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-15.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-12.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-11.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-21.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-20.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-26.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-22.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-23.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-17.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-19.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-1.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Shahkot-Furniture-Expo-Nankana-Sale-Event-24.jpg'
     ]
   },
   {
     id: 'faisalabad-2025',
     title: 'Highlights of First Ever Expo at Narwala Road Faisalabad – February 2025',
-    date: 'February 2025',
-    image: expoFaisalabadImg,
+    date: 'February 20, 2025',
+    category: 'EXPOS & EVENTS',
+    commentsCount: 0,
+    image: 'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-12.jpg',
     youtubeQuery: 'Highlights+of+First+Ever+Expo+at+Narwala+Road+Faisalabad+Furniture+Holz',
-    details: 'Our Narwala Road showroom hosted its highly anticipated First Ever Furniture Expo in Faisalabad. This mega-event showcased spectacular luxury furniture designs, from royal-carved Chinioti heritage classics to sleek, contemporary minimalist designs. Faisalabad’s design-savvy crowd turned out in massive numbers, confirming Furniture Holz as the top destination for premium home decor.',
+    details: 'Our Narwala Road showroom hosted its highly anticipated **First Ever Furniture Expo in Faisalabad**. This mega-event showcased spectacular luxury furniture designs, from royal-carved Chinioti heritage classics to sleek, contemporary minimalist designs. Faisalabad’s design-savvy crowd turned out in massive numbers, confirming Furniture Holz as the top destination for premium home decor. Visitors were treated to direct interactions with our design consultants and exclusive event-only discounts. 🛋️🎨 #FaisalabadExpo #NarwalaRoad #ChiniotiHeritage #ModernMinimalism',
     highlights: [
       'Launch of our 2025 Imperial Carved Bedding collection',
       'Live wood carving demonstrations by master artisans',
       'Special discounts for local Faisalabad residents',
       'Stunning interactive showroom displays'
+    ],
+    gallery: [
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-12.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-11.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-10.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-14.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-5.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-11.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-12.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-7.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-8.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-9.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-13.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-14.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2025/05/Furniture-Holz-Style-Craft-Furniture-Expo-Narwala-Road-Ghulam-Abad-10.jpg'
     ]
   }
 ];
@@ -125,6 +257,16 @@ export const getCategoryLabel = (cat: string) => {
   }
 };
 
+export const renderFormattedText = (text: string) => {
+  const parts = text.split('**');
+  return parts.map((part, index) => {
+    if (index % 2 === 1) {
+      return <strong key={index} className="font-extrabold text-gray-950">{part}</strong>;
+    }
+    return part;
+  });
+};
+
 export default function Catalog({
   selectedCategory,
   onSetCategory,
@@ -132,7 +274,6 @@ export default function Catalog({
   onConfigureProduct,
   cart
 }: CatalogProps) {
-  const newsScrollRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedWood, setSelectedWood] = useState<string>('all');
   const [maxPrice, setMaxPrice] = useState<number>(250000);
@@ -160,13 +301,14 @@ export default function Catalog({
     id: string;
     title: string;
     date: string;
+    category: string;
+    commentsCount: number;
     image: string;
     youtubeQuery: string;
     details: string;
     highlights: string[];
+    gallery: string[];
   } | null>(null);
-
-  const [newsSlideIndex, setNewsSlideIndex] = useState<number>(0);
 
   // Customer Reviews Video states & config
   const [activeVideo, setActiveVideo] = useState<{ id: string; start: number } | null>(null);
@@ -709,126 +851,186 @@ export default function Catalog({
             <div className="w-16 h-[1px] bg-oak mx-auto mt-4" />
           </div>
 
-          <div className="relative group max-w-5xl mx-auto px-1">
-            {/* Scroll Container */}
-            <div 
-              ref={newsScrollRef}
-              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
               {LATEST_NEWS_ITEMS.map((news) => (
                 <div
                   key={news.id}
-                  className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] bg-[#11141c] border border-line/30 rounded-3xl overflow-hidden shadow-xl hover:border-oak/50 hover:shadow-2xl hover:shadow-oak/5 transition-all duration-300 flex flex-col group snap-start cursor-pointer"
+                  className="bg-[#11141c] border border-line/30 rounded-[2rem] overflow-hidden shadow-2xl hover:border-oak/50 hover:shadow-3xl hover:shadow-oak/5 transition-all duration-300 flex flex-col group cursor-pointer"
                   onClick={() => setSelectedNewsCard(news)}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-line/10">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-line/10">
                     <img
                       src={news.image}
                       alt={news.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                     />
-                    <div className="absolute top-4 left-4 bg-charcoal/80 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-line/30">
-                      <span className="font-mono text-[10px] text-sage tracking-wider font-medium">{news.date}</span>
+                    <div className="absolute top-6 left-6 bg-charcoal/80 backdrop-blur-sm px-4 py-2 rounded-full border border-line/30">
+                      <span className="font-mono text-xs text-sage tracking-wider font-medium">{news.date}</span>
                     </div>
                   </div>
 
-                  <div className="p-6 flex flex-col flex-grow justify-between">
-                    <h3 className="font-display text-base sm:text-lg font-medium text-ivory leading-snug line-clamp-3 group-hover:text-oak transition-colors duration-300 mb-6">
+                  <div className="p-8 sm:p-10 flex flex-col flex-grow justify-between">
+                    <h3 className="font-display text-xl sm:text-2xl font-medium text-ivory leading-snug group-hover:text-oak transition-colors duration-300 mb-8 line-clamp-3">
                       {news.title}
                     </h3>
 
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedNewsCard(news);
-                      }}
-                      className="w-full max-w-[150px] py-2.5 px-4 text-[11px] font-mono uppercase tracking-widest text-center border border-line/60 text-ivory-dim/80 hover:border-oak hover:text-oak hover:bg-oak/5 transition-all duration-300 cursor-pointer rounded-lg bg-transparent"
-                    >
-                      READ MORE
-                    </button>
+                    <div>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedNewsCard(news);
+                        }}
+                        className="inline-block py-3.5 px-8 text-xs font-mono uppercase tracking-widest text-center border border-line/60 text-ivory-dim/80 hover:border-oak hover:text-oak hover:bg-oak/5 transition-all duration-300 cursor-pointer rounded-xl bg-transparent"
+                      >
+                        READ MORE
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={() => {
-                newsScrollRef.current?.scrollBy({ left: -400, behavior: 'smooth' });
-              }}
-              className="absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-charcoal/90 hover:bg-[#161a23] text-ivory border border-line/50 hover:border-oak flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100 group-hover:translate-x-1"
-              aria-label="Previous News"
-            >
-              <ChevronLeft className="w-5 h-5 text-ivory" />
-            </button>
-            <button
-              onClick={() => {
-                newsScrollRef.current?.scrollBy({ left: 400, behavior: 'smooth' });
-              }}
-              className="absolute -right-4 sm:-right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-charcoal/90 hover:bg-[#161a23] text-ivory border border-line/50 hover:border-oak flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer opacity-80 hover:opacity-100 group-hover:-translate-x-1"
-              aria-label="Next News"
-            >
-              <ChevronRight className="w-5 h-5 text-ivory" />
-            </button>
           </div>
         </div>
 
         {/* ================= LATEST NEWS DETAIL MODAL ================= */}
         <AnimatePresence>
           {selectedNewsCard && (
-            <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[150] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <div className="fixed inset-0 bg-slate-50/95 backdrop-blur-md z-[150] overflow-y-auto">
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="relative w-full max-w-4xl bg-[#11141c] border border-line/40 rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl p-6 sm:p-8 md:p-12 text-left"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 30 }}
+                transition={{ type: "spring", damping: 25, stiffness: 180 }}
+                className="min-h-screen w-full flex flex-col items-center py-4 px-2 sm:px-4 md:py-8"
               >
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedNewsCard(null)}
-                  className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-ivory/80 hover:text-white transition-all z-10 cursor-pointer"
-                  aria-label="Close"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+                <div className="relative w-full max-w-7xl bg-white border border-gray-100 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl p-6 sm:p-12 text-left">
+                  {/* Header: Back & Close Buttons */}
+                  <div className="flex items-center justify-between mb-8 sm:mb-10">
+                    <button
+                      onClick={() => setSelectedNewsCard(null)}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-all cursor-pointer group"
+                    >
+                      <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-gray-400 group-hover:text-gray-900" />
+                      Back to Catalog
+                    </button>
+                    <button
+                      onClick={() => setSelectedNewsCard(null)}
+                      className="p-2.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-900 transition-all cursor-pointer border border-gray-100 bg-white"
+                      aria-label="Close"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
-                  {/* Left Column: Text & Highlights */}
-                  <div className="md:col-span-7 flex flex-col justify-center">
-                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block mb-3">
-                      Exhibition Highlights ({selectedNewsCard.date})
+                  {/* Metadata line: Date & Comments */}
+                  <div className="flex items-center justify-between text-gray-400 font-sans text-xs sm:text-sm border-b border-gray-100 pb-4 mb-6">
+                    <span className="flex items-center gap-2 font-medium">
+                      <Clock className="w-4 h-4 text-gray-300" />
+                      {selectedNewsCard.date}
                     </span>
-                    <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-ivory tracking-tight leading-tight mb-4">
-                      {selectedNewsCard.title}
-                    </h2>
-                    
-                    <p className="text-ivory-dim/80 text-sm sm:text-base leading-relaxed mb-6 font-sans">
-                      {selectedNewsCard.details}
-                    </p>
+                    <span className="flex items-center gap-2 font-medium">
+                      <MessageSquare className="w-4 h-4 text-gray-300" />
+                      {selectedNewsCard.commentsCount} comments
+                    </span>
+                  </div>
 
-                    <div className="border-t border-line/30 pt-6 mb-6">
-                      <h4 className="font-display text-sm font-semibold text-oak uppercase tracking-wider mb-3">Key Event Features:</h4>
-                      <ul className="space-y-2">
-                        {selectedNewsCard.highlights.map((highlight, index) => (
-                          <li key={index} className="flex items-start gap-3 text-xs sm:text-sm text-ivory-dim/75 font-sans">
-                            <span className="text-oak mt-1 flex-shrink-0">•</span>
-                            <span>{highlight}</span>
-                          </li>
+                  {/* Blog Title */}
+                  <h1 className="font-sans font-extrabold text-2xl sm:text-4xl md:text-5xl text-gray-900 leading-tight tracking-tight mb-4">
+                    {selectedNewsCard.title}
+                  </h1>
+
+                  {/* Category Link */}
+                  <div className="text-xs sm:text-sm text-gray-400 font-sans mb-8">
+                    in <span className="font-bold text-gray-900 hover:underline cursor-pointer uppercase tracking-wider">{selectedNewsCard.category}</span>
+                  </div>
+
+                  {/* Blog Featured Image */}
+                  <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-lg mb-10 border border-gray-100 bg-gray-50">
+                    <img
+                      src={selectedNewsCard.image}
+                      alt={selectedNewsCard.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Blog Body Text */}
+                  <div className="text-gray-600 text-base sm:text-lg leading-relaxed font-normal font-sans whitespace-pre-line mb-10">
+                    {renderFormattedText(selectedNewsCard.details)}
+                  </div>
+
+                  {/* Image Gallery */}
+                  {selectedNewsCard.gallery && selectedNewsCard.gallery.length > 0 && (
+                    <div className="mt-12 pt-8 border-t border-gray-100">
+                      <h3 className="font-sans font-bold text-sm text-gray-900 uppercase tracking-widest mb-6">Event Photo Gallery</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {selectedNewsCard.gallery.map((imgUrl, i) => (
+                          <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-md group cursor-zoom-in bg-gray-50 border border-gray-100">
+                            <img
+                              src={imgUrl}
+                              alt={`${selectedNewsCard.title} gallery frame ${i + 1}`}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                              <span className="text-white text-xs font-mono bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-sm">View Frame</span>
+                            </div>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
+                  )}
 
-                    {/* CTA link matching the user's request with link */}
-                    <div className="flex flex-wrap items-center gap-4 mt-2">
+                  {/* Related Posts */}
+                  <div className="mt-12 pt-8 border-t border-gray-100">
+                    <h3 className="font-sans font-bold text-sm text-gray-900 uppercase tracking-widest mb-6">Related Posts</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {LATEST_NEWS_ITEMS.filter(news => news.id === 'faisalabad-chamber-visit-2021').map((news) => (
+                        <div
+                          key={news.id}
+                          className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col group cursor-pointer"
+                          onClick={() => setSelectedNewsCard(news)}
+                        >
+                          <div className="relative aspect-[16/9] overflow-hidden bg-gray-50">
+                            <img
+                              src={news.image}
+                              alt={news.title}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                          <div className="p-5 flex flex-col flex-grow justify-between">
+                            <h4 className="font-sans text-sm font-semibold text-gray-900 leading-snug group-hover:text-oak transition-colors duration-300 mb-4 line-clamp-2">
+                              {news.title}
+                            </h4>
+                            <span className="text-xs text-gray-400 font-sans">{news.date}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Bottom Block: Event Highlights & CTA Buttons */}
+                  <div className="mt-12 p-6 sm:p-8 bg-gray-50 rounded-3xl border border-gray-100/80">
+                    <h3 className="font-sans font-bold text-xs text-gray-400 uppercase tracking-widest mb-4">Event Highlights</h3>
+                    <ul className="space-y-3 mb-8">
+                      {selectedNewsCard.highlights.map((highlight, idx) => (
+                        <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-gray-600">
+                          <span className="text-[#bf9046] mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-oak" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-200/50">
                       <a
                         href={`https://www.youtube.com/results?search_query=${selectedNewsCard.youtubeQuery}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF0000] hover:bg-[#CC0000] text-white text-xs uppercase tracking-widest font-mono rounded-xl transition-all font-semibold shadow-lg active:scale-95 cursor-pointer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF0000] hover:bg-[#CC0000] text-white text-xs sm:text-sm uppercase tracking-widest font-mono rounded-xl transition-all font-semibold shadow-md active:scale-95 cursor-pointer"
                       >
                         <Play className="w-4 h-4 fill-current text-white" />
                         Watch Highlights on YouTube
@@ -837,22 +1039,10 @@ export default function Catalog({
                         href="https://facebook.com/furnitureholz"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-ivory border border-line text-xs uppercase tracking-widest font-mono rounded-xl transition-all font-semibold active:scale-95 cursor-pointer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-100 text-gray-800 border border-gray-200 text-xs sm:text-sm uppercase tracking-widest font-mono rounded-xl transition-all font-semibold shadow-sm active:scale-95 cursor-pointer"
                       >
                         Follow Facebook Page
                       </a>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Image */}
-                  <div className="md:col-span-5">
-                    <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-line/30 shadow-2xl bg-line/10">
-                      <img
-                        src={selectedNewsCard.image}
-                        alt={selectedNewsCard.title}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover"
-                      />
                     </div>
                   </div>
                 </div>
