@@ -65,38 +65,27 @@ export const INITIAL_PRODUCTS: Product[] = [
     joinery: 'Sliding blind dowels, curved leg-to-seat continuous mortise.'
   },
   {
-    id: 'lounge-high-living-sofa',
-    name: 'High Living L Shape 7 Seater Velvet Full Gauge Solid Wood Sofa',
+    id: 'lounge-royal-blue-settee',
+    name: 'Royal Blue High Gloss Deco Sissoo Wood Settee',
     category: 'living-room',
-    price: 195000,
+    price: 75000,
     woodType: 'Sheesham',
-    materialDetails: 'Heavy full gauge solid Acacia wood framework, royal blue premium velvet upholstery',
-    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/7-Seater-Corner-L-Shape-Sofa-600x420.jpg',
-    badge: 'Bestseller',
-    description: 'An exceptional L-shape 7-seater corner sofa designed for modern luxury and supreme comfort. Engineered with a heavy-duty solid wood framework and wrapped in premium high-density foam and luxurious velvet upholstery with custom tufted accents.',
-    dimensions: '275cm x 210cm W x 82cm H',
-    weight: '95 kg',
+    materialDetails: 'Solid seasoned Sissoo (Sheesham) Wood, high-gloss navy-blue deco lacquer, premium royal velvet cushioning',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/High-Deco-Gloss-Setty-for-Bedroom-Launge-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Deco-Gloss-Setty-for-Bedroom-Launge-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Deco-Solid-Shisham-Wood-Deewan-600x420.jpg'
+    ],
+    badge: 'High Gloss',
+    description: 'An elegant luxury settee/deewan featuring high-gloss navy-blue deco lacquer over solid Sissoo wood framework, complemented with deep tufted royal blue velvet seating.',
+    dimensions: '160cm L x 60cm W x 65cm H',
+    weight: '28 kg',
     buildTime: '4-6 Weeks',
-    joinery: 'Double-dowel mortise-and-tenon reinforced corners.'
-  },
-  {
-    id: 'lounge-chinioti-swing',
-    name: 'Shisham Wood Chinioti Swing/ Jhula',
-    category: 'living-room',
-    price: 115000,
-    woodType: 'Sheesham',
-    materialDetails: 'Hand-selected seasoned premium Sheesham (Indian Rosewood)',
-    image: 'https://images.unsplash.com/photo-1581850518616-bcb8077fa212?w=900&q=80',
-    badge: 'Exquisite',
-    description: 'A breathtaking traditional wooden hanging swing (Jhula) featuring rich floral carvings and hand-turned pillars. Includes robust brass-chain hanging assembly, heavy-duty ceiling hooks, and a comfortable cushioned bench seat.',
-    dimensions: '165cm L x 72cm W x 185cm H (Frame)',
-    weight: '68 kg',
-    buildTime: '6-8 Weeks',
-    joinery: 'Traditional thick-tenon frame joinery, through-bolted metal chains.'
+    joinery: 'Integrated mortise-and-tenon corner blocks, wood pegged.'
   },
   {
     id: 'lounge-moora-set',
-    name: 'Chinioti Crafted Silver Deco Moora Chair Set',
+    name: 'Chinioti Crafted Shisham Wood Deco Moora Chair Set',
     category: 'living-room',
     price: 42000,
     woodType: 'Sheesham',
@@ -110,48 +99,431 @@ export const INITIAL_PRODUCTS: Product[] = [
     joinery: 'Traditional joinery with solid round pegging.'
   },
   {
-    id: 'chinar-console',
-    name: 'Chinar Console Table',
+    id: 'lounge-embossed-motif-deewan',
+    name: 'Sheesham Wood Embossed Motif Velvet Deewan',
     category: 'living-room',
-    price: 76000,
+    price: 85000,
     woodType: 'Sheesham',
-    materialDetails: 'Handcarved solid heartwood Sheesham',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80',
-    description: 'An elegant statement for entryways and corridors. The Chinar console is styled with minimalist geometric carving on the drawer facades, preserving the raw natural contrast of the sapwood. Features three hidden soft-close solid wood drawers.',
-    dimensions: '135cm L x 38cm W x 78cm H',
-    weight: '38 kg',
-    buildTime: '4-6 Weeks',
-    joinery: 'Dovetailed drawer boxes, integrated mortise frames with hidden pegging.'
-  },
-  {
-    id: 'walnut-lounge',
-    name: 'Walnut Lounge Chair',
-    category: 'living-room',
-    price: 92000,
-    woodType: 'Walnut',
-    materialDetails: 'Hand-sculpted prime Walnut timber',
-    image: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=900&q=80',
-    badge: 'Limited Run',
-    description: 'Sculptural comfort. Each angle of this lounge chair is carefully hand-planed and carved to flow smoothly. Fitted with premium natural woven jute webbing or upholstered in premium raw Belgian linen, it is an ergonomic triumph.',
-    dimensions: '74cm L x 82cm W x 78cm H',
-    weight: '16 kg',
+    materialDetails: 'Hand-selected seasoned premium Sheesham (Indian Rosewood), master embroidered motif velvet upholstery, high gloss finish',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Shisham-Wood-Embroidered-Poshish-Deewan-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Shisham-Wood-Embroidered-Poshish-Deewan-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Sissoo-Wood-Embroidered-Poshish-Deewan-600x420.jpg'
+    ],
+    badge: 'New Launch',
+    description: 'A gorgeous low-floor traditional deewan handcrafted from seasoned solid Sheesham wood. Adorned with detailed hand-carving and upholstered in premium velvet with embossed/embroidered back motifs.',
+    dimensions: '185cm L x 72cm W x 82cm H',
+    weight: '45 kg',
     buildTime: '5-7 Weeks',
-    joinery: 'Double-pinned round mortise-and-tenon joints, sculptured wood-on-wood integration.'
+    joinery: 'Thick double-dowel mortise-and-tenon frame joinery.'
   },
   {
-    id: 'ravi-sideboard',
-    name: 'Ravi Credenza & Sideboard',
-    category: 'dining',
-    price: 125000,
+    id: 'lounge-acacia-2seater-puffy',
+    name: 'Acacia/ Kikar Wood 2 Seater Puffy Settee',
+    category: 'living-room',
+    price: 48000,
     woodType: 'Oak',
-    materialDetails: 'Sustainably harvested European White Oak',
-    image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=900&q=80',
-    description: 'Constructed from select quarter-sawn White Oak exhibiting exceptional fleck patterns. Features four sliding slatted tambour doors that glide smoothly to reveal adjustable solid oak shelving, ideal for dining storage or media setups.',
-    dimensions: '160cm L x 45cm W x 72cm H',
-    weight: '55 kg',
-    buildTime: '6-8 Weeks',
-    joinery: 'Half-lap frame construction, sliding groove track joinery with solid oak drawer glides.'
+    materialDetails: 'Seasoned high-density solid Acacia (Kikar) wood framework, plush wear-resistant velvet fabric, premium Molty Foam',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/2-Seater-Foot-Rest-Puffy-Seat-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/2-Seater-Foot-Rest-Puffy-Seat-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Kikar-Wood-Furniture-600x420.jpg'
+    ],
+    badge: 'Comfort Seating',
+    description: 'A highly durable and beautifully quilted 2-seater footrest puffy settee. Crafted from premium solid Kikar wood with a reinforced base, perfect as a stylish footrest or complementary seating.',
+    dimensions: '110cm L x 50cm W x 45cm H',
+    weight: '18 kg',
+    buildTime: '3-4 Weeks',
+    joinery: 'Slotted tongue-and-groove seat framing with structural corner blocking.'
   },
+  {
+    id: 'lounge-shisham-motif-deewan',
+    name: 'Shisham Wood Embossed Motif Velvet Deewan',
+    category: 'living-room',
+    price: 88000,
+    woodType: 'Sheesham',
+    materialDetails: '100% Solid seasoned Shisham wood, high gloss lacquer finish, embroidered backrest and luxury velvet poshesh',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/2-Seater-Solid-Wood-Deewan-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/2-Seater-Solid-Wood-Deewan-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Sheesham-Wood-High-Gloss-600x420.jpg'
+    ],
+    badge: 'Exquisite Carving',
+    description: 'An outstanding masterpiece of traditional seating. This deewan features classical Mughal chip carvings, a high-gloss dark walnut polish, and premium quilted velvet upholstery with beautiful embossed floral motif borders.',
+    dimensions: '180cm L x 70cm W x 80cm H',
+    weight: '42 kg',
+    buildTime: '5-7 Weeks',
+    joinery: 'Traditional sliding dovetails and wood-pegged tenon framing.'
+  },
+  {
+    id: 'lounge-velvet-puffy-set',
+    name: 'Velvet Rich Round Puffy Set',
+    category: 'living-room',
+    price: 32000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham wood base, velvet wrap with hand-pressed buttons',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Puffy-Wooden-Bedroom-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Puffy-Wooden-Bedroom-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Bedroom-Foot-Rest-600x420.jpg'
+    ],
+    badge: 'Velvet Puffy',
+    description: 'An adorable pair of round luxury puffies. Crafted from seasoned wood and wrapped in quilted, highly comfortable velvet upholstery. Perfect accent pieces.',
+    dimensions: '52cm Diameter x 45cm H (each)',
+    weight: '12 kg',
+    buildTime: '2-3 Weeks',
+    joinery: 'Through-mortise seat support.'
+  },
+  {
+    id: 'lounge-ladder-sticks',
+    name: 'Ladder Sticks Hop In Sissoo Wood High Gloss Chair Set',
+    category: 'living-room',
+    price: 58000,
+    woodType: 'Sheesham',
+    materialDetails: 'Pure solid seasoned Sissoo (Sheesham) wood with high-gloss mirror finish',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Bedroom-Chair-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Bedroom-Chair-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Sheesham-Wood-Furniture-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Polish-Bedroom-Chairs-600x420.jpg'
+    ],
+    badge: 'Ladder Back',
+    description: 'A magnificent classic pair of ladder-back accent chairs with matching side table. Featuring sleek hand-turned spindles and a gorgeous mirror high-gloss polish.',
+    dimensions: 'Chairs: 62cm W x 58cm D x 98cm H / Table: 45cm Diameter x 50cm H',
+    weight: '34 kg',
+    buildTime: '4-5 Weeks',
+    joinery: 'Traditional interlocking round doweled sockets.'
+  },
+  {
+    id: 'lounge-classic-velvet-chairs',
+    name: 'Classic Velvet Shisham Wood Bedroom Chair Set',
+    category: 'living-room',
+    price: 65000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid Shisham wood, premium velvet cushion, high gloss polish (Includes 2 Chairs + 1 Table)',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Shisham-Wood-Vintage-Bedroom-Chair-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Shisham-Wood-Vintage-Bedroom-Chair-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Sisso-Wood-Chairs-600x420.jpg'
+    ],
+    badge: 'Vintage Class',
+    description: 'A premium set of two vintage style high-back bedroom/lounge chairs handcrafted from seasoned solid Shisham wood, featuring beautiful scrollwork and comfortable velvet upholstery, paired with a matching round side coffee table.',
+    dimensions: 'Chairs: 65cm W x 60cm D x 105cm H / Table: 45cm Diameter x 50cm H',
+    weight: '36 kg',
+    buildTime: '4-5 Weeks',
+    joinery: 'Classic blind mortise-and-tenon joint with hardwood reinforcement.'
+  },
+  {
+    id: 'lounge-crown-jewel-deco-chairs',
+    name: 'Crown Jewel Solid Wood Golden Deco Bedroom Chair Set',
+    category: 'living-room',
+    price: 125000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid wood frame with high-gloss premium golden deco paint and royal velvet cushioning (Includes 2 Chairs + 1 Table)',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Crown-Bedroom-High-Gloss-Deco-Chairs-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Crown-Bedroom-High-Gloss-Deco-Chairs-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Crafted-Bedroom-Chair-600x420.jpg'
+    ],
+    badge: 'Royal Deco',
+    description: 'An ultra-luxurious 3-piece bedroom and lounge seating group featuring two magnificent hand-carved crown chairs in golden deco paint and a matching central table. Handcrafted with traditional Chinioti artistry.',
+    dimensions: 'Chairs: 70cm W x 65cm D x 115cm H / Table: 50cm Diameter x 55cm H',
+    weight: '44 kg',
+    buildTime: '5-7 Weeks',
+    joinery: 'Interlocking tenon framework with master-level hand-pinned doweled corners.'
+  },
+  {
+    id: 'lounge-leather-net-set',
+    name: 'Texture Leather Solid Structure 3 Piece Net Set',
+    category: 'living-room',
+    price: 38000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham Wood structure, premium textured leather table top insert, gloss lacquer coating',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Net-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Net-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Leather-Top-Net-Set-600x420.jpg'
+    ],
+    badge: 'Modern Nest',
+    description: 'A gorgeous set of 3 nested coffee tables. Crafted with a premium textured leather inlay on top of solid Shisham wood, featuring space-saving nesting capabilities.',
+    dimensions: 'Large: 55cm x 40cm x 50cm H / Medium: 45cm x 35cm x 45cm H / Small: 35cm x 30cm x 40cm H',
+    weight: '22 kg',
+    buildTime: '3-4 Weeks',
+    joinery: 'Slotted groove joints with hidden wood screws for maximum stability.'
+  },
+  {
+    id: 'lounge-inlay-net-set',
+    name: 'Inlay Top Solid Wood Classic Finish 3 Table Net Set',
+    category: 'living-room',
+    price: 45000,
+    woodType: 'Sheesham',
+    materialDetails: 'Handcarved solid heartwood Sheesham wood with brass/ivory-wood inlaid patterns',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Solid-Wood-Inlay-Net-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Solid-Wood-Inlay-Net-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Plastic-Wooden-Copper-Inlay-Work-3-Table-Set-600x420.jpg'
+    ],
+    badge: 'Inlay Craft',
+    description: 'A luxury set of three nesting tables, featuring traditional Pakistani wood and brass wire inlay designs on each table surface, showcasing high-level artisan craftsmanship.',
+    dimensions: 'Large: 56cm x 40cm x 52cm H / Medium: 46cm x 36cm x 47cm H / Small: 36cm x 32cm x 42cm H',
+    weight: '24 kg',
+    buildTime: '4-5 Weeks',
+    joinery: 'Double-pivoted block support frame with flush wood-on-wood sliding.'
+  },
+  {
+    id: 'lounge-p2-gourmet-sofa',
+    name: 'Gourmet Shisham Wood 6 Seater High Living Sofa Set',
+    category: 'living-room',
+    price: 175000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham wood, high-density comfort foam, luxury upholstery',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Gourmet-Sofa-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Gourmet-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Embroidered-Back-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Moustache-Back-Sofa-Set-600x420.jpg'
+    ],
+    badge: 'High Living',
+    description: 'A luxurious 6-seater sofa set featuring exquisite embroidery on the back and a stylish moustache curve design. Handcrafted with premium seasoned Shisham wood for unmatched durability.',
+    dimensions: '3-Seater: 198cm L x 84cm W x 88cm H / 2-Seater: 148cm L x 84cm W x 88cm H / 1-Seater: 98cm L x 84cm W x 88cm H',
+    weight: '110 kg',
+    buildTime: '6-8 Weeks',
+    joinery: 'Classic mortise-and-tenon joints with reinforced metal bracket stabilizers.'
+  },
+  {
+    id: 'lounge-p2-golden-deco-crown',
+    name: 'Golden Deco Crown Shisham Wood 7 Seater Sofa Set',
+    category: 'living-room',
+    price: 215000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham Wood framework, premium gold leaf deco paint, royal velvet wraps',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Jacquard-Velvet-Upholstery-Sofa-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Jacquard-Velvet-Upholstery-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Golden-Crown-Shisham-Wood-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Deco-Paint-Furniture-IN-Faisalabad-600x420.jpg'
+    ],
+    badge: 'Royal Crown',
+    description: 'An absolute showstopper. Features hand-carved crown accents highlighted with premium gold-leaf deco finish and royal jacquard velvet upholstery. Full solid Shisham wood frame.',
+    dimensions: '3-Seater: 210cm L x 85cm W x 95cm H / 2-Seater (x2): 150cm L x 85cm W x 95cm H',
+    weight: '135 kg',
+    buildTime: '7-9 Weeks',
+    joinery: 'Traditional interlocking tenons with hand-pinned solid dowels.'
+  },
+  {
+    id: 'lounge-p2-sofa-cum-bed',
+    name: 'Smart Living Solid Acacia Wood Sofa Cum Bed',
+    category: 'living-room',
+    price: 95000,
+    woodType: 'Oak',
+    materialDetails: 'Seasoned high-density solid Acacia wood framework, premium wear-resistant fabric, Molty Foam',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Sofa-Cum-Bed-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Sofa-Cum-Bed-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Smart-Home-Furniture-600x420.jpg'
+    ],
+    badge: 'Smart Space',
+    description: 'Space-saving elegance at its best. Converts effortlessly from a stylish 3-seater sofa into a spacious double bed. Crafted from heavy-duty solid Acacia wood for regular everyday use.',
+    dimensions: 'Sofa: 200cm L x 90cm W x 85cm H / Bed: 200cm L x 150cm W x 45cm H',
+    weight: '85 kg',
+    buildTime: '4-6 Weeks',
+    joinery: 'Smooth heavy-duty metal slider rail system anchored securely with deep-threaded bolts.'
+  },
+  {
+    id: 'lounge-p2-u-corner-sofa',
+    name: 'Smart Living 10 Seater Solid Acacia Wood Jute U Corner Sofa',
+    category: 'living-room',
+    price: 265000,
+    woodType: 'Oak',
+    materialDetails: 'Solid Acacia wood framing, organic high-density jute and cotton-blend fabric, premium foam',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/10-Seat-Corner-Sofa-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/10-Seat-Corner-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Acacia-Kikar-Wood-Corner-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Bed-Sofa-Set-600x420.jpg'
+    ],
+    badge: '10-Seater',
+    description: 'A majestic U-shaped sectional designed for large gatherings and modern lounge setups. Beautifully wrapped in highly breathable natural jute fabric over a rigid solid wood frame.',
+    dimensions: 'Left Section: 210cm / Center Section: 320cm / Right Section: 210cm / Depth: 85cm',
+    weight: '180 kg',
+    buildTime: '8-11 Weeks',
+    joinery: 'Interlocking modular sectional clips with heavy structural bracket reinforcement.'
+  },
+  {
+    id: 'lounge-p2-wingback-chairs-set',
+    name: 'Full Velvet Upholstery Wingback Sissoo Wood Bedroom Chairs Set',
+    category: 'living-room',
+    price: 72000,
+    woodType: 'Sheesham',
+    materialDetails: 'Premium solid Sissoo (Sheesham) Wood legs and frame, high-resilience foam, luxury velvet upholstery',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Full-Back-Poshish-Sheesham-Crafted-Bedroom-Chair-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Full-Back-Poshish-Sheesham-Crafted-Bedroom-Chair-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Jacquard-Motif-Seating-600x420.jpg'
+    ],
+    badge: 'Wingback',
+    description: 'A premium pair of high-back wing chairs upholstered in ultra-plush velvet. Features exquisitely carved Sissoo wood feet and hand-tufted jacquard motifs.',
+    dimensions: 'Chairs: 76cm W x 74cm D x 108cm H / Table: 45cm Diameter x 50cm H',
+    weight: '38 kg',
+    buildTime: '4-5 Weeks',
+    joinery: 'Double-dowelled mortise joints with solid wood corner block bracing.'
+  },
+  {
+    id: 'lounge-p2-pizza-dining-set',
+    name: 'Low Rise Round Pizza Solid Shisham Wood Dining Table Set',
+    category: 'living-room',
+    price: 135000,
+    woodType: 'Sheesham',
+    materialDetails: 'Seasoned premium Shisham wood, high-gloss protective lacquer coating',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Dining-Table-With-Four-Chairs-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Dining-Table-With-Four-Chairs-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Solid-Wood-Round-Dining-Table-600x420.jpg'
+    ],
+    badge: 'Pizza Round',
+    description: 'An intimate and cozy low-rise dining experience. Crafted with a beautiful pizza-slice wood-grain top configuration and four perfectly nested low-back chairs.',
+    dimensions: 'Table: 110cm Diameter x 65cm H / Chairs: 46cm W x 46cm D x 75cm H',
+    weight: '65 kg',
+    buildTime: '5-7 Weeks',
+    joinery: 'Radial spline top joinery, slotted tongue-and-groove chair seat framing.'
+  },
+  {
+    id: 'lounge-p2-curved-sofa-set',
+    name: 'Curved Acacia Wood 6 Seater Sofa Set',
+    category: 'living-room',
+    price: 155000,
+    woodType: 'Oak',
+    materialDetails: 'Solid Acacia wood skeleton, pocket spring seating core, rich textured upholstery fabric',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/6-Seater-Kikar-Wood-Curved-Sofa-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/6-Seater-Kikar-Wood-Curved-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/3-Seater-Modern-Sofa-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Solid-Wood-Curved-Sofa-Set-600x420.jpg'
+    ],
+    badge: 'Curved Design',
+    description: 'Modern meets traditional with a stunning curved design. Built with premium solid Acacia wood and wrapped with luxurious textured cream fabric.',
+    dimensions: '3-Seater: 215cm L x 90cm W x 82cm H / 2-Seater: 165cm L x 90cm W x 82cm H / 1-Seater: 110cm L x 90cm W x 82cm H',
+    weight: '115 kg',
+    buildTime: '6-8 Weeks',
+    joinery: 'Curved laminated wood framing reinforced with high-gauge interior metal brackets.'
+  },
+  {
+    id: 'lounge-p2-silver-chesterfield',
+    name: 'Chester Field Hop In Silver 6 Seater Sofa Set',
+    category: 'living-room',
+    price: 185000,
+    woodType: 'Oak',
+    materialDetails: 'Heavy solid wood framing, dense Molty foam, silver gray velvet upholstery',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/6-Seater-Chester-Sofa-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/6-Seater-Chester-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/2-Seat-Sofa-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Quilted-Low-Rise-Back-Sofa-600x420.jpg'
+    ],
+    badge: 'Chesterfield',
+    description: 'A gorgeous silver gray chesterfield set featuring deeply tufted diamond quilting and high-resiliency foam for supreme long-lasting comfort.',
+    dimensions: '3-Seater: 220cm L x 92cm W x 78cm H / 2-Seater: 170cm L x 92cm W x 78cm H / 1-Seater: 115cm L x 92cm W x 78cm H',
+    weight: '125 kg',
+    buildTime: '6-8 Weeks',
+    joinery: 'Rigid double-blocked corner frames with heavy pocket-screws.'
+  },
+  {
+    id: 'lounge-p2-royal-blue-settee',
+    name: 'Royal Blue High Gloss Deco Sissoo Wood Settee',
+    category: 'living-room',
+    price: 75000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Sissoo (Sheesham) Wood, high-gloss navy-blue deco lacquer, premium royal velvet cushioning',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/High-Deco-Gloss-Setty-for-Bedroom-Launge-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Deco-Gloss-Setty-for-Bedroom-Launge-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Deco-Solid-Shisham-Wood-Deewan-600x420.jpg'
+    ],
+    badge: 'High Gloss',
+    description: 'An elegant luxury settee/deewan featuring high-gloss navy-blue deco lacquer over solid Sissoo wood framework, complemented with deep tufted royal blue velvet seating.',
+    dimensions: '160cm L x 60cm W x 65cm H',
+    weight: '28 kg',
+    buildTime: '4-6 Weeks',
+    joinery: 'Integrated mortise-and-tenon corner blocks, wood pegged.'
+  },
+  {
+    id: 'lounge-p2-chester-l-shape',
+    name: 'Chester Fill L Shape 7 Seater Velvet Full Gauge Solid Acacia Wood Sofa Set',
+    category: 'living-room',
+    price: 195000,
+    woodType: 'Oak',
+    materialDetails: 'Heavy solid Acacia wood skeleton, premium high-resiliency Molty Foam, velvet upholstery',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Royal-Blue-Velvet-L-SHAPE-Sofa-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Royal-Blue-Velvet-L-SHAPE-Sofa-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Molty-Foam-Sofa-Set-600x420.jpg'
+    ],
+    badge: 'L-Shape',
+    description: 'A robust Chesterfield L-shape 7-seater sectional. Features royal blue tufted velvet wrap over high-density molty foam and a massive solid Acacia framework.',
+    dimensions: '265cm x 210cm W x 82cm H',
+    weight: '140 kg',
+    buildTime: '5-7 Weeks',
+    joinery: 'Dual lock mortise and solid corner dowels.'
+  },
+  {
+    id: 'lounge-p2-versace-settee',
+    name: 'Versace 2 Seater Velvet Luxury Box Settee',
+    category: 'living-room',
+    price: 62000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham Wood, gold-leaf borders, quilted cream velvet upholstery',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Box-2-Seater-Wood-Puffy-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Box-2-Seater-Wood-Puffy-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Laser-Cut-Versace-All-Over-Puffy-600x420.jpg'
+    ],
+    badge: 'Versace Box',
+    description: 'Bespoke two-seater designer box settee. Inspired by classical Versace motifs with laser-cut golden border accents and luxurious cream velvet tufting.',
+    dimensions: '125cm L x 50cm W x 55cm H',
+    weight: '24 kg',
+    buildTime: '4-5 Weeks',
+    joinery: 'Box joinery with half-lap frame locks.'
+  },
+  {
+    id: 'lounge-p2-velvet-puffy-set',
+    name: 'Velvet Rich Round Puffy Set',
+    category: 'living-room',
+    price: 32000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Shisham wood base, velvet wrap with hand-pressed buttons',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Puffy-Wooden-Bedroom-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Puffy-Wooden-Bedroom-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Bedroom-Foot-Rest-600x420.jpg'
+    ],
+    badge: 'Velvet Puffy',
+    description: 'An adorable pair of round luxury puffies. Crafted from seasoned wood and wrapped in quilted, highly comfortable velvet upholstery. Perfect accent pieces.',
+    dimensions: 'Each Puffy: 45cm Diameter x 45cm H',
+    weight: '12 kg',
+    buildTime: '3-4 Weeks',
+    joinery: 'Solid dowelled circular frames with load-bearing support blocks.'
+  },
+  {
+    id: 'lounge-p2-ladder-sticks',
+    name: 'Ladder Sticks Hop In Sissoo Wood High Gloss Chair Set',
+    category: 'living-room',
+    price: 58000,
+    woodType: 'Sheesham',
+    materialDetails: 'Pure solid seasoned Sissoo (Sheesham) wood with high-gloss mirror finish',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Bedroom-Chair-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Bedroom-Chair-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Sheesham-Wood-Furniture-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Polish-Bedroom-Chairs-600x420.jpg'
+    ],
+    badge: 'Ladder Back',
+    description: 'A traditional masterpiece bedroom chairs set featuring elegant wooden stick-work back design, finished in an incredibly glossy premium mirror polish. Perfect accent chairs.',
+    dimensions: 'Chairs: 58cm W x 54cm D x 98cm H / Table: 45cm Diameter x 50cm H',
+    weight: '26 kg',
+    buildTime: '4-5 Weeks',
+    joinery: 'Traditional interlocking round doweled sockets.'
+  },
+
   {
     id: 'shalimar-bench',
     name: 'Shalimar Garden Bench',
@@ -208,34 +580,6 @@ export const INITIAL_PRODUCTS: Product[] = [
     weight: '30 kg',
     buildTime: '4-6 Weeks',
     joinery: 'Through-mortise frame joints with dual-locked corner dowels.'
-  },
-  {
-    id: 'margalla-study',
-    name: 'Margalla Executive Desk',
-    category: 'living-room',
-    price: 165000,
-    woodType: 'Walnut',
-    materialDetails: 'Highly figured center heartwood Walnut',
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=900&q=80',
-    description: 'Commanding attention. This executive desk balances mid-century floating geometry with massive solid walnut construction. Includes integrated wireless inductive charging wood inlays and a heavy brass cord escape.',
-    dimensions: '152cm L x 76cm W x 75cm H',
-    weight: '62 kg',
-    buildTime: '7-9 Weeks',
-    joinery: 'Mitered waterfalls with matching continuous wood grain, reinforced with splines.'
-  },
-  {
-    id: 'murree-bookcase',
-    name: 'Murree Modular Library',
-    category: 'living-room',
-    price: 110000,
-    woodType: 'Sheesham',
-    materialDetails: 'High-density seasoned Sheesham panels',
-    image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80',
-    description: 'An open modular shelving unit showcasing stunning contrasts of amber sapwood and deep dark heartwood. Clean, sturdy shelves capable of holding massive book collections without sagging.',
-    dimensions: '100cm L x 30cm W x 180cm H',
-    weight: '48 kg',
-    buildTime: '4-6 Weeks',
-    joinery: 'Through-housing dados, reinforced with rear wooden tension cross-struts.'
   },
   {
     id: 'kalyar-dining-set',
@@ -998,21 +1342,6 @@ export const INITIAL_PRODUCTS: Product[] = [
     joinery: 'Traditional joinery with solid round pegging.'
   },
   {
-    id: 'dining-high-living-8-chair',
-    name: 'High Living Sissoo Crafted Wood 8 Chair Fancy Dining Table Set',
-    category: 'dining',
-    price: 185000,
-    woodType: 'Sheesham',
-    materialDetails: 'Solid Sissoo Wood (Sheesham) with premium glass top, premium fabric cushions',
-    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Sissoo-Wood-Glass-Top-Fancy-Dining-Table-600x420.jpg',
-    badge: 'Luxury Dining',
-    description: 'A masterpiece of royal dining. Features a magnificent solid Sissoo wood frame with detailed Mughal carving, an elegant glass inset top, and eight exquisitely matching high-back chairs upholstered in high-density premium fabric.',
-    dimensions: 'Table: 240cm L x 110cm W x 78cm H / Chairs: 48cm W x 105cm H',
-    weight: '145 kg',
-    buildTime: '6-8 Weeks',
-    joinery: 'Interlocking mortise-and-tenon framing with heavy-duty peg reinforcement.'
-  },
-  {
     id: 'dining-classic-velvet-chairs',
     name: 'Classic Velvet Shisham Wood Bedroom Chair Set',
     category: 'dining',
@@ -1463,6 +1792,136 @@ export const PAKISTAN_CITIES = [
 ];
 
 export function getProductAttributes(product: Product) {
+  if (product.id.startsWith('lounge-p2-')) {
+    const p2Details: Record<string, { color: string; material: string; polish: string; style: string; pieces: string; popularity: number; date: string }> = {
+      'lounge-p2-gourmet-sofa': {
+        color: 'Premium Velvet / Customized Color',
+        material: 'Solid Seasoned Shisham Wood',
+        polish: 'Natural Shisham Polish',
+        style: 'Moustache Back Chesterfield',
+        pieces: '6 Pieces (3+2+1 Sofa Set)',
+        popularity: 105,
+        date: '2026-05-15'
+      },
+      'lounge-p2-golden-deco-crown': {
+        color: 'Jacquard Velvet / Golden Paint',
+        material: 'Solid Seasoned Shisham Wood',
+        polish: 'Premium Golden Deco Paint',
+        style: 'Royal Carved Crown Design',
+        pieces: '7 Seater (3+2+2 Sofa Set)',
+        popularity: 104,
+        date: '2026-05-14'
+      },
+      'lounge-p2-sofa-cum-bed': {
+        color: 'Slate Grey / Custom Choice',
+        material: 'Solid Seasoned Acacia Wood',
+        polish: 'Waterproof Protective Coat',
+        style: 'Modern Smart-Convertible',
+        pieces: '1 Piece (Sofa with Slider Bed)',
+        popularity: 103,
+        date: '2026-05-13'
+      },
+      'lounge-p2-u-corner-sofa': {
+        color: 'Natural Jute / Beige Fabric',
+        material: 'Solid Acacia Wood Structure',
+        polish: 'Organic Wax Satin Finish',
+        style: 'Contemporary Sectional U-Shape',
+        pieces: '10 Seater Modular Set',
+        popularity: 102,
+        date: '2026-05-12'
+      },
+      'lounge-p2-wingback-chairs-set': {
+        color: 'Royal Crimson Velvet / Blue',
+        material: 'Solid seasoned Sissoo wood legs',
+        polish: 'Classic Dark Walnut lacquer',
+        style: 'Classical Tufted Wingback',
+        pieces: '3 Pieces (2 Chairs + 1 Table)',
+        popularity: 101,
+        date: '2026-05-11'
+      },
+      'lounge-p2-pizza-dining-set': {
+        color: 'Amber Gold Shisham / Custom Seat',
+        material: 'Premium Shisham Heartwood',
+        polish: 'Mirror High-Gloss Lacquer',
+        style: 'Pizza Nested Circular Set',
+        pieces: '5 Pieces (4 Chairs + 1 Table)',
+        popularity: 100,
+        date: '2026-05-10'
+      },
+      'lounge-p2-curved-sofa-set': {
+        color: 'Cream Textured / Kikar Frame',
+        material: 'Solid Acacia/Kikar wood skeleton',
+        polish: 'Natural Matte Wax Finish',
+        style: 'Modern Architectural Curved',
+        pieces: '6 Seater (3+2+1 Curved Set)',
+        popularity: 99,
+        date: '2026-05-09'
+      },
+      'lounge-p2-silver-chesterfield': {
+        color: 'Silver Grey Quilted Velvet',
+        material: 'Dense Seasoned Wood Core',
+        polish: 'Fabric Poshish Wrap',
+        style: 'Classic Quilted Chesterfield',
+        pieces: '6 Seater (3+2+1 Sofa Set)',
+        popularity: 98,
+        date: '2026-05-08'
+      },
+      'lounge-p2-royal-blue-settee': {
+        color: 'Royal Navy Blue Velvet',
+        material: 'Solid Shisham Wood Legs',
+        polish: 'High Gloss Navy Blue Deco Paint',
+        style: 'Mughal Deewan Settee',
+        pieces: '1 Piece (Lounge Settee)',
+        popularity: 97,
+        date: '2026-05-07'
+      },
+      'lounge-p2-chester-l-shape': {
+        color: 'Royal Blue Tufted Velvet',
+        material: 'Heavy Solid Acacia Wood',
+        polish: 'Velvet Upholstery',
+        style: 'L-Shape Corner Chesterfield',
+        pieces: '7 Seater Corner Set',
+        popularity: 96,
+        date: '2026-05-06'
+      },
+      'lounge-p2-versace-settee': {
+        color: 'Quilted Cream / Golden Motif',
+        material: 'Premium Seasoned Shisham wood',
+        polish: 'Gold Leaf Border Lacquer',
+        style: 'Versace Inspired Luxury Box',
+        pieces: '2 Seater Settee Puffy',
+        popularity: 95,
+        date: '2026-05-05'
+      },
+      'lounge-p2-velvet-puffy-set': {
+        color: 'Emerald Velvet / Quilted Button',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'Velvet button upholstery',
+        style: 'Round Chesterfield Puffy Set',
+        pieces: '2 Pieces (Pair of Puffies)',
+        popularity: 94,
+        date: '2026-05-04'
+      },
+      'lounge-p2-ladder-sticks': {
+        color: 'Honey Oak / Custom Seat',
+        material: 'Solid Shisham Wood',
+        polish: 'High Gloss Mirror Polish',
+        style: 'Classic Spindle Ladder-Back',
+        pieces: '3 Pieces (2 Chairs + 1 Table)',
+        popularity: 93,
+        date: '2026-05-03'
+      }
+    };
+    return p2Details[product.id] || {
+      color: 'Caramel Brown',
+      material: 'Solid Wood',
+      polish: 'Classic Polish',
+      style: 'Crafted',
+      pieces: '1 Piece',
+      popularity: 80,
+      date: '2026-05-01'
+    };
+  }
   if (product.id.startsWith('bedroom-p2-')) {
     const num = parseInt(product.id.replace('bedroom-p2-', ''), 10) || 1;
     const p2Details: Record<number, { color: string; material: string; polish: string; style: string; pieces: string }> = {
@@ -1533,35 +1992,115 @@ export function getProductAttributes(product: Product) {
   }
 
   switch (product.id) {
-    case 'lounge-high-living-sofa':
+    case 'lounge-royal-blue-settee':
       return {
-        color: 'Royal Red / Custom Velvet',
-        material: 'Solid Wood & Foam',
-        polish: 'Velvet Upholstery',
-        style: 'Modern Chesterfield L Shape',
-        pieces: '1 Piece',
+        color: 'Royal Navy Blue Velvet',
+        material: 'Solid Shisham Wood Legs',
+        polish: 'High Gloss Navy Blue Deco Paint',
+        style: 'Mughal Deewan Settee',
+        pieces: '1 Piece (Lounge Settee)',
         popularity: 115,
-        date: '2026-05-10'
-      };
-    case 'lounge-chinioti-swing':
-      return {
-        color: 'Classic Brown / Custom Cushion',
-        material: 'Shisham/ Sissoo Wood',
-        polish: 'High Gloss Lacquer',
-        style: 'Traditional Carved Jhula',
-        pieces: '1 Piece (Swing Frame + Bench)',
-        popularity: 114,
-        date: '2026-05-09'
+        date: '2026-05-15'
       };
     case 'lounge-moora-set':
       return {
         color: 'Silver Deco, Velvet Cushion',
         material: 'Shisham/ Sissoo Wood',
         polish: 'Silver Leaf Highlight Polish',
-        style: 'Chinioti Crafted',
-        pieces: '2 Piece',
+        style: 'Chinioti Crafted Deco Moora',
+        pieces: '2 Pieces (Pair of Moora Chairs)',
+        popularity: 114,
+        date: '2026-05-14'
+      };
+    case 'lounge-embossed-motif-deewan':
+      return {
+        color: 'Premium Velvet / Embossed Motif',
+        material: 'Solid Seasoned Sheesham Wood',
+        polish: 'High Gloss Classic Polish',
+        style: 'Traditional Low-Floor Deewan',
+        pieces: '1 Piece (Deewan)',
         popularity: 113,
+        date: '2026-05-13'
+      };
+    case 'lounge-acacia-2seater-puffy':
+      return {
+        color: 'Beige Textured Velvet',
+        material: 'Solid Acacia/Kikar Wood Frame',
+        polish: 'Natural Matte Polish',
+        style: '2 Seater Puffy Settee',
+        pieces: '1 Piece',
+        popularity: 112,
+        date: '2026-05-12'
+      };
+    case 'lounge-shisham-motif-deewan':
+      return {
+        color: 'High-Density Premium Velvet Cushion',
+        material: 'Solid Seasoned Shisham Wood',
+        polish: 'High Gloss Dark Walnut Polish',
+        style: 'Mughal Chip Carved Deewan',
+        pieces: '1 Piece',
+        popularity: 111,
+        date: '2026-05-11'
+      };
+    case 'lounge-velvet-puffy-set':
+      return {
+        color: 'Rich Emerald Velvet / Custom',
+        material: 'Solid seasoned wood base',
+        polish: 'Velvet button upholstery',
+        style: 'Round Chesterfield Puffy Set',
+        pieces: '2 Pieces (Pair of Puffies)',
+        popularity: 110,
+        date: '2026-05-10'
+      };
+    case 'lounge-ladder-sticks':
+      return {
+        color: 'Classic Amber Shisham Wood',
+        material: 'Seasoned Sissoo (Indian Rosewood)',
+        polish: 'High Gloss Mirror Polish',
+        style: 'Classic Spindle Ladder-Back',
+        pieces: '3 Pieces (2 Chairs + 1 Table)',
+        popularity: 109,
+        date: '2026-05-09'
+      };
+    case 'lounge-classic-velvet-chairs':
+      return {
+        color: 'Velvet Pink/Red Cushion, Shisham Frame',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'Vintage Shisham Polish',
+        style: 'Vintage Classic Bedroom/Lounge Chairs',
+        pieces: '3 Pieces (2 Chairs + 1 Table)',
+        popularity: 108,
         date: '2026-05-08'
+      };
+    case 'lounge-crown-jewel-deco-chairs':
+      return {
+        color: 'Golden Deco, Velvet Cushion',
+        material: 'Shisham/ Sissoo Wood',
+        polish: 'High Gloss Golden Deco Paint',
+        style: 'Royal Crown Deco',
+        pieces: '3 Pieces (2 Chairs + 1 Table)',
+        popularity: 107,
+        date: '2026-05-07'
+      };
+    case 'lounge-leather-net-set':
+      return {
+        color: 'Textured Leather & Lacquered Wood',
+        material: 'Solid Seasoned Shisham Wood',
+        polish: 'Clear Gloss Lacquer Finish',
+        style: 'Modern Nest of Tables',
+        pieces: '3 Pieces (3 Nested Tables)',
+        popularity: 106,
+        date: '2026-05-06'
+      };
+    case 'lounge-inlay-net-set':
+      return {
+        color: 'Inlaid Brass & Dark Sheesham',
+        material: 'Solid Shisham Wood',
+        polish: 'Classic Hand-Rubbed Wax Polish',
+        style: 'Traditional Nest of Inlay Tables',
+        pieces: '3 Pieces (3 Nested Tables)',
+        popularity: 105,
+        date: '2026-05-05'
       };
     case 'dining-moora-set':
       return {
@@ -1572,16 +2111,6 @@ export function getProductAttributes(product: Product) {
         pieces: '2 Piece',
         popularity: 105,
         date: '2026-04-20'
-      };
-    case 'dining-high-living-8-chair':
-      return {
-        color: 'Walnut Polish, Cream Cushion',
-        material: 'Shisham/ Sissoo Wood',
-        polish: 'Glossy Melamine Polish',
-        style: 'Mughal Craft Dining',
-        pieces: '9 Pieces (8 Chairs + 1 Table)',
-        popularity: 104,
-        date: '2026-04-25'
       };
     case 'dining-classic-velvet-chairs':
       return {
@@ -1683,36 +2212,6 @@ export function getProductAttributes(product: Product) {
         popularity: 93,
         date: '2026-04-14'
       };
-    case 'chinar-console':
-      return {
-        color: 'Walnut Brown',
-        material: 'Shisham/ Sissoo Wood',
-        polish: 'Glossy Polish',
-        style: 'Crafted',
-        pieces: '1 Piece',
-        popularity: 88,
-        date: '2025-12-01'
-      };
-    case 'walnut-lounge':
-      return {
-        color: 'Chocolate Brown',
-        material: 'Walnut Wood',
-        polish: 'Tone Polish',
-        style: 'Self Crafted',
-        pieces: '1 Piece',
-        popularity: 92,
-        date: '2026-02-20'
-      };
-    case 'ravi-sideboard':
-      return {
-        color: 'Golden Brown',
-        material: 'Oak Wood',
-        polish: 'High Gloss',
-        style: 'Ship Deck',
-        pieces: '1 Piece',
-        popularity: 85,
-        date: '2026-01-05'
-      };
     case 'shalimar-bench':
       return {
         color: 'Golden',
@@ -1753,26 +2252,6 @@ export function getProductAttributes(product: Product) {
         pieces: '1 Piece',
         popularity: 96,
         date: '2026-04-20'
-      };
-    case 'margalla-study':
-      return {
-        color: 'Brown',
-        material: 'Walnut Wood',
-        polish: 'Tone Polish',
-        style: 'Gourmet',
-        pieces: '1 Piece',
-        popularity: 94,
-        date: '2026-02-10'
-      };
-    case 'murree-bookcase':
-      return {
-        color: 'Polish Brown',
-        material: 'Shisham/ Sissoo Wood',
-        polish: 'Deco',
-        style: 'Ladder',
-        pieces: '1 Piece',
-        popularity: 82,
-        date: '2025-10-20'
       };
     case 'kalyar-dining-set':
       return {

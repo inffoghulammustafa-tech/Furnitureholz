@@ -421,10 +421,10 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
     return result;
   }, [category, searchParams, sortBy]);
 
-  const PRODUCTS_PER_PAGE = category === 'dining' ? 8 : 15;
+  const PRODUCTS_PER_PAGE = category === 'dining' ? 8 : (category === 'living-room' ? 12 : 15);
 
   const paginatedProducts = useMemo(() => {
-    if (category !== 'bedroom' && category !== 'dining') {
+    if (category !== 'bedroom' && category !== 'dining' && category !== 'living-room') {
       return filteredProducts;
     }
     const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
@@ -432,7 +432,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
   }, [filteredProducts, currentPage, category, PRODUCTS_PER_PAGE]);
 
   const totalPages = useMemo(() => {
-    if (category !== 'bedroom' && category !== 'dining') return 1;
+    if (category !== 'bedroom' && category !== 'dining' && category !== 'living-room') return 1;
     return Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   }, [filteredProducts, category, PRODUCTS_PER_PAGE]);
 
@@ -737,7 +737,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
         )}
 
         {/* Pagination Controls */}
-        {(category === 'bedroom' || category === 'dining') && totalPages > 1 && (
+        {(category === 'bedroom' || category === 'dining' || category === 'living-room') && totalPages > 1 && (
           <div className="flex justify-center items-center gap-6 mt-16 font-sans">
             <button
               onClick={() => {
