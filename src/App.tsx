@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import AiAdvisor from './components/AiAdvisor';
 import QuoteBasket from './components/QuoteBasket';
 import PrivacyPolicyModal from './components/PrivacyPolicyModal';
+import SearchModal from './components/SearchModal';
 import { Product, CustomConfig, QuoteItem } from './types';
 import { ChevronUp, Check, Info } from 'lucide-react';
 
@@ -29,6 +30,7 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   
   // Custom Toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -163,6 +165,11 @@ export default function App() {
         cart={cart}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenAdvisor={() => setIsAdvisorOpen(true)}
+        onOpenSearch={() => {
+          setIsSearchOpen(true);
+          setActiveCategory('bedroom');
+          setActiveSubCategory(null);
+        }}
         onOpenCategory={(cat, subCat) => {
           setActiveCategory(cat);
           setActiveSubCategory(subCat || null);
@@ -225,6 +232,17 @@ export default function App() {
       <AiAdvisor
         isOpen={isAdvisorOpen}
         onClose={() => setIsAdvisorOpen(false)}
+      />
+
+      {/* Global Search Overlay Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onAddProductToQuote={handleAddProductToQuote}
+        onOpenCategory={(cat, subCat) => {
+          setActiveCategory(cat);
+          setActiveSubCategory(subCat || null);
+        }}
       />
 
       {/* Slide-out Sidebar: Custom Quote cart Workspace */}

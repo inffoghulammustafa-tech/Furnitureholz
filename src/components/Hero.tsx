@@ -108,8 +108,8 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
 
           {/* Top Badge Row */}
           <div className="relative z-10 flex justify-between items-center w-full">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full text-[10px] sm:text-xs uppercase tracking-widest font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span> Flagship Showcase
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-oak/20 text-oak border border-oak/30 rounded-full text-[10px] sm:text-xs uppercase tracking-widest font-bold">
+              <span className="w-2.5 h-2.5 rounded-full bg-oak animate-pulse"></span> Flagship Showcase
             </span>
             {/* Image Count has been removed per user request */}
           </div>
@@ -126,7 +126,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
               <div className="flex bg-stone-900/90 backdrop-blur-md rounded-2xl border border-white/10 max-w-lg w-full overflow-hidden shadow-2xl text-left">
                 {/* Left text portion */}
                 <div className="p-5 sm:p-6 flex-1 space-y-3">
-                  <h4 className="text-xs sm:text-sm font-bold text-amber-400 uppercase tracking-widest">
+                  <h4 className="text-xs sm:text-sm font-bold text-oak uppercase tracking-widest">
                     {sliderSlides[currentSlideIndex].sub}
                   </h4>
                   <p className="text-stone-300 text-xs sm:text-sm font-light leading-relaxed">
@@ -137,7 +137,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                       setModalItemName(sliderSlides[currentSlideIndex].inquiryTag);
                       setIsModalOpen(true);
                     }}
-                    className="text-[10px] font-bold text-white uppercase tracking-wider border-b border-white hover:text-amber-400 hover:border-amber-400 transition-colors pb-0.5 inline-block cursor-pointer"
+                    className="text-[10px] font-bold text-white uppercase tracking-wider border-b border-white hover:text-oak hover:border-oak transition-colors pb-0.5 inline-block cursor-pointer"
                   >
                     VIEW MORE
                   </button>
@@ -148,7 +148,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                   {/* Next button on top */}
                   <button
                     onClick={nextSlide}
-                    className="flex-1 flex items-center justify-center hover:bg-amber-600/20 text-white border-b border-white/10 transition-colors cursor-pointer"
+                    className="flex-1 flex items-center justify-center hover:bg-oak/20 text-white border-b border-white/10 transition-colors cursor-pointer"
                     aria-label="Next Slide"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -156,7 +156,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                   {/* Prev button on bottom */}
                   <button
                     onClick={prevSlide}
-                    className="flex-1 flex items-center justify-center hover:bg-amber-600/20 text-white transition-colors cursor-pointer"
+                    className="flex-1 flex items-center justify-center hover:bg-oak/20 text-white transition-colors cursor-pointer"
                     aria-label="Previous Slide"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -187,7 +187,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                   onClick={() => setSlide(idx)}
                   className={`cursor-pointer transition-all rounded-full ${
                     idx === currentSlideIndex
-                      ? 'w-6 h-2 bg-amber-500'
+                      ? 'w-6 h-2 bg-oak'
                       : 'w-2 h-2 bg-stone-600 hover:bg-stone-500'
                   }`}
                 />
@@ -227,7 +227,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
 
               {/* Modal Heading */}
               <div className="space-y-2 mb-6">
-                <h3 className="text-[10px] font-bold tracking-widest text-amber-500 uppercase">Consultation Setup</h3>
+                <h3 className="text-[10px] font-bold tracking-widest text-oak uppercase">Consultation Setup</h3>
                 <h2 className="text-2xl font-display font-semibold text-white">Inquire & Request Bespoke Quote</h2>
                 <p className="text-xs text-stone-400 leading-relaxed font-light">
                   Aap k selected variant, dimensions aur polish instructions ke mutabiq hamari team real-world quotation aur delivery timeline provide karegi.
@@ -242,7 +242,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                     type="text"
                     value={modalItemName}
                     readOnly
-                    className="w-full px-4 py-2.5 bg-stone-900 border border-stone-800 rounded-lg text-xs font-semibold text-amber-500 focus:outline-none"
+                    className="w-full px-4 py-2.5 bg-stone-900 border border-stone-800 rounded-lg text-xs font-semibold text-oak focus:outline-none"
                   />
                 </div>
                 
@@ -255,7 +255,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                       placeholder="Ali Ahmed"
                       value={clientName}
                       onChange={(e) => setClientName(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors"
                     />
                   </div>
                   <div>
@@ -266,7 +266,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                       placeholder="03xx xxxxxxx"
                       value={clientPhone}
                       onChange={(e) => setClientPhone(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors"
                     />
                   </div>
                 </div>
@@ -276,7 +276,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                   <select
                     value={woodSelection}
                     onChange={(e) => setWoodSelection(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors"
                   >
                     <option>Pure Sheesham Wood (Tali)</option>
                     <option>Premium Golden Teak (Sagan)</option>
@@ -292,7 +292,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                     rows={3}
                     value={customSpecs}
                     onChange={(e) => setCustomSpecs(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors resize-none"
+                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors resize-none"
                   />
                 </div>
 
@@ -306,7 +306,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2.5 bg-amber-700 hover:bg-amber-800 text-white rounded-xl text-xs font-semibold uppercase tracking-wider transition-all shadow font-bold cursor-pointer"
+                    className="px-5 py-2.5 bg-brand-gradient hover:opacity-90 text-charcoal rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow cursor-pointer"
                   >
                     Submit Inquiry
                   </button>
@@ -326,7 +326,7 @@ export default function Hero({ onExploreCatalog, onOpenCustomizer }: HeroProps) 
             exit={{ opacity: 0, y: 20, x: '-50%' }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#0e1626] border border-blue-600 p-4 shadow-2xl text-xs z-50 flex items-center gap-3 font-sans rounded-md min-w-[280px]"
           >
-            <div className="w-5 h-5 rounded-full bg-amber-600/20 text-amber-500 flex items-center justify-center border border-amber-600/50">
+            <div className="w-5 h-5 rounded-full bg-oak/20 text-oak flex items-center justify-center border border-oak/50">
               <Check className="w-3 h-3" />
             </div>
             <span className="text-white font-medium flex-1">{toastMessage}</span>

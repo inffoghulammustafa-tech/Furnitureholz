@@ -667,7 +667,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                     type="text" 
                     readOnly 
                     value={modalItemName}
-                    className="w-full px-4 py-2.5 bg-stone-900 border border-stone-800 rounded-lg text-xs font-semibold text-amber-500 focus:outline-none"
+                    className="w-full px-4 py-2.5 bg-stone-900 border border-stone-800 rounded-lg text-xs font-semibold text-oak focus:outline-none"
                   />
                 </div>
                 
@@ -680,7 +680,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                       placeholder="Ali Ahmed" 
                       value={clientName}
                       onChange={(e) => setClientName(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors"
                     />
                   </div>
                   <div>
@@ -691,7 +691,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                       placeholder="03xx xxxxxxx" 
                       value={clientPhone}
                       onChange={(e) => setClientPhone(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors"
                     />
                   </div>
                 </div>
@@ -701,7 +701,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                   <select 
                     value={woodSelection}
                     onChange={(e) => setWoodSelection(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors"
                   >
                     <option>Pure Sheesham Wood (Tali)</option>
                     <option>Premium Golden Teak (Sagan)</option>
@@ -717,7 +717,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                     rows={3} 
                     value={customSpecs}
                     onChange={(e) => setCustomSpecs(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-amber-500 transition-colors resize-none"
+                    className="w-full px-4 py-2.5 bg-stone-950 border border-stone-800 rounded-lg text-xs text-white focus:outline-none focus:border-oak transition-colors resize-none"
                   ></textarea>
                 </div>
 
@@ -731,7 +731,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                   </button>
                   <button 
                     type="submit" 
-                    className="px-5 py-2.5 bg-amber-700 hover:bg-amber-800 text-white rounded-xl text-xs font-semibold uppercase tracking-wider transition-all shadow"
+                    className="px-5 py-2.5 bg-brand-gradient hover:opacity-90 text-charcoal font-bold rounded-xl text-xs font-semibold uppercase tracking-wider transition-all shadow"
                   >
                     Submit Inquiry
                   </button>
@@ -749,9 +749,9 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
             initial={{ opacity: 0, y: 50, x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: 20, x: '-50%' }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#0e1626] border border-amber-600 p-4 shadow-2xl text-xs z-[200] flex items-center gap-3 font-sans rounded-md min-w-[280px]"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#0e1626] border border-oak/50 p-4 shadow-2xl text-xs z-[200] flex items-center gap-3 font-sans rounded-md min-w-[280px]"
           >
-            <div className="w-5 h-5 rounded-full bg-amber-600/20 text-amber-500 flex items-center justify-center border border-amber-600/50">
+            <div className="w-5 h-5 rounded-full bg-oak/20 text-oak flex items-center justify-center border border-oak/50">
               <Check className="w-3 h-3" />
             </div>
             <span className="text-white font-medium flex-1">{toastMessage}</span>

@@ -1248,8 +1248,8 @@ export default function Collections({
               onMouseLeave={() => setIsHovered(false)}
             >
               {/* Left and Right Side Gradients for an immersive fade-out gallery look */}
-              <div className="absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#090D1A] to-transparent pointer-events-none z-10" />
-              <div className="absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#090D1A] to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#140E0A] to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#140E0A] to-transparent pointer-events-none z-10" />
 
               <div 
                 className="flex transition-transform duration-500 ease-out gap-6"
@@ -1258,11 +1258,17 @@ export default function Collections({
                 {(() => {
                   const showcaseIds = [
                     'heart-back-shisham-deewan',
+                    'dining-moora-set',
                     'bergere-inlay-set',
+                    'dining-high-living-8-chair',
                     'circle-platted-deewan',
+                    'dining-carving-high-back',
                     'carving-high-back-set',
+                    'dining-bergere-inlay',
                     'chase-ship-chair',
+                    'dining-prince-red-velvet',
                     'sea-green-ottoman-puffy',
+                    'dining-black-golden-8-chair',
                     'bedroom-p3-1',
                     'bedroom-p3-2',
                     'bedroom-p3-3',

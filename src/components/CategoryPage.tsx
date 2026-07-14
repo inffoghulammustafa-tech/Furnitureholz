@@ -263,7 +263,7 @@ export function getProductSubcategory(product: { name: string; description: stri
     if (name.includes('table')) {
       return 'Dining Table Set';
     }
-    if (name.includes('chair') || name.includes('sofa') || name.includes('moora') || name.includes('couch') || name.includes('ottoman') || name.includes('puffy') || name.includes('deewan')) {
+    if (name.includes('chair') || name.includes('sofa') || name.includes('moora') || name.includes('couch') || name.includes('ottoman') || name.includes('puffy') || name.includes('deewan') || name.includes('settee')) {
       return 'Sofa & Chairs';
     }
     if (name.includes('set')) {
@@ -369,11 +369,31 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
       }
 
       const attrs = getProductAttributes(p);
-      const matchesColor = searchParams.color === 'All' || attrs.color === searchParams.color;
-      const matchesMaterial = searchParams.material === 'All' || attrs.material === searchParams.material;
-      const matchesPolish = searchParams.polish === 'All' || attrs.polish === searchParams.polish;
-      const matchesStyle = searchParams.style === 'All' || attrs.style === searchParams.style;
-      const matchesPieces = searchParams.pieces === 'All' || attrs.pieces === searchParams.pieces;
+      
+      const matchesColor = searchParams.color === 'All' || 
+        attrs.color === searchParams.color ||
+        attrs.color.toLowerCase().includes(searchParams.color.toLowerCase()) ||
+        searchParams.color.toLowerCase().includes(attrs.color.toLowerCase());
+
+      const matchesMaterial = searchParams.material === 'All' || 
+        attrs.material === searchParams.material ||
+        attrs.material.toLowerCase().includes(searchParams.material.replace('/ Kikar', '').toLowerCase()) ||
+        searchParams.material.toLowerCase().includes(attrs.material.toLowerCase());
+
+      const matchesPolish = searchParams.polish === 'All' || 
+        attrs.polish === searchParams.polish ||
+        attrs.polish.toLowerCase().includes(searchParams.polish.toLowerCase()) ||
+        searchParams.polish.toLowerCase().includes(attrs.polish.toLowerCase());
+
+      const matchesStyle = searchParams.style === 'All' || 
+        attrs.style === searchParams.style ||
+        attrs.style.toLowerCase().includes(searchParams.style.toLowerCase()) ||
+        searchParams.style.toLowerCase().includes(attrs.style.toLowerCase());
+
+      const matchesPieces = searchParams.pieces === 'All' || 
+        attrs.pieces === searchParams.pieces ||
+        attrs.pieces.toLowerCase().includes(searchParams.pieces.toLowerCase()) ||
+        searchParams.pieces.toLowerCase().includes(attrs.pieces.toLowerCase());
 
       return matchesColor && matchesMaterial && matchesPolish && matchesStyle && matchesPieces;
     });
@@ -658,126 +678,63 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {category === 'dining' && (
-            <div className="max-w-7xl mx-auto px-4 py-8 bg-gray-50 col-span-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
-                    <img src="path-to-your-image1.jpg" alt="Gourmet Shisham Wood 6 Seater High Living Sofa Set" className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
-                    Gourmet Shisham Wood 6 Seater High Living Sofa Set
-                  </h3>
-                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
-                    Call For Price
-                  </button>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
-                  <span className="absolute top-6 right-6 bg-gray-700 text-white text-xs font-bold px-3 py-1 uppercase tracking-wide rounded-sm z-10">
-                    Sold Out
-                  </span>
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4 opacity-90">
-                    <img src="path-to-your-image2.jpg" alt="Golden Deco Crown Shisham Wood 7 Seater Sofa Set" className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
-                    Golden Deco Crown Shisham Wood 7 Seater Sofa Set
-                  </h3>
-                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
-                    Call For Price
-                  </button>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
-                    <img src="path-to-your-image3.jpg" alt="Smart Living Solid Acacia Wood Sofa Cum Bed" className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
-                    Smart Living Solid Acacia Wood Sofa Cum Bed
-                  </h3>
-                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
-                    Call For Price
-                  </button>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
-                    <img src="path-to-your-image4.jpg" alt="Smart Living 10 Seater Solid Acacia Wood Jute U Corner Sofa" className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
-                    Smart Living 10 Seater Solid Acacia Wood Jute U Corner Sofa
-                  </h3>
-                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
-                    Call For Price
-                  </button>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
-                    <img src="path-to-your-image5.jpg" alt="Full Velvet Upholstery Wingback Sissoo Wood Bedroom Chairs Set" className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
-                    Full Velvet Upholstery Wingback Sissoo Wood Bedroom Chairs Set
-                  </h3>
-                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
-                    Call For Price
-                  </button>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col items-center p-4 transition-all duration-300 hover:shadow-md relative">
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
-                    <img src="path-to-your-image6.jpg" alt="Low Rise Round Pizza Solid Shisham Wood Dining Table Set" className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-gray-800 text-center font-medium text-sm md:text-base min-h-[48px] flex items-center justify-center px-2">
-                    Low Rise Round Pizza Solid Shisham Wood Dining Table Set
-                  </h3>
-                  <button className="mt-4 px-6 py-2 border-2 border-gray-900 text-gray-900 font-bold text-xs uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-colors duration-200">
-                    Call For Price
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-          {paginatedProducts.map((product) => (
-            <div key={product.id} className="bg-[#0e1626] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-transform hover:-translate-y-1">
-              {/* Clickable Image Wrapper with View Details Overlay */}
-              <div 
-                onClick={() => setSelectedDetailProduct(product)}
-                className="relative h-64 bg-gray-800 cursor-pointer overflow-hidden group/img"
-              >
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="w-full h-full object-cover group-hover/img:scale-120 transition-transform duration-500" 
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="bg-[#060B18]/95 text-amber-500 border border-amber-500/30 px-4 py-2 rounded text-xs font-mono tracking-widest uppercase shadow-lg">
-                    View Details
-                  </span>
-                </div>
-              </div>
-              <div className="p-6 text-center">
-                {/* Clickable Title for easy exploration */}
-                <h3 
+        {filteredProducts.length === 0 ? (
+          <div className="text-center py-24 px-6 border border-dashed border-stone-800 rounded-2xl bg-stone-900/20 max-w-lg mx-auto my-12 shadow-inner">
+            <div className="text-amber-500/80 text-4xl mb-4 font-light">∅</div>
+            <h3 className="text-lg font-sans font-medium text-amber-500 mb-2 uppercase tracking-wider">
+              No Products Available
+            </h3>
+            <p className="text-stone-400 font-sans text-xs max-w-sm mx-auto leading-relaxed">
+              We currently do not have any {selectedSubCategory || 'matching'} products in our Dining collection. Please check back later or contact us to custom order!
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {paginatedProducts.map((product) => (
+              <div key={product.id} className="bg-[#0e1626] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-transform hover:-translate-y-1">
+                {/* Clickable Image Wrapper with View Details Overlay */}
+                <div 
                   onClick={() => setSelectedDetailProduct(product)}
-                  className="text-sm text-ivory font-medium mb-6 min-h-[3rem] cursor-pointer hover:text-amber-500 transition-colors"
+                  className="relative h-64 bg-gray-800 cursor-pointer overflow-hidden group/img"
                 >
-                  {product.name}
-                </h3>
-                <div className="flex flex-col gap-2">
-                  <button
-                    onClick={() => onAddProductToQuote(product)}
-                    className="inline-block border border-ivory text-ivory py-2 px-6 text-xs font-bold uppercase tracking-wide hover:bg-ivory hover:text-charcoal transition-all"
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover group-hover/img:scale-120 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="bg-[#060B18]/95 text-amber-500 border border-amber-500/30 px-4 py-2 rounded text-xs font-mono tracking-widest uppercase shadow-lg">
+                      View Details
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6 text-center">
+                  {/* Clickable Title for easy exploration */}
+                  <h3 
+                    onClick={() => setSelectedDetailProduct(product)}
+                    className="text-sm text-ivory font-medium mb-6 min-h-[3rem] cursor-pointer hover:text-amber-500 transition-colors"
                   >
-                    Add to Quote
-                  </button>
-                  <button
-                    onClick={() => onConfigureProduct(product)}
-                    className="inline-block text-gray-400 py-2 px-6 text-xs font-bold uppercase tracking-wide hover:text-ivory"
-                  >
-                    Configure
-                  </button>
+                    {product.name}
+                  </h3>
+                  <div className="flex flex-col gap-2">
+                    <button
+                      onClick={() => onAddProductToQuote(product)}
+                      className="inline-block border border-ivory text-ivory py-2 px-6 text-xs font-bold uppercase tracking-wide hover:bg-ivory hover:text-charcoal transition-all"
+                    >
+                      Add to Quote
+                    </button>
+                    <button
+                      onClick={() => onConfigureProduct(product)}
+                      className="inline-block text-gray-400 py-2 px-6 text-xs font-bold uppercase tracking-wide hover:text-ivory"
+                    >
+                      Configure
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Pagination Controls */}
         {(category === 'bedroom' || category === 'dining') && totalPages > 1 && (

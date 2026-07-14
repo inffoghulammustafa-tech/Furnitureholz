@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { ShoppingCart, Menu, X, MessageSquare, Compass, Sliders, ChevronDown } from 'lucide-react';
+import { ShoppingCart, Menu, X, MessageSquare, Compass, Sliders, ChevronDown, Search } from 'lucide-react';
 import { QuoteItem } from '../types';
 import Logo from './Logo';
 
@@ -12,11 +12,12 @@ interface NavbarProps {
   cart: QuoteItem[];
   onOpenCart: () => void;
   onOpenAdvisor: () => void;
+  onOpenSearch: () => void;
   onOpenCategory: (cat: string, subCat?: string | null) => void;
   onGoHome: () => void;
 }
 
-export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory, onGoHome }: NavbarProps) {
+export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenSearch, onOpenCategory, onGoHome }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hideHeader, setHideHeader] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -174,7 +175,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
 
                   {/* High Fidelity Dropdown Overlay */}
                   <div className="absolute top-full left-0 mt-1 w-64 bg-stone-900/98 backdrop-blur-xl border border-stone-800 rounded-2xl shadow-2xl p-5 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-300 z-50">
-                    <span className="text-[10px] uppercase tracking-widest font-bold text-amber-500/70 block mb-2.5 pb-1 border-b border-stone-800/80">
+                    <span className="text-[10px] uppercase tracking-widest font-bold text-oak/70 block mb-2.5 pb-1 border-b border-stone-800/80">
                       Explore Catalog
                     </span>
                     <div className="flex flex-col gap-1.5">
@@ -182,7 +183,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
                         <button
                           key={item}
                           onClick={() => handleChildNav(cat.key, item)}
-                          className="w-full text-left px-3 py-2 text-xs font-medium text-stone-300 hover:text-white hover:bg-amber-800/25 border border-transparent hover:border-amber-700/20 rounded-xl transition-all"
+                          className="w-full text-left px-3 py-2 text-xs font-medium text-stone-300 hover:text-white hover:bg-oak/10 border border-transparent hover:border-oak/20 rounded-xl transition-all"
                         >
                           {item}
                         </button>
@@ -209,15 +210,15 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            {/* AI Advisor Button */}
+            {/* Search Button (Opens Search Modal) */}
             <button
-              onClick={onOpenAdvisor}
-              className="p-2.5 rounded-full border border-line text-ivory hover:text-oak hover:border-oak transition-all duration-300 relative group"
-              title="Chat with Kabir, AI wood advisor"
+              onClick={onOpenSearch}
+              className="p-2.5 rounded-full border border-line text-ivory hover:text-oak hover:border-oak transition-all duration-300 relative group cursor-pointer"
+              title="Search Products"
             >
-              <MessageSquare className="w-4 h-4" />
+              <Search className="w-4 h-4" />
               <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-charcoal border border-line text-[10px] uppercase tracking-wider text-ivory py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
-                AI Wood Advisor
+                Search Products
               </span>
             </button>
 
@@ -300,7 +301,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenCategory
                 >
                   {cat.label}
                 </button>
-                <div className="flex flex-col gap-1.5 ml-4 border-l border-amber-800/30 pl-3">
+                <div className="flex flex-col gap-1.5 ml-4 border-l border-oak/20 pl-3">
                   {cat.children.map((item) => (
                     <button
                       key={item}
