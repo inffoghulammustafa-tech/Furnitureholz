@@ -220,7 +220,8 @@ const SUBCATEGORIES_MAP: Record<string, string[]> = {
   bedroom: ['All', 'Bed', 'Bedroom Chairs', 'Dressing', 'Almirah', 'Sofa & Deewan'],
   dining: ['All', 'Dining Table Set', 'Sofa & Chairs', 'Almirah', 'Trolley'],
   'living-room': ['All', 'Console, Tables & Chester', 'Sofa, Chair & Deewan', 'Swing & Wooden Jhula'],
-  outdoor: ['All', 'Chair & Tables', 'Picnic Set', 'Ring Swing & Wooden Jhula']
+  outdoor: ['All', 'Chair & Tables', 'Picnic Set', 'Ring Swing & Wooden Jhula', 'Sofa, Chair & Deewan', 'Net Set'],
+  sets: ['All', 'Bridal Sets', 'Sofa Set', 'Table & Chair Sets', 'Net Set']
 };
 
 export function getProductSubcategory(product: { name: string; description: string; category: string }): string {
@@ -292,16 +293,38 @@ export function getProductSubcategory(product: { name: string; description: stri
   }
 
   if (product.category === 'outdoor') {
-    if (name.includes('picnic')) {
+    if (name.includes('net set')) {
+      return 'Net Set';
+    }
+    if (name.includes('picnic') || name.includes('ladder sticks')) {
       return 'Picnic Set';
     }
     if (name.includes('swing') || name.includes('jhula') || name.includes('ring')) {
       return 'Ring Swing & Wooden Jhula';
     }
-    if (name.includes('chair') || name.includes('table')) {
+    if (name.includes('deewan') || name.includes('settee') || name.includes('chair') || name.includes('sofa') || name.includes('puffy') || name.includes('moora') || name.includes('couch')) {
+      return 'Sofa, Chair & Deewan';
+    }
+    if (name.includes('table')) {
       return 'Chair & Tables';
     }
     return 'Chair & Tables';
+  }
+
+  if (product.category === 'sets') {
+    if (name.includes('net set')) {
+      return 'Net Set';
+    }
+    if (name.includes('bedroom') || name.includes('bridal') || name.includes('suite') || name.includes('bed')) {
+      return 'Bridal Sets';
+    }
+    if (name.includes('sofa') || name.includes('lounge') || name.includes('moora') || name.includes('settee') || name.includes('deewan') || name.includes('puffy') || name.includes('ottoman')) {
+      return 'Sofa Set';
+    }
+    if (name.includes('dining') || name.includes('patio') || name.includes('table & chair') || name.includes('chair set') || name.includes('dining table') || name.includes('table set') || name.includes('table') || name.includes('chair')) {
+      return 'Table & Chair Sets';
+    }
+    return 'Table & Chair Sets';
   }
 
   return 'General';
@@ -421,10 +444,10 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
     return result;
   }, [category, searchParams, sortBy]);
 
-  const PRODUCTS_PER_PAGE = category === 'dining' ? 8 : (category === 'living-room' ? 12 : 15);
+  const PRODUCTS_PER_PAGE = category === 'dining' ? 8 : (category === 'living-room' ? 12 : (category === 'outdoor' ? 10 : (category === 'sets' ? 9 : 15)));
 
   const paginatedProducts = useMemo(() => {
-    if (category !== 'bedroom' && category !== 'dining' && category !== 'living-room') {
+    if (category !== 'bedroom' && category !== 'dining' && category !== 'living-room' && category !== 'outdoor' && category !== 'sets') {
       return filteredProducts;
     }
     const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
@@ -432,7 +455,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
   }, [filteredProducts, currentPage, category, PRODUCTS_PER_PAGE]);
 
   const totalPages = useMemo(() => {
-    if (category !== 'bedroom' && category !== 'dining' && category !== 'living-room') return 1;
+    if (category !== 'bedroom' && category !== 'dining' && category !== 'living-room' && category !== 'outdoor' && category !== 'sets') return 1;
     return Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   }, [filteredProducts, category, PRODUCTS_PER_PAGE]);
 
@@ -737,7 +760,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
         )}
 
         {/* Pagination Controls */}
-        {(category === 'bedroom' || category === 'dining' || category === 'living-room') && totalPages > 1 && (
+        {(category === 'bedroom' || category === 'dining' || category === 'living-room' || category === 'outdoor' || category === 'sets') && totalPages > 1 && (
           <div className="flex justify-center items-center gap-6 mt-16 font-sans">
             <button
               onClick={() => {
