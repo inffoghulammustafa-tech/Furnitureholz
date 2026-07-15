@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import ArrivalCard from './ArrivalCard';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Product } from '../types';
@@ -743,6 +744,28 @@ export default function Collections({
   
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [activeDetailImage, setActiveDetailImage] = useState<string>('');
+  
+  // Detail Modal Zoom
+  const [detailZoomStyle, setDetailZoomStyle] = useState<React.CSSProperties>({});
+  const detailContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleDetailMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!detailContainerRef.current) return;
+    const { left, top, width, height } = detailContainerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setDetailZoomStyle({
+      transformOrigin: `${x}% ${y}%`,
+      transform: 'scale(2.5)',
+    });
+  };
+
+  const handleDetailMouseLeave = () => {
+    setDetailZoomStyle({
+      transformOrigin: 'center center',
+      transform: 'scale(1)',
+    });
+  };
   const [showPrivacy, setShowPrivacy] = useState(false);
 
   const counterRef = useRef<HTMLSpanElement>(null);
@@ -905,56 +928,18 @@ export default function Collections({
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
               >
-                {visibleArrivals.map((item) => (
-                  <div
-                    key={item.id}
-                    className="group box-gradient rounded-2xl overflow-hidden transition-all duration-300 flex flex-col justify-between border border-line hover:border-oak/40"
-                  >
-                    <div 
-                      onClick={() => handleOpenProductDetail(item.id)}
-                      className="relative aspect-video overflow-hidden bg-stone-950 cursor-pointer"
-                    >
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
-                        className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-500 opacity-80 group-hover:opacity-100 cursor-pointer"
-                        referrerPolicy="no-referrer"
-                      />
-                      {item.status === 'Sold Out' ? (
-                        <span className="absolute top-3 right-3 bg-walnut text-[9px] text-white px-2.5 py-1 rounded-md font-bold uppercase tracking-wider border border-oak/30">
-                          Sold Out
-                        </span>
-                      ) : (
-                        <span className="absolute top-3 right-3 bg-[#060B18]/80 backdrop-blur-md text-[9px] text-oak px-2.5 py-1 rounded-md font-bold uppercase tracking-wider border border-line">
-                          {item.tag}
-                        </span>
-                      )}
-                    </div>
-                    <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
-                      <h4 
-                        onClick={() => handleOpenProductDetail(item.id)}
-                        className="text-xs md:text-sm font-semibold text-ivory leading-snug group-hover:text-oak transition-colors min-h-[40px] font-sans cursor-pointer"
-                      >
-                        {item.name}
-                      </h4>
-                      {item.status === 'Sold Out' ? (
-                        <button 
-                          onClick={() => handleOpenInquiry(`${item.name} (Backorder Request)`)} 
-                          className="w-full py-2 border border-line text-ivory-dim/60 hover:text-white hover:border-oak hover:bg-oak/10 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg cursor-pointer"
-                        >
-                          Backorder Query
-                        </button>
-                      ) : (
-                        <button 
-                          onClick={() => handleOpenInquiry(item.name)} 
-                          className="w-full py-2 border-2 border-oak hover:bg-oak hover:text-charcoal text-oak text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg cursor-pointer"
-                        >
-                          Call For Price
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                {visibleArrivals.map((item) => {
+                  const fullProduct = INITIAL_PRODUCTS.find(p => p.id === item.id);
+                  return (
+                    <ArrivalCard 
+                      key={item.id}
+                      item={item}
+                      product={fullProduct}
+                      onOpenDetail={handleOpenProductDetail}
+                      onInquiry={handleOpenInquiry}
+                    />
+                  );
+                })}
               </motion.div>
             </AnimatePresence>
           </div>
@@ -1993,20 +1978,21 @@ export default function Collections({
                   
                   {/* Left Side: Images Section */}
                   <div className="space-y-4">
-                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-line/40 bg-stone-950 group">
+                    <div 
+                      ref={detailContainerRef}
+                      onMouseMove={handleDetailMouseMove}
+                      onMouseLeave={handleDetailMouseLeave}
+                      className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-line/40 bg-stone-950 group"
+                    >
                       {(() => {
                         const currentImg = activeDetailImage || product.images[0];
-                        const isFlipped = currentImg.endsWith('#flipped');
                         return (
                           <img 
                             id="product-main-image"
                             src={currentImg} 
                             alt={product.title} 
-                            className={`w-full h-full object-cover transition-all duration-500 ease-out cursor-zoom-in origin-center ${
-                              isFlipped 
-                                ? 'scale-x-[-1] hover:scale-x-[-1.25] hover:scale-y-[1.25]' 
-                                : 'scale-100 hover:scale-125'
-                            }`}
+                            style={detailZoomStyle}
+                            className="w-full h-full object-cover transition-transform duration-300 ease-out cursor-zoom-in"
                             referrerPolicy="no-referrer"
                           />
                         );

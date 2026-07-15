@@ -4,6 +4,7 @@ import { ArrowLeft, X } from 'lucide-react';
 import { Product } from '../types';
 import { INITIAL_PRODUCTS, getProductAttributes } from '../data';
 import { getCategoryLabel } from './Catalog';
+import WoodFiberDoors from './WoodFiberDoors';
 
 interface BedroomProductDetail {
   id: string;
@@ -221,7 +222,8 @@ const SUBCATEGORIES_MAP: Record<string, string[]> = {
   dining: ['All', 'Dining Table Set', 'Sofa & Chairs', 'Almirah', 'Trolley'],
   'living-room': ['All', 'Console, Tables & Chester', 'Sofa, Chair & Deewan', 'Swing & Wooden Jhula'],
   outdoor: ['All', 'Chair & Tables', 'Picnic Set', 'Ring Swing & Wooden Jhula', 'Sofa, Chair & Deewan', 'Net Set'],
-  sets: ['All', 'Bridal Sets', 'Sofa Set', 'Table & Chair Sets', 'Net Set']
+  sets: ['All', 'Bridal Sets', 'Sofa Set', 'Table & Chair Sets', 'Net Set'],
+  interior: ['All', 'Wood & Fiber Doors', 'Wall Art & TV Units', 'Curtains', 'Kitchen Cabinets & Wardrobes']
 };
 
 export function getProductSubcategory(product: { name: string; description: string; category: string }): string {
@@ -702,14 +704,23 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
         </motion.div>
 
         {filteredProducts.length === 0 ? (
-          <div className="text-center py-24 px-6 border border-dashed border-stone-800 rounded-2xl bg-stone-900/20 max-w-lg mx-auto my-12 shadow-inner">
-            <div className="text-amber-500/80 text-4xl mb-4 font-light">∅</div>
-            <h3 className="text-lg font-sans font-medium text-amber-500 mb-2 uppercase tracking-wider">
-              No Products Available
-            </h3>
-            <p className="text-stone-400 font-sans text-xs max-w-sm mx-auto leading-relaxed">
-              We currently do not have any {selectedSubCategory || 'matching'} products in our Dining collection. Please check back later or contact us to custom order!
-            </p>
+          <div className="w-full">
+            {selectedSubCategory === 'Wood & Fiber Doors' ? (
+              <WoodFiberDoors />
+            ) : (
+              <>
+                <div className="text-center py-24 px-6 border border-dashed border-stone-800 rounded-2xl bg-stone-900/20 max-w-lg mx-auto my-12 shadow-inner">
+                  <div className="text-amber-500/80 text-4xl mb-4 font-light">∅</div>
+                  <h3 className="text-lg font-sans font-medium text-amber-500 mb-2 uppercase tracking-wider">
+                    No Products Available
+                  </h3>
+                  <p className="text-stone-400 font-sans text-xs max-w-sm mx-auto leading-relaxed">
+                    We currently do not have any {selectedSubCategory || 'matching'} products in our {getCategoryLabel(category)} collection. Please check back later or contact us to custom order!
+                  </p>
+                </div>
+                {(category === 'interior' && (!selectedSubCategory || selectedSubCategory === 'All')) && <WoodFiberDoors />}
+              </>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

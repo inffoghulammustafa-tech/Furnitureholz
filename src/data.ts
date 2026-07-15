@@ -2098,6 +2098,26 @@ export const INITIAL_PRODUCTS: Product[] = [
     joinery: 'Sliding blind dowels, curved leg-to-seat continuous mortise.'
   },
   {
+    id: 'sets-golden-deco-sofa',
+    name: 'Golden Deco Crown Shisham Wood 7 Seater Sofa Set',
+    category: 'sets',
+    price: 150000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Sheesham wood structure with premium Jacquard velvet upholstery and deco paint finish',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Golden-Crown-Shisham-Wood-Sofa-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Jacquard-Velvet-Upholstery-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Golden-Crown-Shisham-Wood-Sofa-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Deco-Paint-Furniture-IN-Faisalabad-600x420.jpg'
+    ],
+    badge: 'Premium',
+    description: 'A luxurious 7-seater sofa set featuring solid Sheesham wood structure, ornate golden crown carvings, and elegant Jacquard velvet upholstery.',
+    dimensions: 'Standard 7-Seater Configuration',
+    weight: '120 kg',
+    buildTime: '8-10 Weeks',
+    joinery: 'Doweled and reinforced'
+  },
+  {
     id: 'sets-prince-red-velvet-chair',
     name: 'Sheesham Wood High Back Prince Red Velvet Bedroom Chair',
     category: 'sets',
@@ -2267,21 +2287,6 @@ export const INITIAL_PRODUCTS: Product[] = [
     joinery: 'Interlocking steel bracket rails with high-tension locking pins, doweled cabinetry.'
   },
   {
-    id: 'sets-new-1',
-    name: 'Elegant Solid Shisham Wood Coffee Table Set',
-    category: 'sets',
-    price: 35000,
-    woodType: 'Sheesham',
-    materialDetails: 'Solid seasoned Shisham wood, high-gloss lacquer finish',
-    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/High-Gloss-Bed-Side-Table-600x420.jpg',
-    badge: 'New Arrival',
-    description: 'Beautiful coffee table set crafted from solid Shisham wood. Perfect for modern living spaces.',
-    dimensions: '100cm L x 50cm W x 45cm H',
-    weight: '20 kg',
-    buildTime: '2-3 Weeks',
-    joinery: 'Mortise-and-tenon'
-  },
-  {
     id: 'sets-new-2',
     name: 'Modern Minimalist Dining Table Set',
     category: 'sets',
@@ -2295,6 +2300,65 @@ export const INITIAL_PRODUCTS: Product[] = [
     weight: '50 kg',
     buildTime: '4-6 Weeks',
     joinery: 'Doweled and glued'
+  },
+  {
+    id: 'sets-versace-inlay-net-set',
+    name: 'Versace Inlay Crafted Sissoo Wood 3 Table Net Set',
+    category: 'sets',
+    price: 45000,
+    woodType: 'Sheesham',
+    materialDetails: 'Handcarved solid heartwood Sheesham wood with brass/ivory-wood inlaid patterns',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Versace-Shisham-Wood-3-Table-Net-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Versace-Shisham-Wood-3-Table-Net-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Versace-Sissoo-Wood-3-Net-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Versace-Shisham-Wood-3-Console-600x420.jpg'
+    ],
+    badge: 'Popular',
+    description: 'A masterpiece of classic inlay work, featuring a solid Sheesham wood structure with hand-carved brass/ivory-wood patterns. Includes 3 nesting tables.',
+    dimensions: '60cm L x 40cm W x 50cm H (Largest)',
+    weight: '15 kg',
+    buildTime: '4-6 Weeks',
+    joinery: 'Doweled'
+  },
+  {
+    id: 'sets-leather-net-set',
+    name: 'Texture Leather Solid Structure 3 Piece Net Set',
+    category: 'sets',
+    price: 38000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Sheesham structure with textured premium leather tops',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Net-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/3-Piece-Net-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Leather-Fabricated-Net-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Leather-Top-Net-Set-600x420.jpg'
+    ],
+    badge: 'Modern',
+    description: 'A modern net set featuring solid Sheesham wood structure with textured leather-top surfaces, providing a unique blend of style and durability.',
+    dimensions: '55cm L x 35cm W x 45cm H (Largest)',
+    weight: '18 kg',
+    buildTime: '3-5 Weeks',
+    joinery: 'Doweled'
+  },
+  {
+    id: 'sets-inlay-top-net-set',
+    name: 'Inlay Top Solid Wood Classic Finish 3 Table Net Set',
+    category: 'sets',
+    price: 45000,
+    woodType: 'Sheesham',
+    materialDetails: 'Solid seasoned Sheesham wood with detailed floral inlay top finish',
+    image: 'https://furnitureholz.com/wp-content/uploads/2021/04/Solid-Wood-Inlay-Net-Set-600x420.jpg',
+    images: [
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Solid-Wood-Inlay-Net-Set-600x420.jpg',
+      'https://furnitureholz.com/wp-content/uploads/2021/04/Plastic-Wooden-Copper-Inlay-Work-3-Table-Set-600x420.jpg'
+    ],
+    badge: 'Classic',
+    description: 'A classic 3-table net set featuring a solid Sheesham wood structure with detailed floral inlay work on the top surfaces.',
+    dimensions: '60cm L x 40cm W x 50cm H (Largest)',
+    weight: '16 kg',
+    buildTime: '4-6 Weeks',
+    joinery: 'Doweled'
   },
   {
     id: 'sets-new-3',
