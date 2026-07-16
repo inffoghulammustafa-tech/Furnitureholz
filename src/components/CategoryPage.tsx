@@ -5,6 +5,9 @@ import { Product } from '../types';
 import { INITIAL_PRODUCTS, getProductAttributes } from '../data';
 import { getCategoryLabel } from './Catalog';
 import WoodFiberDoors from './WoodFiberDoors';
+import WallArtTvUnits from './WallArtTvUnits';
+import Curtains from './Curtains';
+import KitchenCabinets from './KitchenCabinets';
 
 interface BedroomProductDetail {
   id: string;
@@ -707,6 +710,12 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
           <div className="w-full">
             {selectedSubCategory === 'Wood & Fiber Doors' ? (
               <WoodFiberDoors />
+            ) : selectedSubCategory === 'Wall Art & TV Units' ? (
+              <WallArtTvUnits />
+            ) : selectedSubCategory === 'Curtains' ? (
+              <Curtains />
+            ) : selectedSubCategory === 'Kitchen Cabinets & Wardrobes' ? (
+              <KitchenCabinets />
             ) : (
               <>
                 <div className="text-center py-24 px-6 border border-dashed border-stone-800 rounded-2xl bg-stone-900/20 max-w-lg mx-auto my-12 shadow-inner">
@@ -718,7 +727,14 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                     We currently do not have any {selectedSubCategory || 'matching'} products in our {getCategoryLabel(category)} collection. Please check back later or contact us to custom order!
                   </p>
                 </div>
-                {(category === 'interior' && (!selectedSubCategory || selectedSubCategory === 'All')) && <WoodFiberDoors />}
+                {(category === 'interior' && (!selectedSubCategory || selectedSubCategory === 'All')) && (
+                  <>
+                    <WoodFiberDoors />
+                    <WallArtTvUnits />
+                    <Curtains />
+                    <KitchenCabinets />
+                  </>
+                )}
               </>
             )}
           </div>

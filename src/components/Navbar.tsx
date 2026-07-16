@@ -15,9 +15,10 @@ interface NavbarProps {
   onOpenSearch: () => void;
   onOpenCategory: (cat: string, subCat?: string | null) => void;
   onGoHome: () => void;
+  onOpenShowroom: () => void;
 }
 
-export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenSearch, onOpenCategory, onGoHome }: NavbarProps) {
+export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenSearch, onOpenCategory, onGoHome, onOpenShowroom }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hideHeader, setHideHeader] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -198,7 +199,7 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenSearch, 
                   href="#virtual-showroom"
                   onClick={(e) => {
                     e.preventDefault();
-                    scrollToSection('virtual-showroom');
+                    onOpenShowroom();
                   }}
                   className="font-sans text-[11px] xl:text-[13px] 2xl:text-[14px] font-bold uppercase tracking-wider text-ivory-dim hover:text-oak transition-colors duration-200"
                 >
@@ -320,7 +321,8 @@ export default function Navbar({ cart, onOpenCart, onOpenAdvisor, onOpenSearch, 
                 href="#virtual-showroom"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection('virtual-showroom');
+                  onOpenShowroom();
+                  setMobileMenuOpen(false);
                 }}
                 className="font-display text-lg text-ivory-dim hover:text-oak transition-colors duration-200 block font-bold"
               >

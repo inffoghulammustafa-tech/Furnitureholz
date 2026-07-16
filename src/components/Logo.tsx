@@ -21,7 +21,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
   return (
     <div className={`flex transition-all duration-300 group ${
       isNavbar 
-        ? 'flex-col items-center justify-center gap-1.5 text-center' 
+        ? 'flex-col items-center justify-center gap-0 text-center' 
         : 'flex-col items-center justify-center text-center'
     } ${className}`}>
       {/* SVG Icon matching 1 img exactly */}
@@ -181,7 +181,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
       {showText && (
         <div className={`select-none transition-colors duration-300 ${
           isNavbar
-            ? 'flex flex-col items-center justify-center'
+            ? 'flex flex-col items-center justify-center -mt-2.5'
             : isFooter 
             ? 'mt-1' 
             : isDrawer 

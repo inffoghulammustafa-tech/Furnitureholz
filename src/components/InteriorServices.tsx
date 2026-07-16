@@ -7,6 +7,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Compass, PenTool, Layout, Check, Sparkles, Send, FileText } from 'lucide-react';
 import WoodFiberDoors from './WoodFiberDoors';
+import WallArtTvUnits from './WallArtTvUnits';
+import Curtains from './Curtains';
+import KitchenCabinets from './KitchenCabinets';
 
 export default function InteriorServices() {
   const [inquiryName, setInquiryName] = useState('');
@@ -214,6 +217,9 @@ export default function InteriorServices() {
       </section>
 
       <WoodFiberDoors />
+      <WallArtTvUnits />
+      <Curtains />
+      <KitchenCabinets />
     </>
   );
 }

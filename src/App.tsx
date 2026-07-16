@@ -31,6 +31,7 @@ export default function App() {
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [externalShowroomInquiry, setExternalShowroomInquiry] = useState<string | null>(null);
   
   // Custom Toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -157,6 +158,12 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleOpenShowroom = () => {
+    setActiveCategory(null);
+    setActiveSubCategory(null);
+    setExternalShowroomInquiry('General Inquiry');
+  };
+
   return (
     <div className="min-h-screen bg-charcoal text-ivory relative selection:bg-oak selection:text-charcoal flex flex-col justify-between">
       
@@ -175,6 +182,7 @@ export default function App() {
           setActiveSubCategory(subCat || null);
         }}
         onGoHome={handleGoHome}
+        onOpenShowroom={handleOpenShowroom}
       />
 
       {/* Main Sections */}
@@ -205,6 +213,8 @@ export default function App() {
               onOpenPrivacy={() => setIsPrivacyOpen(true)}
               onAddProductToQuote={handleAddProductToQuote}
               onConfigureProduct={handleConfigureProductFromCatalog}
+              externalInquiryItem={externalShowroomInquiry}
+              onCloseExternalInquiry={() => setExternalShowroomInquiry(null)}
             />
 
             {/* Product Catalog Display and inspection detail modals */}

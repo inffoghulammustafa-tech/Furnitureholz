@@ -670,13 +670,17 @@ interface CollectionsProps {
   onOpenPrivacy?: () => void;
   onAddProductToQuote?: (product: Product) => void;
   onConfigureProduct?: (product: Product) => void;
+  externalInquiryItem?: string | null;
+  onCloseExternalInquiry?: () => void;
 }
 
 export default function Collections({ 
   onSelectCollection, 
   onOpenPrivacy,
   onAddProductToQuote,
-  onConfigureProduct
+  onConfigureProduct,
+  externalInquiryItem,
+  onCloseExternalInquiry
 }: CollectionsProps) {
   const [currentPage, setCurrentPage] = useState(0); // 0 or 1
   const [slideDirection, setSlideDirection] = useState(1); // 1 or -1
@@ -741,6 +745,12 @@ export default function Collections({
   const [activeInquiryItem, setActiveInquiryItem] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  useEffect(() => {
+    if (externalInquiryItem) {
+      setActiveInquiryItem(externalInquiryItem);
+    }
+  }, [externalInquiryItem]);
   
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [activeDetailImage, setActiveDetailImage] = useState<string>('');
@@ -857,6 +867,9 @@ export default function Collections({
     setClientName('');
     setClientPhone('');
     setSpecifications('');
+    if (onCloseExternalInquiry) {
+      onCloseExternalInquiry();
+    }
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -1660,7 +1673,7 @@ export default function Collections({
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 bg-white rounded-full shadow-sm border border-stone-100/80 text-stone-900"
+                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(198,139,89,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
                       >
                         <Home className="w-6 h-6 stroke-[1.25]" />
                       </motion.div>
@@ -1684,7 +1697,7 @@ export default function Collections({
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: -5 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 bg-white rounded-full shadow-sm border border-stone-100/80 text-stone-900"
+                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(198,139,89,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
                       >
                         <Phone className="w-6 h-6 stroke-[1.25]" />
                       </motion.div>
@@ -1717,7 +1730,7 @@ export default function Collections({
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 10 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 bg-white rounded-full shadow-sm border border-stone-100/80 text-stone-900"
+                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(198,139,89,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
                       >
                         <Mail className="w-6 h-6 stroke-[1.25]" />
                       </motion.div>
@@ -1875,7 +1888,7 @@ export default function Collections({
                         <Mail className="w-4 h-4" />
                       </span>
                       <a 
-                        href="https://furnitureholz.com" 
+                        href="https://furnitureholz-wood.vercel.app/" 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="hover:text-amber-500 font-bold transition-all duration-300 relative py-0.5 block group/link"
