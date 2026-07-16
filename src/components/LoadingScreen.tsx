@@ -60,7 +60,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
           >
             {/* Trail */}
-            <div className="w-48 h-[2px] bg-gradient-to-r from-transparent via-[#FFC72C] to-[#FFC72C] shadow-[0_0_20px_rgba(255,199,44,0.9)] mr-2" />
+            <div className="w-48 h-[2px] bg-gradient-to-r from-transparent via-[#DCA273] to-[#DCA273] shadow-[0_0_20px_rgba(255,199,44,0.9)] mr-2" />
             
             {/* Morphing Icon */}
             <AnimatePresence mode="wait">
@@ -70,7 +70,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 exit={{ opacity: 0, scale: 0.5, rotate: 15 }}
                 transition={{ duration: 0.3 }}
-                className="text-[#FFC72C] filter drop-shadow-[0_0_15px_rgba(255,199,44,1)] relative z-20"
+                className="text-[#DCA273] filter drop-shadow-[0_0_15px_rgba(255,199,44,1)] relative z-20"
               >
                 <CurrentIcon strokeWidth={1.5} size={36} />
               </motion.div>
@@ -85,7 +85,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
         >
-          <span className="font-display font-extrabold text-3xl md:text-5xl tracking-[0.2em] text-[#FFC72C] drop-shadow-[0_0_15px_rgba(255,199,44,0.3)]">
+          <span className="font-display font-extrabold text-3xl md:text-5xl tracking-[0.2em] text-[#DCA273] drop-shadow-[0_0_15px_rgba(255,199,44,0.3)]">
             FURNITURE
           </span>
           <span className="font-sans font-bold text-3xl md:text-5xl tracking-[0.2em] text-white">
@@ -99,7 +99,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             <motion.p
               key={loadingText}
               className="font-mono text-xs md:text-sm font-bold tracking-[0.25em] uppercase text-center"
-              style={{ color: loadingText.includes('CRAFTING') ? '#FFC72C' : '#FFFFFF' }}
+              style={{ color: loadingText.includes('CRAFTING') ? '#DCA273' : '#FFFFFF' }}
               initial={{ opacity: 0, filter: 'blur(5px)', y: 5 }}
               animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
               exit={{ opacity: 0, filter: 'blur(5px)', y: -5 }}
@@ -113,7 +113,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         {/* Loading Progress Bar */}
         <div className="w-72 h-[2px] bg-white/10 overflow-hidden relative">
           <motion.div
-            className="absolute top-0 left-0 h-full bg-[#FFC72C] shadow-[0_0_15px_rgba(255,199,44,1)]"
+            className="absolute top-0 left-0 h-full bg-[#DCA273] shadow-[0_0_15px_rgba(255,199,44,1)]"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 5.5, ease: "circOut" }}
@@ -127,7 +127,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         {[...Array(25)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute bg-[#FFC72C] rounded-full"
+            className="absolute bg-[#DCA273] rounded-full"
             style={{
               width: Math.random() * 3 + 1 + 'px',
               height: Math.random() * 3 + 1 + 'px',

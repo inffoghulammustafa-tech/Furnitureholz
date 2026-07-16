@@ -196,7 +196,7 @@ const getBedroomDetail = (product: Product): BedroomProductDetail => {
 
 const getOptionHoverClass = (opt: string) => {
   const norm = opt.trim().toLowerCase();
-  if (norm === 'all') return 'hover:bg-orange-600 hover:text-white';
+  if (norm === 'all') return 'hover:bg-oak hover:text-white';
   if (norm === 'caramel brown') return 'hover:bg-blue-600 hover:text-white';
   const colors = [
     'hover:bg-emerald-600 hover:text-white',
@@ -204,7 +204,7 @@ const getOptionHoverClass = (opt: string) => {
     'hover:bg-rose-600 hover:text-white',
     'hover:bg-indigo-600 hover:text-white',
     'hover:bg-teal-600 hover:text-white',
-    'hover:bg-amber-500 hover:text-black',
+    'hover:bg-oak hover:text-black',
     'hover:bg-pink-600 hover:text-white',
     'hover:bg-violet-600 hover:text-white',
     'hover:bg-sky-600 hover:text-white',
@@ -571,8 +571,8 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                   }}
                   className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 border cursor-pointer ${
                     isActive
-                      ? 'bg-gradient-to-r from-amber-600 to-amber-700 border-amber-500 text-white shadow-lg shadow-amber-900/30'
-                      : 'bg-stone-900/40 hover:bg-stone-800 border-stone-800 text-stone-400 hover:text-white hover:border-amber-700/40'
+                      ? 'bg-gradient-to-r from-oak to-sage border-oak text-white shadow-lg shadow-walnut/30'
+                      : 'bg-stone-900/40 hover:bg-stone-800 border-stone-800 text-stone-400 hover:text-white hover:border-sage/40'
                   }`}
                 >
                   {subCat}
@@ -719,8 +719,8 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
             ) : (
               <>
                 <div className="text-center py-24 px-6 border border-dashed border-stone-800 rounded-2xl bg-stone-900/20 max-w-lg mx-auto my-12 shadow-inner">
-                  <div className="text-amber-500/80 text-4xl mb-4 font-light">∅</div>
-                  <h3 className="text-lg font-sans font-medium text-amber-500 mb-2 uppercase tracking-wider">
+                  <div className="text-oak/80 text-4xl mb-4 font-light">∅</div>
+                  <h3 className="text-lg font-sans font-medium text-oak mb-2 uppercase tracking-wider">
                     No Products Available
                   </h3>
                   <p className="text-stone-400 font-sans text-xs max-w-sm mx-auto leading-relaxed">
@@ -753,7 +753,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                     className="w-full h-full object-cover group-hover/img:scale-120 transition-transform duration-500" 
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="bg-[#060B18]/95 text-amber-500 border border-amber-500/30 px-4 py-2 rounded text-xs font-mono tracking-widest uppercase shadow-lg">
+                    <span className="bg-[#060B18]/95 text-oak border border-oak/30 px-4 py-2 rounded text-xs font-mono tracking-widest uppercase shadow-lg">
                       View Details
                     </span>
                   </div>
@@ -762,7 +762,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                   {/* Clickable Title for easy exploration */}
                   <h3 
                     onClick={() => setSelectedDetailProduct(product)}
-                    className="text-sm text-ivory font-medium mb-6 min-h-[3rem] cursor-pointer hover:text-amber-500 transition-colors"
+                    className="text-sm text-ivory font-medium mb-6 min-h-[3rem] cursor-pointer hover:text-oak transition-colors"
                   >
                     {product.name}
                   </h3>
@@ -796,7 +796,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
               }}
               disabled={currentPage === 1}
               className={`text-base font-bold cursor-pointer transition-colors p-2 ${
-                currentPage === 1 ? 'text-stone-600 cursor-not-allowed' : 'text-stone-400 hover:text-amber-500'
+                currentPage === 1 ? 'text-stone-600 cursor-not-allowed' : 'text-stone-400 hover:text-oak'
               }`}
               aria-label="Previous page"
             >
@@ -813,7 +813,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all cursor-pointer ${
                   currentPage === pageNum
                     ? 'bg-gray-300 text-charcoal shadow-md font-bold'
-                    : 'text-stone-400 hover:text-amber-500 hover:bg-stone-800/40'
+                    : 'text-stone-400 hover:text-oak hover:bg-stone-800/40'
                 }`}
               >
                 {pageNum}
@@ -827,7 +827,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
               }}
               disabled={currentPage === totalPages}
               className={`text-base font-bold cursor-pointer transition-colors p-2 ${
-                currentPage === totalPages ? 'text-stone-600 cursor-not-allowed' : 'text-stone-400 hover:text-amber-500'
+                currentPage === totalPages ? 'text-stone-600 cursor-not-allowed' : 'text-stone-400 hover:text-oak'
               }`}
               aria-label="Next page"
             >
@@ -838,7 +838,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
 
         {/* Dynamic & Beautiful Description Block at the bottom of the Bedroom Collection page */}
         {category === 'bedroom' && (
-          <div className="max-w-5xl mx-auto mt-20 pt-16 border-t border-amber-500/10 text-center">
+          <div className="max-w-5xl mx-auto mt-20 pt-16 border-t border-oak/10 text-center">
             <p className="text-sm md:text-base text-stone-400 leading-relaxed font-sans font-light max-w-4xl mx-auto">
               Bedroom is the most important space of any home. In fact, the core essence of a home building is to have a comfortable, coziest and luxurious corner spot for sleep, share and relax. Furniture Holz is your comfort partner, providing complete bedroom interior and furniture solutions with option of personalization and customization. Our designer bedroom collection offer all kinds of beds, bed sets and other complimentary bedroom furniture. Live smart with our solid wood sustainable furniture. For all types of bed designs, visit our furniture showrooms in Faisalabad and Lahore. We also provide furniture maintenance and polishing services at purpose build furniture workshops in biggest cities of Pakistan, which includes Faisalabad and Lahore.
             </p>
@@ -869,12 +869,12 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-4xl bg-[#060B18] text-[#f4efe6] rounded-2xl border border-amber-500/35 overflow-hidden shadow-2xl p-6 md:p-10 z-10 max-h-[90vh] overflow-y-auto custom-scrollbar"
+                className="relative w-full max-w-4xl bg-[#060B18] text-[#f4efe6] rounded-2xl border border-oak/35 overflow-hidden shadow-2xl p-6 md:p-10 z-10 max-h-[90vh] overflow-y-auto custom-scrollbar"
               >
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedDetailProduct(null)}
-                  className="absolute top-6 right-6 p-1.5 rounded-full border border-amber-500/10 text-ivory-dim/60 hover:text-amber-500 hover:border-amber-500/30 transition-all duration-200 z-20 bg-[#0e1626]"
+                  className="absolute top-6 right-6 p-1.5 rounded-full border border-oak/10 text-ivory-dim/60 hover:text-oak hover:border-oak/30 transition-all duration-200 z-20 bg-[#0e1626]"
                   aria-label="Close product details"
                 >
                   <X className="w-4 h-4" />
@@ -895,18 +895,18 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                       />
 
                       {/* Hover status/hint badge */}
-                      <div className="absolute bottom-3 left-3 bg-[#060B18]/85 backdrop-blur-md px-2.5 py-1 rounded-md text-[9px] font-mono border border-amber-500/20 tracking-wider text-sage uppercase">
+                      <div className="absolute bottom-3 left-3 bg-[#060B18]/85 backdrop-blur-md px-2.5 py-1 rounded-md text-[9px] font-mono border border-oak/20 tracking-wider text-sage uppercase">
                         🔍 Hover to Zoom
                       </div>
 
                       {/* Status/Badge overlay */}
                       {detail.status === 'Sold Out' ? (
-                        <span className="absolute top-4 right-4 bg-amber-600 text-[#11100c] font-mono text-[9px] tracking-widest uppercase py-1 px-2.5 font-bold shadow-md rounded-sm">
+                        <span className="absolute top-4 right-4 bg-oak text-[#11100c] font-mono text-[9px] tracking-widest uppercase py-1 px-2.5 font-bold shadow-md rounded-sm">
                           SOLD OUT
                         </span>
                       ) : (
                         product.badge && (
-                          <span className="absolute top-4 right-4 bg-amber-500 text-[#11100c] font-mono text-[9px] tracking-widest uppercase py-1 px-2.5 font-bold shadow-md rounded-sm">
+                          <span className="absolute top-4 right-4 bg-oak text-[#11100c] font-mono text-[9px] tracking-widest uppercase py-1 px-2.5 font-bold shadow-md rounded-sm">
                             {product.badge}
                           </span>
                         )
@@ -922,8 +922,8 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                             onClick={() => setActiveImage(img)}
                             className={`relative w-24 h-16 rounded-lg overflow-hidden border transition-all cursor-pointer ${
                               activeImage === img
-                                ? 'border-amber-500 ring-1 ring-amber-500'
-                                : 'border-[#2a2720] hover:border-amber-500/50'
+                                ? 'border-oak ring-1 ring-oak'
+                                : 'border-[#2a2720] hover:border-oak/50'
                             }`}
                           >
                             <img src={img} className="w-full h-full object-cover" />
@@ -939,8 +939,8 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                             onClick={() => setActiveImage(product.image)}
                             className={`relative w-24 h-16 rounded-lg overflow-hidden border transition-all cursor-pointer ${
                               activeImage === product.image || !activeImage.endsWith('#flipped')
-                                ? 'border-amber-500 ring-1 ring-amber-500'
-                                : 'border-[#2a2720] hover:border-amber-500/50'
+                                ? 'border-oak ring-1 ring-oak'
+                                : 'border-[#2a2720] hover:border-oak/50'
                             }`}
                           >
                             <img src={product.image} className="w-full h-full object-cover" />
@@ -954,8 +954,8 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                             onClick={() => setActiveImage(product.image + '#flipped')}
                             className={`relative w-24 h-16 rounded-lg overflow-hidden border transition-all cursor-pointer ${
                               activeImage === (product.image + '#flipped')
-                                ? 'border-amber-500 ring-1 ring-amber-500'
-                                : 'border-[#2a2720] hover:border-amber-500/50'
+                                ? 'border-oak ring-1 ring-oak'
+                                : 'border-[#2a2720] hover:border-oak/50'
                             }`}
                           >
                             <img src={product.image} className="w-full h-full object-cover scale-x-[-1]" />
@@ -977,9 +977,9 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                       </h2>
 
                       {/* TMR & SKU row */}
-                      <div className="text-xs font-mono text-amber-500 mb-4 flex items-center gap-2">
+                      <div className="text-xs font-mono text-oak mb-4 flex items-center gap-2">
                         <span>TMR #{detail.tmr}</span>
-                        <span className="text-amber-500/30">|</span>
+                        <span className="text-oak/30">|</span>
                         <span>SKU: {detail.sku}</span>
                       </div>
 
@@ -989,7 +989,7 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                           href={whatsappUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-block px-6 py-2.5 bg-[#0e1626] hover:bg-[#1a2436] border border-amber-500/40 text-[#f4efe6] text-xs font-bold uppercase tracking-wider rounded-lg transition-all"
+                          className="inline-block px-6 py-2.5 bg-[#0e1626] hover:bg-[#1a2436] border border-oak/40 text-[#f4efe6] text-xs font-bold uppercase tracking-wider rounded-lg transition-all"
                         >
                           {detail.status === 'Sold Out' ? 'BACKORDER QUERY' : 'CALL FOR PRICE'}
                         </a>
@@ -1003,8 +1003,8 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                       </ul>
 
                       {/* Base Info */}
-                      <div className="text-xs text-ivory-dim/60 font-mono space-y-1.5 pt-4 border-t border-amber-500/10">
-                        <div><strong>SKU:</strong> <span className="text-amber-500">{detail.sku}</span></div>
+                      <div className="text-xs text-ivory-dim/60 font-mono space-y-1.5 pt-4 border-t border-oak/10">
+                        <div><strong>SKU:</strong> <span className="text-oak">{detail.sku}</span></div>
                         <div><strong>Categories:</strong> <span className="text-[#8e8574]">{detail.categories}</span></div>
                       </div>
                     </div>
@@ -1012,27 +1012,27 @@ export default function CategoryPage({ category, initialSubCategory, onAddProduc
                 </div>
 
                 {/* Additional Information Table Section */}
-                <div className="mt-12 pt-8 border-t border-amber-500/10">
-                  <div className="text-center font-mono font-medium text-xs tracking-widest text-amber-500 uppercase mb-6">
+                <div className="mt-12 pt-8 border-t border-oak/10">
+                  <div className="text-center font-mono font-medium text-xs tracking-widest text-oak uppercase mb-6">
                     Additional Information
                   </div>
 
-                  <div className="overflow-hidden rounded-xl border border-amber-500/20 bg-[#0e1626]">
+                  <div className="overflow-hidden rounded-xl border border-oak/20 bg-[#0e1626]">
                     <table className="w-full text-left border-collapse font-sans text-xs md:text-sm">
                       <tbody>
-                        <tr className="border-b border-amber-500/10 hover:bg-white/2">
+                        <tr className="border-b border-oak/10 hover:bg-white/2">
                           <td className="p-4 w-1/3 font-bold uppercase text-[10px] tracking-wider text-ivory-dim/70">Color</td>
                           <td className="p-4 text-ivory">{detail.color}</td>
                         </tr>
-                        <tr className="border-b border-amber-500/10 hover:bg-white/2">
+                        <tr className="border-b border-oak/10 hover:bg-white/2">
                           <td className="p-4 font-bold uppercase text-[10px] tracking-wider text-ivory-dim/70">Material</td>
                           <td className="p-4 text-ivory">{detail.material}</td>
                         </tr>
-                        <tr className="border-b border-amber-500/10 hover:bg-white/2">
+                        <tr className="border-b border-oak/10 hover:bg-white/2">
                           <td className="p-4 font-bold uppercase text-[10px] tracking-wider text-ivory-dim/70">Polish/ Upholstery</td>
                           <td className="p-4 text-ivory">{detail.polish}</td>
                         </tr>
-                        <tr className="border-b border-amber-500/10 hover:bg-white/2">
+                        <tr className="border-b border-oak/10 hover:bg-white/2">
                           <td className="p-4 font-bold uppercase text-[10px] tracking-wider text-ivory-dim/70">Style</td>
                           <td className="p-4 text-ivory">{detail.style}</td>
                         </tr>

@@ -1173,7 +1173,7 @@ export default function Collections({
                   className="inline-block bg-blue-600 text-white font-semibold text-sm uppercase tracking-widest px-8 py-4 shadow-lg hover:shadow-blue-600/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 rounded-sm group relative overflow-hidden cursor-pointer"
                 >
                   <span className="relative z-10 transition-colors duration-300 group-hover:text-blue-900">Shop Now</span>
-                  <div className="absolute inset-0 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left -z-0"></div>
+                  <div className="absolute inset-0 bg-oak scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left -z-0"></div>
                 </button>
               </div>
             </div>
@@ -1424,14 +1424,14 @@ export default function Collections({
             <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200 py-4 px-6 md:px-12 flex justify-between items-center">
               <button 
                 onClick={handleCloseInquiry}
-                className="group flex items-center gap-2.5 text-stone-600 hover:text-amber-800 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                className="group flex items-center gap-2.5 text-stone-600 hover:text-walnut text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
               >
-                <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform text-amber-700" />
+                <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform text-sage" />
                 <span>Back to Woodwork Portfolio</span>
               </button>
               
               <div className="hidden md:block text-center">
-                <span className="text-[10px] font-bold text-amber-700 tracking-[0.2em] uppercase font-mono block">
+                <span className="text-[10px] font-bold text-sage tracking-[0.2em] uppercase font-mono block">
                   HOLZCRAFT PREMIUM OUTLET
                 </span>
               </div>
@@ -1450,13 +1450,13 @@ export default function Collections({
             <div className="flex-grow py-12 px-6 md:px-12 max-w-7xl mx-auto w-full space-y-12">
               {/* Page Centered Heading */}
               <div className="text-center max-w-3xl mx-auto space-y-3">
-                <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-amber-750 uppercase block">
+                <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-sage uppercase block">
                   OUR PHYSICAL TOUCHPOINTS
                 </span>
                 <h1 className="text-3xl md:text-5xl font-display font-semibold text-stone-900 uppercase tracking-tight font-serif">
                   Faisalabad Showrooms
                 </h1>
-                <div className="w-16 h-0.5 bg-amber-700 mx-auto rounded-full" />
+                <div className="w-16 h-0.5 bg-sage mx-auto rounded-full" />
                 <p className="text-xs md:text-sm text-stone-500 font-sans max-w-xl mx-auto leading-relaxed">
                   Experience the physical density and weight of seasoned solid Sheesham wood before you finalize your bespoke pricing order.
                 </p>
@@ -1475,7 +1475,7 @@ export default function Collections({
                         <span className="font-mono text-xs font-bold text-stone-800 uppercase tracking-wider">
                           1. Main Branch Showroom
                         </span>
-                        <span className="text-[9px] bg-amber-100 text-amber-800 border border-amber-200/50 px-2.5 py-1 rounded uppercase font-bold font-mono">
+                        <span className="text-[9px] bg-ivory-dim text-walnut border border-ivory-dim/50 px-2.5 py-1 rounded uppercase font-bold font-mono">
                           AL-Madina Tower
                         </span>
                       </div>
@@ -1558,7 +1558,7 @@ export default function Collections({
                 {/* Right Part: Inquiry Callback Request Form (4 Cols) */}
                 <div className="lg:col-span-4 bg-stone-50 border border-stone-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-md sticky top-24">
                   <div className="text-left space-y-1.5 pb-4 border-b border-stone-200">
-                    <span className="text-[10px] font-mono font-bold tracking-widest text-amber-800 uppercase block">
+                    <span className="text-[10px] font-mono font-bold tracking-widest text-walnut uppercase block">
                       Bespoke Pricing
                     </span>
                     <h3 className="text-xl font-display font-semibold text-stone-950 font-serif">
@@ -1578,7 +1578,7 @@ export default function Collections({
                         type="text" 
                         value={activeInquiryItem} 
                         readOnly 
-                        className="w-full px-4 py-2.5 bg-stone-100 border border-stone-300 rounded-xl text-xs font-bold text-amber-800 focus:outline-none"
+                        className="w-full px-4 py-2.5 bg-stone-100 border border-stone-300 rounded-xl text-xs font-bold text-walnut focus:outline-none"
                       />
                     </div>
                     
@@ -1592,7 +1592,7 @@ export default function Collections({
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
                         placeholder="Ali Ahmed" 
-                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-amber-700 focus:ring-1 focus:ring-amber-700 rounded-xl text-xs text-stone-850 focus:outline-none transition-colors"
+                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-sage focus:ring-1 focus:ring-sage rounded-xl text-xs text-stone-850 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -1606,7 +1606,7 @@ export default function Collections({
                         value={clientPhone}
                         onChange={(e) => setClientPhone(e.target.value)}
                         placeholder="e.g., 0322 6638762" 
-                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-amber-700 focus:ring-1 focus:ring-amber-700 rounded-xl text-xs text-stone-850 focus:outline-none transition-colors"
+                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-sage focus:ring-1 focus:ring-sage rounded-xl text-xs text-stone-850 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -1617,7 +1617,7 @@ export default function Collections({
                       <select 
                         value={woodSelection}
                         onChange={(e) => setWoodSelection(e.target.value)}
-                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-amber-700 focus:ring-1 focus:ring-amber-700 rounded-xl text-xs text-stone-850 focus:outline-none transition-colors cursor-pointer"
+                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-sage focus:ring-1 focus:ring-sage rounded-xl text-xs text-stone-850 focus:outline-none transition-colors cursor-pointer"
                       >
                         <option>Pure Sheesham Wood (Tali)</option>
                         <option>Premium Golden Teak (Sagan)</option>
@@ -1635,14 +1635,14 @@ export default function Collections({
                         onChange={(e) => setSpecifications(e.target.value)}
                         placeholder="E.g., Size 6ft x 6.5ft, royal red velvet seating, walnut dark polish gloss..." 
                         rows={3} 
-                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-amber-700 focus:ring-1 focus:ring-amber-700 rounded-xl text-xs text-stone-850 focus:outline-none transition-colors resize-none"
+                        className="w-full px-4 py-2.5 bg-white border border-stone-300 focus:border-sage focus:ring-1 focus:ring-sage rounded-xl text-xs text-stone-850 focus:outline-none transition-colors resize-none"
                       />
                     </div>
 
                     <div className="space-y-3 pt-2">
                       <button 
                         type="submit" 
-                        className="w-full py-3 bg-amber-800 hover:bg-stone-900 text-white font-bold rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-md cursor-pointer"
+                        className="w-full py-3 bg-walnut hover:bg-stone-900 text-white font-bold rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow-md cursor-pointer"
                       >
                         Send Callback Request
                       </button>
@@ -1673,7 +1673,7 @@ export default function Collections({
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(198,139,89,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
+                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(220,162,115,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
                       >
                         <Home className="w-6 h-6 stroke-[1.25]" />
                       </motion.div>
@@ -1697,7 +1697,7 @@ export default function Collections({
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: -5 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(198,139,89,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
+                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(220,162,115,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
                       >
                         <Phone className="w-6 h-6 stroke-[1.25]" />
                       </motion.div>
@@ -1707,7 +1707,7 @@ export default function Collections({
                       <div className="space-y-2.5 text-xs text-stone-600 font-sans leading-relaxed">
                         <a 
                           href="tel:03041111857"
-                          className="block font-medium hover:text-amber-800 transition-colors font-sans text-stone-700"
+                          className="block font-medium hover:text-walnut transition-colors font-sans text-stone-700"
                         >
                           UAN 0304 1111857
                         </a>
@@ -1730,7 +1730,7 @@ export default function Collections({
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 10 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(198,139,89,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
+                        className="p-3 bg-white hover:bg-oak hover:text-white hover:border-oak hover:shadow-[0_0_20px_rgba(220,162,115,0.6)] rounded-full shadow-sm border border-stone-100/80 text-stone-900 transition-all duration-300"
                       >
                         <Mail className="w-6 h-6 stroke-[1.25]" />
                       </motion.div>
@@ -1740,7 +1740,7 @@ export default function Collections({
                       <div className="text-xs text-stone-600 font-sans leading-relaxed">
                         <a 
                           href="mailto:info@furnitureholz.com"
-                          className="hover:text-amber-800 transition-colors duration-200 font-medium tracking-wide block text-stone-750"
+                          className="hover:text-walnut transition-colors duration-200 font-medium tracking-wide block text-stone-750"
                         >
                           info@furnitureholz.com
                         </a>
@@ -1769,7 +1769,7 @@ export default function Collections({
                       href="https://facebook.com/furnitureholz" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="hover:text-amber-500 hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
+                      className="hover:text-oak hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
                       title="Facebook"
                     >
                       <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
@@ -1780,7 +1780,7 @@ export default function Collections({
                       href="https://tiktok.com/@furnitureholz" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="hover:text-amber-500 hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
+                      className="hover:text-oak hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
                       title="TikTok"
                     >
                       <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
@@ -1791,7 +1791,7 @@ export default function Collections({
                       href="https://youtube.com/c/furnitureholz" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="hover:text-amber-500 hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
+                      className="hover:text-oak hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
                       title="YouTube"
                     >
                       <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
@@ -1802,7 +1802,7 @@ export default function Collections({
                       href="https://instagram.com/furnitureholz" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="hover:text-amber-500 hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
+                      className="hover:text-oak hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
                       title="Instagram"
                     >
                       <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
@@ -1813,7 +1813,7 @@ export default function Collections({
                       href="https://pinterest.com/furnitureholz" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="hover:text-amber-500 hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
+                      className="hover:text-oak hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
                       title="Pinterest"
                     >
                       <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
@@ -1824,7 +1824,7 @@ export default function Collections({
                       href="https://linkedin.com/company/furnitureholz" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="hover:text-amber-500 hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
+                      className="hover:text-oak hover:scale-125 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center" 
                       title="LinkedIn"
                     >
                       <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
@@ -1847,7 +1847,7 @@ export default function Collections({
                           el.scrollTo({ top: 300, behavior: 'smooth' });
                         }
                       }}
-                      className="hover:text-amber-500 hover:translate-x-1.5 transition-all duration-300 block text-stone-400 text-sm py-0.5 text-left font-sans cursor-pointer w-full"
+                      className="hover:text-oak hover:translate-x-1.5 transition-all duration-300 block text-stone-400 text-sm py-0.5 text-left font-sans cursor-pointer w-full"
                     >
                       Contact Us
                     </button>
@@ -1860,7 +1860,7 @@ export default function Collections({
                         }
                         triggerNotification("Opening Privacy Policy");
                       }}
-                      className="hover:text-amber-500 hover:translate-x-1.5 transition-all duration-300 block text-stone-400 text-sm py-0.5 font-sans cursor-pointer text-left w-full"
+                      className="hover:text-oak hover:translate-x-1.5 transition-all duration-300 block text-stone-400 text-sm py-0.5 font-sans cursor-pointer text-left w-full"
                     >
                       Privacy Policy
                     </button>
@@ -1874,7 +1874,7 @@ export default function Collections({
                   </span>
                   <div className="space-y-3.5 text-sm text-stone-400">
                     <div className="flex items-start gap-3 group/item">
-                      <span className="p-1.5 rounded-lg bg-stone-800/60 text-amber-500 group-hover/item:bg-amber-800 group-hover/item:text-white transition-colors duration-300 mt-0.5 flex-shrink-0">
+                      <span className="p-1.5 rounded-lg bg-stone-800/60 text-oak group-hover/item:bg-walnut group-hover/item:text-white transition-colors duration-300 mt-0.5 flex-shrink-0">
                         <MapPin className="w-4 h-4" />
                       </span>
                       <span className="leading-relaxed">
@@ -1884,28 +1884,28 @@ export default function Collections({
 
                     {/* Email Link opening furnitureholz.com in a new tab as requested */}
                     <div className="flex items-start gap-3 group/item">
-                      <span className="p-1.5 rounded-lg bg-stone-800/60 text-amber-500 group-hover/item:bg-amber-800 group-hover/item:text-white transition-colors duration-300 mt-0.5 flex-shrink-0">
+                      <span className="p-1.5 rounded-lg bg-stone-800/60 text-oak group-hover/item:bg-walnut group-hover/item:text-white transition-colors duration-300 mt-0.5 flex-shrink-0">
                         <Mail className="w-4 h-4" />
                       </span>
                       <a 
                         href="https://furnitureholz-wood.vercel.app/" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="hover:text-amber-500 font-bold transition-all duration-300 relative py-0.5 block group/link"
+                        className="hover:text-oak font-bold transition-all duration-300 relative py-0.5 block group/link"
                         title="Open official website in new tab"
                       >
                         info@furnitureholz.com
-                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-amber-500 origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300" />
+                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-oak origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300" />
                       </a>
                     </div>
 
                     <div className="flex items-start gap-3 group/item">
-                      <span className="p-1.5 rounded-lg bg-stone-800/60 text-amber-500 group-hover/item:bg-amber-800 group-hover/item:text-white transition-colors duration-300 mt-0.5 flex-shrink-0">
+                      <span className="p-1.5 rounded-lg bg-stone-800/60 text-oak group-hover/item:bg-walnut group-hover/item:text-white transition-colors duration-300 mt-0.5 flex-shrink-0">
                         <Phone className="w-4 h-4" />
                       </span>
                       <a 
                         href="tel:03041111857"
-                        className="hover:text-amber-500 font-mono transition-all duration-300 py-0.5 block"
+                        className="hover:text-oak font-mono transition-all duration-300 py-0.5 block"
                       >
                         UAN 0304 1111857
                       </a>
@@ -1922,7 +1922,7 @@ export default function Collections({
                         href="https://wa.me/923276235300" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="hover:text-amber-500 font-mono transition-all duration-300 py-0.5 block"
+                        className="hover:text-oak font-mono transition-all duration-300 py-0.5 block"
                       >
                         Whatsapp: 0327 6235300
                       </a>
@@ -1944,7 +1944,7 @@ export default function Collections({
                       el.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                   }}
-                  className="p-2.5 bg-stone-800 border border-stone-700 hover:border-amber-500 text-stone-400 hover:text-amber-500 rounded-full transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5"
+                  className="p-2.5 bg-stone-800 border border-stone-700 hover:border-oak text-stone-400 hover:text-oak rounded-full transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5"
                   title="Scroll to top of inquiry page"
                 >
                   <ChevronUp className="w-4 h-4" />

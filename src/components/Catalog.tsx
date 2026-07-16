@@ -13,7 +13,7 @@ import { INITIAL_PRODUCTS, WOOD_PROPERTIES, getProductAttributes } from '../data
 
 const getOptionHoverClass = (opt: string) => {
   const norm = opt.trim().toLowerCase();
-  if (norm === 'all') return 'hover:bg-orange-600 hover:text-white';
+  if (norm === 'all') return 'hover:bg-oak hover:text-white';
   if (norm === 'caramel brown') return 'hover:bg-blue-600 hover:text-white';
   const colors = [
     'hover:bg-emerald-600 hover:text-white',
@@ -21,7 +21,7 @@ const getOptionHoverClass = (opt: string) => {
     'hover:bg-rose-600 hover:text-white',
     'hover:bg-indigo-600 hover:text-white',
     'hover:bg-teal-600 hover:text-white',
-    'hover:bg-amber-500 hover:text-black',
+    'hover:bg-oak hover:text-black',
     'hover:bg-pink-600 hover:text-white',
     'hover:bg-violet-600 hover:text-white',
     'hover:bg-sky-600 hover:text-white',
@@ -462,7 +462,7 @@ export default function Catalog({
 
                 {/* Top Overlay: Channel Header info */}
                 <div className="absolute top-4 left-4 right-4 z-20 flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-display font-bold shadow-md border border-white/10 shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-oak flex items-center justify-center text-white font-display font-bold shadow-md border border-white/10 shrink-0">
                     <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                     </svg>
@@ -1091,7 +1091,7 @@ export default function Catalog({
                     <ul className="space-y-3 mb-8">
                       {selectedNewsCard.highlights.map((highlight, idx) => (
                         <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-gray-600">
-                          <span className="text-[#bf9046] mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-oak" />
+                          <span className="text-[#D4A860] mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-oak" />
                           <span>{highlight}</span>
                         </li>
                       ))}

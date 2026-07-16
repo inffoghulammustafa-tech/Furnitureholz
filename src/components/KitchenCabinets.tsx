@@ -63,8 +63,8 @@ export default function KitchenCabinets() {
             <div className="space-y-4">
               <h2 className="font-playfair text-4xl sm:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-black">
                 Modern Kitchen<br />
-                <span className="text-[#f39200]">Cabinets</span> & Elegant<br />
-                <span className="text-[#f39200]">Wardrobes</span>
+                <span className="text-[#DCA273]">Cabinets</span> & Elegant<br />
+                <span className="text-[#DCA273]">Wardrobes</span>
               </h2>
               <p className="text-base sm:text-lg text-stone-700 leading-relaxed font-light pt-2">
                 Transform your living spaces with our expertly crafted kitchen cabinets and wardrobes. Designed for both functionality and style, our solutions offer smart storage with a sleek, modern touch.

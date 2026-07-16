@@ -31,13 +31,13 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
         viewBox="0 0 100 70"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="transition-all duration-300 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(198,139,89,0.6)] shrink-0"
+        className="transition-all duration-300 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(220,162,115,0.6)] shrink-0"
       >
         <defs>
           {/* Stunning wood brown gradient */}
           <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C68B59" />
-            <stop offset="100%" stopColor="#5C3D2E" />
+            <stop offset="0%" stopColor="#DCA273" />
+            <stop offset="100%" stopColor="#7B5541" />
           </linearGradient>
         </defs>
 
@@ -188,7 +188,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
             ? 'mt-3' 
             : 'mt-2'
         }`}>
-          <div className={`font-sans font-semibold leading-none uppercase text-[#C68B59] group-hover:text-[#DDA172] transition-colors duration-300 ${
+          <div className={`font-sans font-semibold leading-none uppercase text-[#DCA273] group-hover:text-[#EFBA8C] transition-colors duration-300 ${
             isNavbar
               ? 'text-base tracking-[0.06em]'
               : isFooter 
@@ -197,7 +197,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
           }`}>
             Furniture
           </div>
-          <div className={`font-sans font-bold leading-none uppercase text-[#966440] group-hover:text-[#C68B59] transition-colors duration-300 opacity-85 ${
+          <div className={`font-sans font-bold leading-none uppercase text-[#B07A55] group-hover:text-[#DCA273] transition-colors duration-300 opacity-85 ${
             isNavbar
               ? 'text-[9px] mt-0.5 tracking-[0.2em]'
               : isFooter 

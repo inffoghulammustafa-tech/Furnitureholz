@@ -231,8 +231,8 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
           <div className="space-y-16 animate-fade-in">
             {/* Header Content */}
             <div className="text-center max-w-3xl mx-auto space-y-4">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 text-amber-500 border border-amber-500/30 rounded-full text-[11px] uppercase tracking-widest font-bold">
-                <Sparkles className="w-3 h-3 text-amber-500" /> Virtual Showroom Experience
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-oak/10 text-oak border border-oak/30 rounded-full text-[11px] uppercase tracking-widest font-bold">
+                <Sparkles className="w-3 h-3 text-oak" /> Virtual Showroom Experience
               </span>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-serif text-ivory tracking-tight">
                 Masterfully Sculpted Solid Wood
@@ -245,7 +245,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
             {/* Showcase Presentation Banner */}
             <div className="relative overflow-hidden rounded-3xl bg-stone-900/40 p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 border border-stone-800/80 shadow-2xl">
               <div className="max-w-xl space-y-6">
-                <span className="text-[11px] text-amber-500 uppercase tracking-widest font-bold block">
+                <span className="text-[11px] text-oak uppercase tracking-widest font-bold block">
                   Raw Wood to Luxury Art
                 </span>
                 <h3 className="text-3xl md:text-5xl font-serif leading-tight text-white">
@@ -255,7 +255,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                   Handcrafted luxury furniture designed to elevate your living spaces. Experience kiln-dried, seasoned masterpieces built to last generations. Click on any category below to explore individual custom models.
                 </p>
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <a href="#catalog-grid-anchor" className="px-7 py-3.5 bg-amber-700 hover:bg-amber-800 text-stone-100 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-amber-900/35">
+                  <a href="#catalog-grid-anchor" className="px-7 py-3.5 bg-oak hover:bg-oak text-stone-100 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-oak/35">
                     Browse Collection
                   </a>
                   <button 
@@ -277,7 +277,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent"></div>
                 <div className="absolute bottom-6 left-6 right-6 bg-stone-950/85 backdrop-blur-md p-5 rounded-xl border border-white/10">
-                  <span className="text-[9px] text-amber-400 uppercase tracking-widest font-bold">Featured Concept (image_5be139_2.png)</span>
+                  <span className="text-[9px] text-oak uppercase tracking-widest font-bold">Featured Concept (image_5be139_2.png)</span>
                   <h4 className="text-base font-serif font-bold text-stone-100 mt-1">Royal Bedroom Master Suite</h4>
                   <p className="text-stone-400 text-xs mt-1 font-light">Custom carved Sheesham structures complete with high-gloss brass inlay lacquer finish.</p>
                 </div>
@@ -301,13 +301,13 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                         className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                         referrerPolicy="no-referrer"
                       />
-                      <span className="absolute top-4 left-4 bg-amber-800 text-stone-100 text-[10px] px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">
+                      <span className="absolute top-4 left-4 bg-oak text-stone-100 text-[10px] px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">
                         {cat.badge}
                       </span>
                     </div>
 
                     <div className="p-6 flex-grow">
-                      <h4 className="text-xl font-serif font-bold text-stone-100 group-hover:text-amber-500 transition-colors uppercase tracking-wide">
+                      <h4 className="text-xl font-serif font-bold text-stone-100 group-hover:text-oak transition-colors uppercase tracking-wide">
                         {key}
                       </h4>
                       <p className="text-stone-400 text-xs mt-2 line-clamp-3">
@@ -323,7 +323,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                     </div>
 
                     <div className="p-6 pt-0">
-                      <button className="w-full py-3 bg-stone-900 group-hover:bg-amber-700 hover:text-white text-stone-300 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-300 border border-stone-800 group-hover:border-amber-700">
+                      <button className="w-full py-3 bg-stone-900 group-hover:bg-oak hover:text-white text-stone-300 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all duration-300 border border-stone-800 group-hover:border-oak">
                         View Full Collection &rarr;
                       </button>
                     </div>
@@ -335,26 +335,26 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
             {/* Solid Wood Trust Badges Segment */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 py-12 border-t border-b border-stone-800/80">
               <div className="text-center p-4 space-y-2">
-                <div className="text-amber-500 font-serif text-3xl font-semibold">
+                <div className="text-oak font-serif text-3xl font-semibold">
                   <CountUp end={100} suffix="%" />
                 </div>
                 <h5 className="text-xs font-bold uppercase tracking-wider text-stone-100">Premium Hardwood</h5>
                 <p className="text-stone-400 text-[11px]">Strictly use seasoned Sheesham & Golden Teak.</p>
               </div>
               <div className="text-center p-4 space-y-2">
-                <div className="text-amber-500 font-serif text-3xl font-semibold">
+                <div className="text-oak font-serif text-3xl font-semibold">
                   <CountUp end={15} suffix=" Year" />
                 </div>
                 <h5 className="text-xs font-bold uppercase tracking-wider text-stone-100">Termite Warranty</h5>
                 <p className="text-stone-400 text-[11px]">Advanced pressure chemical kiln treatment.</p>
               </div>
               <div className="text-center p-4 space-y-2">
-                <div className="text-amber-500 font-serif text-3xl font-semibold">Custom</div>
+                <div className="text-oak font-serif text-3xl font-semibold">Custom</div>
                 <h5 className="text-xs font-bold uppercase tracking-wider text-stone-100">Made To Order</h5>
                 <p className="text-stone-400 text-[11px]">Sizing & fabrics adjusted perfectly to your layout.</p>
               </div>
               <div className="text-center p-4 space-y-2">
-                <div className="text-amber-500 font-serif text-3xl font-semibold">Safe</div>
+                <div className="text-oak font-serif text-3xl font-semibold">Safe</div>
                 <h5 className="text-xs font-bold uppercase tracking-wider text-stone-100">Transit Padding</h5>
                 <p className="text-stone-400 text-[11px]">Free delivery with absolute doorstep fitting.</p>
               </div>
@@ -369,13 +369,13 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <button 
                 onClick={() => setCurrentPage('home')}
-                className="group flex items-center space-x-2.5 text-xs font-bold uppercase tracking-wider text-stone-400 hover:text-amber-500 transition-colors"
+                className="group flex items-center space-x-2.5 text-xs font-bold uppercase tracking-wider text-stone-400 hover:text-oak transition-colors"
               >
                 <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 <span>Back to Premium Showcase</span>
               </button>
               
-              <span className="text-[10px] font-mono bg-amber-800/60 border border-amber-700/80 text-stone-100 px-3.5 py-1.5 rounded-full uppercase tracking-wider font-semibold">
+              <span className="text-[10px] font-mono bg-oak/60 border border-oak/80 text-stone-100 px-3.5 py-1.5 rounded-full uppercase tracking-wider font-semibold">
                 Correlation: {activeCategory.badge}
               </span>
             </div>
@@ -410,7 +410,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
 
                       {/* Pure Wood Flag */}
                       <div className="absolute top-4 left-4 bg-stone-950/90 backdrop-blur-md text-white text-[10px] px-3.5 py-2 rounded-xl border border-white/10 flex items-center space-x-2 z-10">
-                        <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span className="w-2 h-2 rounded-full bg-oak animate-pulse"></span>
                         <span className="font-bold tracking-widest uppercase">Premium Seasoned Core</span>
                       </div>
                     </div>
@@ -420,10 +420,10 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                   <div className="p-6 box-gradient rounded-2xl space-y-5">
                     <div className="flex items-center justify-between border-b border-stone-800/80 pb-3">
                       <div className="flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-amber-500" />
+                        <Sparkles className="w-4 h-4 text-oak" />
                         <h5 className="text-xs font-bold uppercase tracking-widest text-stone-300">Live Visual Sandbox Customizer</h5>
                       </div>
-                      <span className="text-[9px] font-bold text-amber-400 uppercase bg-amber-950/80 border border-amber-900 px-2 py-0.5 rounded">Active Mock</span>
+                      <span className="text-[9px] font-bold text-oak uppercase bg-oak/80 border border-oak px-2 py-0.5 rounded">Active Mock</span>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -433,22 +433,22 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                         <div className="flex items-center gap-2.5">
                           <button 
                             onClick={() => applyWoodPreset('#5c3e21', 'Dark Walnut Finish')}
-                            className={`w-8 h-8 rounded-full bg-[#5c3e21] border-2 transition-all ${woodPolish === 'Dark Walnut Finish' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-[#5c3e21] border-2 transition-all ${woodPolish === 'Dark Walnut Finish' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Dark Walnut"
                           ></button>
                           <button 
                             onClick={() => applyWoodPreset('#b5835a', 'Golden Teak Finish')}
-                            className={`w-8 h-8 rounded-full bg-[#b5835a] border-2 transition-all ${woodPolish === 'Golden Teak Finish' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-[#b5835a] border-2 transition-all ${woodPolish === 'Golden Teak Finish' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Golden Teak"
                           ></button>
                           <button 
                             onClick={() => applyWoodPreset('#8b5a2b', 'Natural Sheesham')}
-                            className={`w-8 h-8 rounded-full bg-[#8b5a2b] border-2 transition-all ${woodPolish === 'Natural Sheesham' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-[#8b5a2b] border-2 transition-all ${woodPolish === 'Natural Sheesham' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Natural Sheesham"
                           ></button>
                           <button 
                             onClick={() => applyWoodPreset('#faf6f0', 'Deco Painted White')}
-                            className={`w-8 h-8 rounded-full bg-[#faf6f0] border-2 transition-all ${woodPolish === 'Deco Painted White' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-[#faf6f0] border-2 transition-all ${woodPolish === 'Deco Painted White' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Deco Painted White"
                           ></button>
                         </div>
@@ -461,22 +461,22 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                         <div className="flex items-center gap-2.5">
                           <button 
                             onClick={() => applyFabricPreset('#7f1d1d', 'Royal Velvet Red')}
-                            className={`w-8 h-8 rounded-full bg-red-900 border-2 transition-all ${fabricOverlay === 'Royal Velvet Red' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-red-900 border-2 transition-all ${fabricOverlay === 'Royal Velvet Red' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Royal Velvet Red"
                           ></button>
                           <button 
                             onClick={() => applyFabricPreset('#064e3b', 'Emerald Cushion')}
-                            className={`w-8 h-8 rounded-full bg-emerald-900 border-2 transition-all ${fabricOverlay === 'Emerald Cushion' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-emerald-900 border-2 transition-all ${fabricOverlay === 'Emerald Cushion' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Emerald Cushion"
                           ></button>
                           <button 
                             onClick={() => applyFabricPreset('#d97706', 'Warm Mustard Cushion')}
-                            className={`w-8 h-8 rounded-full bg-amber-600 border-2 transition-all ${fabricOverlay === 'Warm Mustard Cushion' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-oak border-2 transition-all ${fabricOverlay === 'Warm Mustard Cushion' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Warm Mustard"
                           ></button>
                           <button 
                             onClick={() => applyFabricPreset('#f5f5f4', 'Classic Sand Beige')}
-                            className={`w-8 h-8 rounded-full bg-stone-100 border-2 transition-all ${fabricOverlay === 'Classic Sand Beige' ? 'border-amber-500 scale-110' : 'border-stone-900 hover:scale-105'}`}
+                            className={`w-8 h-8 rounded-full bg-stone-100 border-2 transition-all ${fabricOverlay === 'Classic Sand Beige' ? 'border-oak scale-110' : 'border-stone-900 hover:scale-105'}`}
                             title="Sand Beige"
                           ></button>
                         </div>
@@ -501,7 +501,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                   <div className="space-y-3">
                     <div className="flex items-center justify-between pb-2 border-b border-stone-800">
                       <h4 className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Available Sub-items Catalog</h4>
-                      <span className="text-[9px] text-amber-500 uppercase font-bold italic">Click variant to select</span>
+                      <span className="text-[9px] text-oak uppercase font-bold italic">Click variant to select</span>
                     </div>
 
                     <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
@@ -512,10 +512,10 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                             setActiveSubItem(item.name);
                             triggerToast(`Selected Variant: ${item.name}`);
                           }}
-                          className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer group flex items-start justify-between gap-4 ${activeSubItem === item.name ? 'border-amber-600 bg-amber-950/20 shadow-md' : 'border-stone-800 bg-stone-900/20 hover:border-stone-700'}`}
+                          className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer group flex items-start justify-between gap-4 ${activeSubItem === item.name ? 'border-oak bg-oak/20 shadow-md' : 'border-stone-800 bg-stone-900/20 hover:border-stone-700'}`}
                         >
                           <div className="space-y-1">
-                            <h5 className={`text-sm font-bold transition-colors ${activeSubItem === item.name ? 'text-amber-400' : 'text-stone-200 group-hover:text-amber-500'}`}>
+                            <h5 className={`text-sm font-bold transition-colors ${activeSubItem === item.name ? 'text-oak' : 'text-stone-200 group-hover:text-oak'}`}>
                               {item.name}
                             </h5>
                             <p className="text-[11px] text-stone-400 font-light leading-relaxed">
@@ -526,7 +526,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                             <span className="text-xs font-bold text-stone-200 block font-mono">
                               {item.price}
                             </span>
-                            <span className="text-[9px] text-amber-500 font-bold uppercase tracking-wider block mt-1 group-hover:underline">
+                            <span className="text-[9px] text-oak font-bold uppercase tracking-wider block mt-1 group-hover:underline">
                               Customize &rarr;
                             </span>
                           </div>
@@ -536,9 +536,9 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                   </div>
 
                   {/* Action Console */}
-                  <div className="p-6 border border-amber-600/20 bg-amber-950/15 rounded-2xl space-y-4">
+                  <div className="p-6 border border-oak/20 bg-oak/15 rounded-2xl space-y-4">
                     <div className="flex items-start space-x-3">
-                      <div className="w-9 h-9 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5 border border-amber-500/25">
+                      <div className="w-9 h-9 rounded-full bg-oak/10 text-oak flex items-center justify-center flex-shrink-0 mt-0.5 border border-oak/25">
                         <Info className="w-4 h-4" />
                       </div>
                       <div className="space-y-0.5">
@@ -552,7 +552,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                     <div className="flex flex-col sm:flex-row gap-3 pt-2">
                       <button 
                         onClick={handleOpenInquiry}
-                        className="flex-grow py-3.5 bg-amber-700 hover:bg-amber-800 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md active:scale-[0.98]"
+                        className="flex-grow py-3.5 bg-oak hover:bg-oak text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md active:scale-[0.98]"
                       >
                         Request Bespoke Price Quote
                       </button>
@@ -572,7 +572,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
             {/* Technical checklist */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-5 bg-stone-900/20 rounded-2xl border border-stone-800/80 flex items-start space-x-3">
-                <span className="text-amber-500 text-lg leading-none mt-0.5">✔</span>
+                <span className="text-oak text-lg leading-none mt-0.5">✔</span>
                 <div className="space-y-1">
                   <h4 className="text-xs font-bold text-stone-200 uppercase">Seasoned Hardwood Only</h4>
                   <p className="text-[11px] text-stone-400 leading-normal font-light">
@@ -581,7 +581,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                 </div>
               </div>
               <div className="p-5 bg-stone-900/20 rounded-2xl border border-stone-800/80 flex items-start space-x-3">
-                <span className="text-amber-500 text-lg leading-none mt-0.5">✔</span>
+                <span className="text-oak text-lg leading-none mt-0.5">✔</span>
                 <div className="space-y-1">
                   <h4 className="text-xs font-bold text-stone-200 uppercase">High Gloss & Deco Polishes</h4>
                   <p className="text-[11px] text-stone-400 leading-normal font-light">
@@ -590,7 +590,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
                 </div>
               </div>
               <div className="p-5 bg-stone-900/20 rounded-2xl border border-stone-800/80 flex items-start space-x-3">
-                <span className="text-amber-500 text-lg leading-none mt-0.5">✔</span>
+                <span className="text-oak text-lg leading-none mt-0.5">✔</span>
                 <div className="space-y-1">
                   <h4 className="text-xs font-bold text-stone-200 uppercase">Master Foam & Springs</h4>
                   <p className="text-[11px] text-stone-400 leading-normal font-light">
@@ -606,13 +606,13 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
         <div className="mt-20 bg-stone-950 p-8 md:p-12 border border-stone-800 rounded-3xl font-mono text-xs w-full">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-6">
             <div>
-              <span className="text-amber-500 font-semibold tracking-wider uppercase text-[10px]">Developer Code Output</span>
+              <span className="text-oak font-semibold tracking-wider uppercase text-[10px]">Developer Code Output</span>
               <h3 className="text-white font-serif text-lg mt-1 font-semibold">Ready-to-Use Component Code</h3>
               <p className="text-[11px] text-stone-500 font-sans mt-1">Copy this clean modular representation for embedding on your primary sites, React panels or web builders.</p>
             </div>
             <button 
               onClick={copyCodeSegment}
-              className="flex items-center gap-2 bg-amber-700 hover:bg-amber-850 text-white font-sans px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow active:scale-95 shrink-0"
+              className="flex items-center gap-2 bg-oak hover:bg-oak text-white font-sans px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors shadow active:scale-95 shrink-0"
             >
               <Copy className="w-3.5 h-3.5" />
               Copy Code Segment
@@ -623,7 +623,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
             <textarea 
               readOnly 
               value={`<!-- Premium Showroom Grid Segment Correlated to User's visual assets -->\n<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">\n  <!-- Visual correlated layout matches image_5be139_2.png, image_5be175_2.png, etc. -->\n  <!-- Beautiful customized micro-animations included -->\n</div>`}
-              className="w-full h-32 bg-stone-900 text-amber-200/90 p-4 rounded-xl border border-stone-800 focus:outline-none resize-none font-mono text-[11px] leading-relaxed"
+              className="w-full h-32 bg-stone-900 text-oak/90 p-4 rounded-xl border border-stone-800 focus:outline-none resize-none font-mono text-[11px] leading-relaxed"
             />
           </div>
         </div>
@@ -651,7 +651,7 @@ export default function VirtualShowroom({ onAddMessageToast }: VirtualShowroomPr
               className="relative w-full max-w-lg bg-[#0e1626] rounded-3xl border border-stone-800 p-8 text-left shadow-2xl z-10"
             >
               <div className="space-y-2 mb-6">
-                <span className="text-[10px] font-bold tracking-widest text-amber-500 uppercase block">
+                <span className="text-[10px] font-bold tracking-widest text-oak uppercase block">
                   Consultation for {activeCategoryKey.toUpperCase()}
                 </span>
                 <h2 className="text-2xl font-serif font-bold text-white">Inquire & Request Bespoke Quote</h2>

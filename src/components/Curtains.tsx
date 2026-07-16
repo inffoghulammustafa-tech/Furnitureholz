@@ -59,7 +59,7 @@ export default function Curtains() {
             </motion.div>
             
             {/* Decorative background element */}
-            <div className="absolute -top-10 -right-10 w-64 h-64 bg-orange-400/10 rounded-full blur-3xl -z-0" />
+            <div className="absolute -top-10 -right-10 w-64 h-64 bg-oak/10 rounded-full blur-3xl -z-0" />
             <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-stone-300/20 rounded-full blur-3xl -z-0" />
           </div>
         </motion.div>
