@@ -181,14 +181,14 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
       {showText && (
         <div className={`select-none transition-colors duration-300 ${
           isNavbar
-            ? 'flex flex-col items-center justify-center -mt-2.5'
+            ? 'flex flex-col items-center justify-center -mt-4'
             : isFooter 
             ? 'mt-1' 
             : isDrawer 
             ? 'mt-3' 
             : 'mt-2'
         }`}>
-          <div className={`font-display font-extrabold leading-none uppercase text-[#C68B59] group-hover:text-[#DDA172] transition-colors duration-300 ${
+          <div className={`font-sans font-semibold leading-none uppercase text-[#C68B59] group-hover:text-[#DDA172] transition-colors duration-300 ${
             isNavbar
               ? 'text-base tracking-[0.06em]'
               : isFooter 

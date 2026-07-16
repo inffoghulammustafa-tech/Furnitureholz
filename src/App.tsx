@@ -17,11 +17,13 @@ import AiAdvisor from './components/AiAdvisor';
 import QuoteBasket from './components/QuoteBasket';
 import PrivacyPolicyModal from './components/PrivacyPolicyModal';
 import SearchModal from './components/SearchModal';
+import LoadingScreen from './components/LoadingScreen';
 import { Product, CustomConfig, QuoteItem } from './types';
 import { ChevronUp, Check, Info } from 'lucide-react';
 
 export default function App() {
   // Global States
+  const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState<QuoteItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -165,7 +167,14 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-charcoal text-ivory relative selection:bg-oak selection:text-charcoal flex flex-col justify-between">
+    <>
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen key="loading-screen" onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
+      <div className="min-h-screen bg-charcoal text-ivory relative selection:bg-oak selection:text-charcoal flex flex-col justify-between">
       
       {/* Site Header */}
       <Navbar
@@ -303,5 +312,6 @@ export default function App() {
       </button>
 
     </div>
+    </>
   );
 }
