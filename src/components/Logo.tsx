@@ -181,7 +181,7 @@ export default function Logo({ className = '', iconSize = 48, showText = true, v
       {showText && (
         <div className={`select-none transition-colors duration-300 ${
           isNavbar
-            ? 'flex flex-col items-center justify-center -mt-4'
+            ? 'flex flex-col items-center justify-center mt-0.5'
             : isFooter 
             ? 'mt-1' 
             : isDrawer 
