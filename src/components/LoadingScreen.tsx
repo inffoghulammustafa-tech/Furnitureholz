@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sofa, Armchair, LampFloor, BookOpen, Coffee } from 'lucide-react';
+import { Sofa, Armchair, LampFloor, BedDouble, RockingChair } from 'lucide-react';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -9,7 +9,7 @@ interface LoadingScreenProps {
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [loadingText, setLoadingText] = useState('CRAFTING MODERN LIVING...');
   const [iconIndex, setIconIndex] = useState(0);
-  const icons = [Sofa, Armchair, LampFloor, Coffee, BookOpen];
+  const icons = [Sofa, Armchair, LampFloor, BedDouble, RockingChair];
 
   useEffect(() => {
     // Lock scroll while loading
