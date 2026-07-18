@@ -4,6 +4,7 @@ import { Sofa, Armchair, LampFloor, BedDouble, RockingChair } from 'lucide-react
 
 interface LoadingScreenProps {
   onComplete: () => void;
+  key?: string;
 }
 
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {

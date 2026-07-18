@@ -13,6 +13,7 @@ interface ArrivalCardProps {
   product: Product | undefined; // Full product details to get thumbnails
   onOpenDetail: (id: string) => void;
   onInquiry: (name: string) => void;
+  key?: string | number;
 }
 
 export default function ArrivalCard({ item, product, onOpenDetail, onInquiry }: ArrivalCardProps) {

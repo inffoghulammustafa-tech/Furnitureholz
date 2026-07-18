@@ -178,11 +178,23 @@ export default function KitchenCabinets() {
               className="w-full h-full flex items-center justify-center p-4 sm:p-12 md:p-24"
               onClick={(e) => e.stopPropagation()}
             >
-              <img 
-                src={galleryImages[currentImageIndex]} 
-                alt={`Gallery View ${currentImageIndex + 1}`}
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              />
+              <div className="relative max-w-full max-h-[80vh] flex items-center justify-center">
+                <img 
+                  src={galleryImages[currentImageIndex]} 
+                  alt={`Gallery View ${currentImageIndex + 1}`}
+                  className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl border border-white/10"
+                />
+                
+                {/* Cancel (Close) button on the top-right corner of the image */}
+                <button 
+                  onClick={closeLightbox}
+                  className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-[#DCA273] hover:bg-[#c98e5e] text-white rounded-full p-2 md:p-2.5 shadow-2xl hover:scale-110 transition-all duration-200 z-[110] border-2 border-white flex items-center justify-center"
+                  aria-label="Close image"
+                  title="Close"
+                >
+                  <X className="w-4 h-4 md:w-5 md:h-5" />
+                </button>
+              </div>
             </motion.div>
             
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 font-medium tracking-widest text-sm bg-black/50 px-4 py-2 rounded-full">
