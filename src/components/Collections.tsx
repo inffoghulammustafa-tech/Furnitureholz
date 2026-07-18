@@ -685,6 +685,67 @@ export default function Collections({
   const [currentPage, setCurrentPage] = useState(0); // 0 or 1
   const [slideDirection, setSlideDirection] = useState(1); // 1 or -1
 
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
+  const [isRow1Hovered, setIsRow1Hovered] = useState(false);
+  const [isRow2Hovered, setIsRow2Hovered] = useState(false);
+
+  const scrollRow = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const container = ref.current;
+      const cardWidth = container.querySelector('[data-card]')?.clientWidth || 320;
+      const scrollAmount = direction === 'left' ? -cardWidth - 24 : cardWidth + 24;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  // Auto-scroll logic for Row 1 and Row 2 in opposite directions
+  useEffect(() => {
+    if (isRow1Hovered) return;
+    const interval = setInterval(() => {
+      if (row1Ref.current) {
+        const container = row1Ref.current;
+        const cardWidth = container.querySelector('[data-card]')?.clientWidth || 320;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        if (container.scrollLeft >= maxScroll - 5) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: cardWidth + 24, behavior: 'smooth' });
+        }
+      }
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isRow1Hovered]);
+
+  useEffect(() => {
+    if (isRow2Hovered) return;
+    const interval = setInterval(() => {
+      if (row2Ref.current) {
+        const container = row2Ref.current;
+        const cardWidth = container.querySelector('[data-card]')?.clientWidth || 320;
+        if (container.scrollLeft <= 5) {
+          const maxScroll = container.scrollWidth - container.clientWidth;
+          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: -cardWidth - 24, behavior: 'smooth' });
+        }
+      }
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isRow2Hovered]);
+
+  // Initial offset for Row 2 on load to make it look active, dynamic and offset
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (row2Ref.current) {
+        const container = row2Ref.current;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        container.scrollTo({ left: maxScroll / 2 });
+      }
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   const [selectedShowcaseProduct, setSelectedShowcaseProduct] = useState<Product | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -899,7 +960,18 @@ export default function Collections({
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24">
         
         {/* ================= NEW ARRIVALS SECTION ================= */}
-        <div id="new-arrivals-section" className="space-y-8">
+        <div id="new-arrivals-section" className="space-y-12">
+          {/* Custom style to hide scrollbars */}
+          <style dangerouslySetInnerHTML={{__html: `
+            .no-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+            .no-scrollbar {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+            }
+          `}} />
+
           <div className="flex justify-between items-end border-b border-line/40 pb-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-sage block mb-1">Freshly Carved masterpieces</span>
@@ -910,51 +982,128 @@ export default function Collections({
                 Bespoke handmade pieces ready for booking
               </p>
             </div>
-            <div className="flex items-center space-x-2">
+          </div>
+
+          {/* LINE 1 (Upper Row - Slides Left) */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between pl-1">
+              <h4 className="font-mono text-xs uppercase tracking-[0.15em] text-[#DCA273] font-semibold flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DCA273] animate-pulse"></span>
+                Standard Masterpieces
+              </h4>
+              <span className="text-[10px] font-mono text-ivory-dim/40 uppercase hidden sm:inline">Slide left to discover</span>
+            </div>
+            
+            <div 
+              className="relative group/row1"
+              onMouseEnter={() => setIsRow1Hovered(true)}
+              onMouseLeave={() => setIsRow1Hovered(false)}
+            >
+              {/* Left Arrow Button */}
               <button 
-                onClick={handlePrevPage} 
-                className="w-9 h-9 rounded-full border border-line hover:border-oak hover:bg-oak/10 text-ivory hover:text-oak flex items-center justify-center transition-all cursor-pointer bg-charcoal/40"
-                aria-label="Previous Page"
+                onClick={() => scrollRow(row1Ref, 'left')} 
+                className="absolute -left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                aria-label="Scroll Left Row 1"
+                title="Previous"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
-              <button 
-                onClick={handleNextPage} 
-                className="w-9 h-9 rounded-full border border-line hover:border-oak hover:bg-oak/10 text-ivory hover:text-oak flex items-center justify-center transition-all cursor-pointer bg-charcoal/40"
-                aria-label="Next Page"
+
+              {/* Row 1 Scroll Track */}
+              <div 
+                ref={row1Ref}
+                className="flex overflow-x-auto gap-6 md:gap-8 no-scrollbar scroll-smooth snap-x snap-mandatory py-2 px-1"
               >
-                <ChevronRight className="w-4 h-4" />
+                {NEW_ARRIVALS.slice(0, 8).map((item) => {
+                  const fullProduct = INITIAL_PRODUCTS.find(p => p.id === item.id);
+                  return (
+                    <div 
+                      key={item.id} 
+                      className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start"
+                      data-card
+                    >
+                      <ArrivalCard 
+                        item={item}
+                        product={fullProduct}
+                        onOpenDetail={handleOpenProductDetail}
+                        onInquiry={handleOpenInquiry}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Right Arrow Button */}
+              <button 
+                onClick={() => scrollRow(row1Ref, 'right')} 
+                className="absolute -right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                aria-label="Scroll Right Row 1"
+                title="Next"
+              >
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
 
-          {/* Products Grid with beautiful slide transition */}
-          <div className="overflow-hidden relative p-1">
-            <AnimatePresence mode="wait" custom={slideDirection}>
-              <motion.div
-                key={currentPage}
-                custom={slideDirection}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          {/* LINE 2 (Lower Row - Slides Right) */}
+          <div className="space-y-4 pt-4">
+            <div className="flex items-center justify-between pl-1">
+              <h4 className="font-mono text-xs uppercase tracking-[0.15em] text-[#DCA273] font-semibold flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DCA273] animate-pulse"></span>
+                Premium Additions
+              </h4>
+              <span className="text-[10px] font-mono text-ivory-dim/40 uppercase hidden sm:inline">Slide right to discover</span>
+            </div>
+            
+            <div 
+              className="relative group/row2"
+              onMouseEnter={() => setIsRow2Hovered(true)}
+              onMouseLeave={() => setIsRow2Hovered(false)}
+            >
+              {/* Left Arrow Button */}
+              <button 
+                onClick={() => scrollRow(row2Ref, 'left')} 
+                className="absolute -left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                aria-label="Scroll Left Row 2"
+                title="Previous"
               >
-                {visibleArrivals.map((item) => {
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Row 2 Scroll Track */}
+              <div 
+                ref={row2Ref}
+                className="flex overflow-x-auto gap-6 md:gap-8 no-scrollbar scroll-smooth snap-x snap-mandatory py-2 px-1"
+              >
+                {NEW_ARRIVALS.slice(8, 16).map((item) => {
                   const fullProduct = INITIAL_PRODUCTS.find(p => p.id === item.id);
                   return (
-                    <ArrivalCard 
-                      key={item.id}
-                      item={item}
-                      product={fullProduct}
-                      onOpenDetail={handleOpenProductDetail}
-                      onInquiry={handleOpenInquiry}
-                    />
+                    <div 
+                      key={item.id} 
+                      className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start"
+                      data-card
+                    >
+                      <ArrivalCard 
+                        item={item}
+                        product={fullProduct}
+                        onOpenDetail={handleOpenProductDetail}
+                        onInquiry={handleOpenInquiry}
+                      />
+                    </div>
                   );
                 })}
-              </motion.div>
-            </AnimatePresence>
+              </div>
+
+              {/* Right Arrow Button */}
+              <button 
+                onClick={() => scrollRow(row2Ref, 'right')} 
+                className="absolute -right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                aria-label="Scroll Right Row 2"
+                title="Next"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 
