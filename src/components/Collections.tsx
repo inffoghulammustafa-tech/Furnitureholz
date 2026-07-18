@@ -689,61 +689,107 @@ export default function Collections({
   const row2Ref = useRef<HTMLDivElement>(null);
   const [isRow1Hovered, setIsRow1Hovered] = useState(false);
   const [isRow2Hovered, setIsRow2Hovered] = useState(false);
+  
+  const [row1IntPause, setRow1IntPause] = useState(false);
+  const [row2IntPause, setRow2IntPause] = useState(false);
+  const row1TimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const row2TimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const scrollRow = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+  // Unified unified continuous scroll controller & arrow click wrapper
+  const scrollRow = (rowNum: 1 | 2, direction: 'left' | 'right') => {
+    const ref = rowNum === 1 ? row1Ref : row2Ref;
+    const setIntPause = rowNum === 1 ? setRow1IntPause : setRow2IntPause;
+    const timeoutRef = rowNum === 1 ? row1TimeoutRef : row2TimeoutRef;
+
+    setIntPause(true);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setIntPause(false);
+    }, 5000); // Pause autoscroll for 5 seconds after arrow click
+
     if (ref.current) {
       const container = ref.current;
-      const cardWidth = container.querySelector('[data-card]')?.clientWidth || 320;
+      const cardWidth = container.querySelector('[data-card]')?.clientWidth || 330;
       const scrollAmount = direction === 'left' ? -cardWidth - 24 : cardWidth + 24;
+      
+      const halfWidth = container.scrollWidth / 2;
+      if (halfWidth > 0) {
+        if (direction === 'left' && container.scrollLeft < cardWidth + 24) {
+          container.scrollLeft += halfWidth;
+        } else if (direction === 'right' && container.scrollLeft > halfWidth - cardWidth - 24) {
+          container.scrollLeft -= halfWidth;
+        }
+      }
+
       container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
-  // Auto-scroll logic for Row 1 and Row 2 in opposite directions
+  // Continuous smooth scroll for Row 1 (Slides Left)
   useEffect(() => {
-    if (isRow1Hovered) return;
-    const interval = setInterval(() => {
-      if (row1Ref.current) {
+    let animationFrameId: number;
+    let lastTime = performance.now();
+    
+    const scroll = (time: number) => {
+      if (row1Ref.current && !isRow1Hovered && !row1IntPause) {
         const container = row1Ref.current;
-        const cardWidth = container.querySelector('[data-card]')?.clientWidth || 320;
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        if (container.scrollLeft >= maxScroll - 5) {
-          container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          container.scrollBy({ left: cardWidth + 24, behavior: 'smooth' });
+        const delta = (time - lastTime) / 16.67;
+        lastTime = time;
+        
+        const speed = 0.8 * (delta > 3 ? 1 : delta);
+        const halfWidth = container.scrollWidth / 2;
+        if (halfWidth > 0) {
+          container.scrollLeft += speed;
+          if (container.scrollLeft >= halfWidth) {
+            container.scrollLeft -= halfWidth;
+          }
         }
+      } else {
+        lastTime = time;
       }
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isRow1Hovered]);
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+    
+    animationFrameId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isRow1Hovered, row1IntPause]);
 
+  // Continuous smooth scroll for Row 2 (Slides Right - Backward direction)
   useEffect(() => {
-    if (isRow2Hovered) return;
-    const interval = setInterval(() => {
-      if (row2Ref.current) {
+    let animationFrameId: number;
+    let lastTime = performance.now();
+    
+    const scroll = (time: number) => {
+      if (row2Ref.current && !isRow2Hovered && !row2IntPause) {
         const container = row2Ref.current;
-        const cardWidth = container.querySelector('[data-card]')?.clientWidth || 320;
-        if (container.scrollLeft <= 5) {
-          const maxScroll = container.scrollWidth - container.clientWidth;
-          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
-        } else {
-          container.scrollBy({ left: -cardWidth - 24, behavior: 'smooth' });
+        const delta = (time - lastTime) / 16.67;
+        lastTime = time;
+        
+        const speed = 0.8 * (delta > 3 ? 1 : delta);
+        const halfWidth = container.scrollWidth / 2;
+        if (halfWidth > 0) {
+          // If starting or close to left boundary, jump to second half to allow backward scroll
+          if (container.scrollLeft <= 2) {
+            container.scrollLeft += halfWidth;
+          }
+          container.scrollLeft -= speed;
         }
+      } else {
+        lastTime = time;
       }
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isRow2Hovered]);
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+    
+    animationFrameId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isRow2Hovered, row2IntPause]);
 
-  // Initial offset for Row 2 on load to make it look active, dynamic and offset
+  // Cleanup interactive timers on unmount
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (row2Ref.current) {
-        const container = row2Ref.current;
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        container.scrollTo({ left: maxScroll / 2 });
-      }
-    }, 800);
-    return () => clearTimeout(timer);
+    return () => {
+      if (row1TimeoutRef.current) clearTimeout(row1TimeoutRef.current);
+      if (row2TimeoutRef.current) clearTimeout(row2TimeoutRef.current);
+    };
   }, []);
 
   const [selectedShowcaseProduct, setSelectedShowcaseProduct] = useState<Product | null>(null);
@@ -991,7 +1037,7 @@ export default function Collections({
                 <span className="w-1.5 h-1.5 rounded-full bg-[#DCA273] animate-pulse"></span>
                 Standard Masterpieces
               </h4>
-              <span className="text-[10px] font-mono text-ivory-dim/40 uppercase hidden sm:inline">Slide left to discover</span>
+              <span className="text-[10px] font-mono text-ivory-dim/40 uppercase hidden sm:inline">Continuous Slide Left</span>
             </div>
             
             <div 
@@ -1001,8 +1047,8 @@ export default function Collections({
             >
               {/* Left Arrow Button */}
               <button 
-                onClick={() => scrollRow(row1Ref, 'left')} 
-                className="absolute -left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                onClick={() => scrollRow(1, 'left')} 
+                className="absolute -left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-95 hover:opacity-100 hover:scale-110 active:scale-95"
                 aria-label="Scroll Left Row 1"
                 title="Previous"
               >
@@ -1012,14 +1058,14 @@ export default function Collections({
               {/* Row 1 Scroll Track */}
               <div 
                 ref={row1Ref}
-                className="flex overflow-x-auto gap-6 md:gap-8 no-scrollbar scroll-smooth snap-x snap-mandatory py-2 px-1"
+                className="flex overflow-x-auto gap-6 md:gap-8 no-scrollbar scroll-smooth py-2 px-1 select-none"
               >
-                {NEW_ARRIVALS.slice(0, 8).map((item) => {
+                {[...NEW_ARRIVALS.slice(0, 8), ...NEW_ARRIVALS.slice(0, 8)].map((item, idx) => {
                   const fullProduct = INITIAL_PRODUCTS.find(p => p.id === item.id);
                   return (
                     <div 
-                      key={item.id} 
-                      className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start"
+                      key={`${item.id}-row1-${idx}`} 
+                      className="w-[280px] sm:w-[320px] md:w-[340px] flex-shrink-0 transition-transform duration-300 hover:scale-[1.02]"
                       data-card
                     >
                       <ArrivalCard 
@@ -1035,8 +1081,8 @@ export default function Collections({
 
               {/* Right Arrow Button */}
               <button 
-                onClick={() => scrollRow(row1Ref, 'right')} 
-                className="absolute -right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                onClick={() => scrollRow(1, 'right')} 
+                className="absolute -right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-95 hover:opacity-100 hover:scale-110 active:scale-95"
                 aria-label="Scroll Right Row 1"
                 title="Next"
               >
@@ -1052,7 +1098,7 @@ export default function Collections({
                 <span className="w-1.5 h-1.5 rounded-full bg-[#DCA273] animate-pulse"></span>
                 Premium Additions
               </h4>
-              <span className="text-[10px] font-mono text-ivory-dim/40 uppercase hidden sm:inline">Slide right to discover</span>
+              <span className="text-[10px] font-mono text-ivory-dim/40 uppercase hidden sm:inline">Continuous Slide Right</span>
             </div>
             
             <div 
@@ -1062,8 +1108,8 @@ export default function Collections({
             >
               {/* Left Arrow Button */}
               <button 
-                onClick={() => scrollRow(row2Ref, 'left')} 
-                className="absolute -left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                onClick={() => scrollRow(2, 'left')} 
+                className="absolute -left-3 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-95 hover:opacity-100 hover:scale-110 active:scale-95"
                 aria-label="Scroll Left Row 2"
                 title="Previous"
               >
@@ -1073,14 +1119,14 @@ export default function Collections({
               {/* Row 2 Scroll Track */}
               <div 
                 ref={row2Ref}
-                className="flex overflow-x-auto gap-6 md:gap-8 no-scrollbar scroll-smooth snap-x snap-mandatory py-2 px-1"
+                className="flex overflow-x-auto gap-6 md:gap-8 no-scrollbar scroll-smooth py-2 px-1 select-none"
               >
-                {NEW_ARRIVALS.slice(8, 16).map((item) => {
+                {[...NEW_ARRIVALS.slice(8, 16), ...NEW_ARRIVALS.slice(8, 16)].map((item, idx) => {
                   const fullProduct = INITIAL_PRODUCTS.find(p => p.id === item.id);
                   return (
                     <div 
-                      key={item.id} 
-                      className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start"
+                      key={`${item.id}-row2-${idx}`} 
+                      className="w-[280px] sm:w-[320px] md:w-[340px] flex-shrink-0 transition-transform duration-300 hover:scale-[1.02]"
                       data-card
                     >
                       <ArrivalCard 
@@ -1096,8 +1142,8 @@ export default function Collections({
 
               {/* Right Arrow Button */}
               <button 
-                onClick={() => scrollRow(row2Ref, 'right')} 
-                className="absolute -right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-90 hover:opacity-100 hover:scale-110 active:scale-95"
+                onClick={() => scrollRow(2, 'right')} 
+                className="absolute -right-3 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-11 md:h-11 rounded-full border border-line/60 bg-charcoal/90 hover:bg-[#DCA273] hover:border-[#DCA273] hover:text-white text-ivory flex items-center justify-center transition-all cursor-pointer shadow-lg backdrop-blur-sm opacity-95 hover:opacity-100 hover:scale-110 active:scale-95"
                 aria-label="Scroll Right Row 2"
                 title="Next"
               >
