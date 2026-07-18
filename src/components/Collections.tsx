@@ -736,7 +736,7 @@ export default function Collections({
         const delta = (time - lastTime) / 16.67;
         lastTime = time;
         
-        const speed = 1.6 * (delta > 3 ? 1 : delta);
+        const speed = 4.8 * (delta > 3 ? 1 : delta);
         const halfWidth = container.scrollWidth / 2;
         if (halfWidth > 0) {
           container.scrollLeft += speed;
@@ -765,7 +765,7 @@ export default function Collections({
         const delta = (time - lastTime) / 16.67;
         lastTime = time;
         
-        const speed = 1.6 * (delta > 3 ? 1 : delta);
+        const speed = 4.8 * (delta > 3 ? 1 : delta);
         const halfWidth = container.scrollWidth / 2;
         if (halfWidth > 0) {
           // If starting or close to left boundary, jump to second half to allow backward scroll
